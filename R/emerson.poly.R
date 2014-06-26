@@ -21,6 +21,7 @@ function (mj, pj)
         }
     }
 B<-t(B)
-B<-B[,-c(1,2)]
-    return(B)
+B1<-B[,-c(1,2)]
+BT<-B[,-c(1)]
+    list(B=B1,BT=BT)
 }

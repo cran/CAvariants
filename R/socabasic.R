@@ -7,7 +7,7 @@ rsums <- as.vector(rowSums(x))
 csums <- as.vector(colSums(x))
 di<-diag(rsums)
 dj<-diag(csums)
-    Bpoly <- emerson.poly(mj, csums)
+    Bpoly <- emerson.poly(mj, csums)$B
 #  Bpoly <- orthopoly.exe(c(csums))[,-1]
 
     Bpoly2 <- sqrt(dj) %*% Bpoly

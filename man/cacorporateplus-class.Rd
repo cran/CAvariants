@@ -36,6 +36,7 @@ Objects can be created by calls of the form \code{cacorporateplus(...)}.
     \item{\code{Jmass}:}{Object of class \code{"matrix"} Column weights}
     \item{\code{Imass}:}{Object of class \code{"matrix"} Row weights}
     \item{\code{Trend}:}{Object of class \code{"matrix"} Trend of rows or columns when an ordered analysis is performed}
+    \item{\code{Z}:}{Object of class \code{"matrix"} Matrix of generalised correlations in case of ordinal analysis}
   }
 }
 \section{Methods}{

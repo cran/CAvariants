@@ -85,14 +85,14 @@ for (i in 1:I) {
     }
 }
 else 
-if (biptype=="column"){
+if ((biptype=="column")|(biptype=="col")|(biptype=="c")){
 
  for (j in 1:J) {
         ellipse(hlax1.col[j], hlax2.col[j], , xc = g[j, 1], yc = g[j, 
             2], col = cols[2])
     }
 }
-if (biptype=="row"){
+if ((biptype=="row")){
  
 for (i in 1:I) {
         ellipse(hlax1.row[i], hlax2.row[i], xc = f[i, 1], yc = f[i, 
@@ -144,3 +144,4 @@ for (i in 1:I) {
         col.summ = col.summ))
 
 }
+

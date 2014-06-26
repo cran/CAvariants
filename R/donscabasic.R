@@ -12,9 +12,9 @@ dcmh <- sqrt(dcm1)
 dj <- diag(csums)
 di <- diag(rsums)
 tauden<-1 - sum(rsums^2)
-Apoly <- emerson.poly(mi, rsums)
+Apoly <- emerson.poly(mi, rsums)$B
 Apoly2 <- sqrt(di) %*% Apoly
-Bpoly <- emerson.poly(mj, csums)
+Bpoly <- emerson.poly(mj, csums)$B
 Bpoly2 <- sqrt(dj) %*% Bpoly
 pcc <- 1/sqrt(tauden)*(drmh %*% ( x - rsums %*% t(csums) ) %*% dcm1)
  Z <- t(Apoly2) %*% pcc %*% dj %*% Bpoly #no trivial

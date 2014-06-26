@@ -31,9 +31,9 @@ text(cl2*Varcoord[ ,a1], cl2*Varcoord[ ,a2], labels=varlabels, col=vargrlab[[4]]
 } else { # french
   title(paste(things,"Plot"))
   points(Varcoord[ ,a1], Varcoord[ ,a2], asp=1, 
-         pch=vargrlab[[3]][as.integer(vargroup[[2]])], col=thinggrlab[[4]][as.integer(vargroup[[2]])] )
-text(Varcoord[ ,a1], Varcoord[ ,a2], labels=varlabels, col=thinggrlab[[4]][as.integer(thinggroup[[2]])], pos=pos, cex=cex )
-text(Thingcoord[ ,a1], Thingcoord[ ,a2], labels=thinglabels, col=vargrlab[[4]][as.integer(vargroup[[2]])], pos=pos, cex=cex )
+         pch=vargrlab[[3]][as.integer(vargroup[[2]])], col=vargrlab[[4]][as.integer(vargroup[[2]])] )
+text(Varcoord[ ,a1], Varcoord[ ,a2], labels=varlabels, col=vargrlab[[4]][as.integer(vargroup[[2]])], pos=pos, cex=cex )
+text(Thingcoord[ ,a1], Thingcoord[ ,a2], labels=thinglabels, col=thinggrlab[[4]][as.integer(thinggroup[[2]])], pos=pos, cex=cex )
 if (as.integer(max(vargroup[[2]]))>1) legend("topright",vargrlab[[2]],pch=vargrlab[[3]]) 
 
 }

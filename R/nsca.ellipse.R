@@ -1,6 +1,5 @@
 nsca.ellipse <-
-function(N, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = min(nrow(N), ncol(N)) - 
-    1, cex = .8, cex.lab = 0.5, mar = c(5, 4, 4, 2) + 0.1,  
+function(N, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = min(nrow(N), ncol(N))-1, cex = .8, cex.lab = 0.5, mar = c(5, 4, 4, 2) + 0.1,  
  prop=.8,Inames,Jnames,Imass,Jmass,a,b,f,g,dmu,inertiapc,plottype="biplot",
 biptype="row",pos=2) 
  {
@@ -80,7 +79,7 @@ for (i in 1:I) {
     }
 }
 else 
-if (biptype=="column"){
+if ((biptype=="column")|(biptype=="col")|(biptype=="c")){
 
  for (j in 1:J) {
         ellipse(hlax1.col[j], hlax2.col[j], , xc = g[j, 1], yc = g[j, 

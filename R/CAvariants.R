@@ -52,28 +52,29 @@ Fbi <- S@Cweights %*%  S@Caxes # no orthonormal
 Gbi <-S@Rweights %*%   S@Raxes # no orthonormal
 pcc <- t(S@CX)
 #dimnames(pcc)<-dimnames(X)
-inertia <- S@mu*S@mu
+inertia <- (S@mu*S@mu)/n
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
-
+Z<-Trend
 }
 #########################################################---------DOCA
 if(catype=="DOCA"){
+Z<-S@Z/sqrt(n)
 pcc<-S@RX #centered column profile matrix
 Gbi <- S@Raxes
 Fbi<- S@Caxes 
 Gmat <-  S@CX %*%  S@Caxes #row principal coordinates
 Fmat <- S@RX  %*% S@Raxes #column principal coordinates
-if ((S@Z[1,1]<0) || (S@Z[1,2]<0)){
+if  ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){
 Gmat<-(-1)*Gmat
 Fmat<-(-1)*Fmat
 }
 reconstruction<-t(Gmat%*%t(S@Cweights%*%Fbi))
 dimnames(reconstruction)<-dimnames(X)
-inertia <- S@mu #number of inertia of row poly
-inertia2<-S@mu2 #number of inertias of column poly
-Z<-S@Z
-comps <- compstable.exe(Z) 
+inertia <- S@mu/n #number of inertia of row poly
+inertia2<-S@mu2/n #number of inertias of column poly
+Z1<-S@Z
+comps <- compstable.exe(Z1) 
 Icompnames <- c("** Row Components **", "Location", "Dispersion", "Error", "** Column Components **", "Location", "Dispersion", "Error", "** Chi-squared Statistic **")
 Jcompnames <- c("Component Value", "P-value")
 dimnames(Z) <- list(paste("Poly", 1:(rows - 1)), paste("Poly", 1:(cols - 1)))
@@ -84,19 +85,20 @@ Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
 #########################################################################---------SOCA
 if(catype=="SOCA"){
 pcc<-S@RX
+Z<-S@Z/sqrt(n)
 dimnames(pcc)<-dimnames(X)
 Gmat <- S@CX %*%  S@Caxes #row principal coordinates
 Fmat <- S@RX %*% S@Rweights %*% S@Raxes #column principal coordinates
-if (S@Z[1,1]<0){Gmat<-(-1)*Gmat}
+if ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat}
 Gbi <-S@Raxes
 Fbi <- S@Caxes 
-inertia <- S@mu*S@mu
-inertia2<-S@mu2[-1]
+inertia <- (S@mu*S@mu)/n
+inertia2<-(S@mu2[-1])/n
 comps<-diag(inertia2)
 comps <- compsonetable.exe(S@Z) 
 Icompnames <- c( "** Column Components **", "Location", "Dispersion", "Error", "** C-Statistic **")
 Jcompnames <- c("Component Value", "P-value")
-dimnames(S@Z) <- list(paste("Axis", 1:nrow(S@Z) ), paste("Poly", 1:(cols - 1)))
+dimnames(Z) <- list(paste("Axis", 1:nrow(Z) ), paste("Poly", 1:(cols - 1)))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
 #browser()
@@ -114,7 +116,7 @@ Fmat <- S@Caxes %*% dmum1
 inertia <- S@mu*S@mu
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
-
+Z<-Trend
 
 }
 ##################################-------------DONSCA
@@ -122,18 +124,19 @@ if(catype=="DONSCA"){
 Fbi <- S@Caxes
 Gbi<-S@Raxes
 pcc<-S@RX
+Z<-S@Z
 dimnames(pcc)<-dimnames(X)
 Gmat <-  S@CX %*% S@Cweights %*% S@Caxes #row principal coordinates
 Fmat <- S@RX  %*% S@Rweights %*% S@Raxes #column principal coordinates
-if (S@Z[1,1]<0){Gmat<-(-1)*Gmat}
+if  ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat}
 inertia <- S@mu
 inertia2<-S@mu2 
-Z<-sqrt((n-1)*(rows-1))*S@Z
-comps <- compstable.exe(Z) 
+Z2<-sqrt((n-1)*(rows-1))*S@Z
+comps <- compstable.exe(Z2) 
 Icompnames <- c("** Row Components **", "Location", "Dispersion", "Error", "** Column Components **", 
 "Location", "Dispersion", "Error", "** Chi-squared Statistic **")
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("Poly", 1:(rows - 1)), paste("Poly", 1:(cols - 1)))
+dimnames(Z) <- list(paste("Poly", 1:(rows-1 )), paste("Poly", 1:(cols -1)))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 
@@ -143,15 +146,18 @@ Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 if(catype=="SONSCA"){
 pcc<-S@RX
 dimnames(pcc)<-dimnames(X)
+Z<-S@Z
 Gmat <- S@CX %*% S@Cweights %*% S@Caxes #column principal coordinates with principal axes
 Fmat <- S@RX %*% (S@Rweights) %*% S@Raxes #row principal coordinates with polys
-if (S@Z[1,1]<0){Gmat<-(-1)*Gmat}
 Gbi <- S@Raxes
 Fbi <- S@Caxes 
+if ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat
+#Fbi<-(-1)*Fbi
+}
 inertia <- S@mu
 inertia2 <- S@mu2
-Z<-sqrt((n-1)*(rows-1))*S@Z
-comps <- compsonetable.exe(Z) 
+Z1<-sqrt((n-1)*(rows-1))*S@Z
+comps <- compsonetable.exe(Z1) 
 Icompnames <- c( "** Column Components **", "Location", "Dispersion", "Error", "** C-Statistic **")
 Jcompnames <- c("Component Value", "P-value")
 dimnames(S@Z) <- list(paste("Axis", 1:nrow(S@Z)), paste("Poly", 1:(cols - 1)))
@@ -200,7 +206,7 @@ DataMatrix=X, rows=rows, cols=cols,
 rowlabels=rowlabels, collabels=collabels,
 Rprinccoord=Fmat, Cprinccoord=Gmat, Rstdcoord=Fbi, Cstdcoord=Gbi,
  inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,comps=comps,
-  printdims=printdims,maxaxes=maxaxes,catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,Trend=Trend)
+  printdims=printdims,maxaxes=maxaxes,catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,Trend=Trend,Z=Z)
 
 #browser()
 printcacorporateplus(cacorpo)

@@ -3,7 +3,7 @@ function(x) {
 d <- min(x@printdims, x@S@r)
 axnames <- character(length=d)
 for (i in 1:d) { axnames[i] <- paste(" Axis",i) } 
-cat("\n    RESULTS for Corporate Correspondence Analysis:\n")
+cat("\n    RESULTS for",x@catype,  "Correspondence Analysis\n")
 cat("\n    Data Table:\n")
 print(x@DataMatrix)
 cat("\n    Row Weights: Imass:\n")
@@ -11,7 +11,7 @@ round(print(matrix(x@Imass,x@rows,x@rows,dimnames=list(x@rowlabels,x@rowlabels))
 cat("\n    Column Weights: Jmass:\n")
 round(print(matrix(x@Jmass,x@cols,x@cols,dimnames=list(x@collabels,x@collabels)),digits=3))
 
-cat("Total inertia ", round(x@inertiasum,digits=3), "\n\n")
+cat("\n Total inertia ", round(x@inertiasum,digits=3), "\n\n")
 cat("Inertias, percent inertias and cumulative percent inertias of the row space\n\n")
 print(data.frame(x@inertias))
 if ((x@catype=="DOCA")|(x@catype=="DONSCA")){
@@ -57,6 +57,8 @@ printwithaxes(data.frame(x@S@Raxes[ ,1:d], row.names=x@collabels), axnames)
 #}
 ####################################################################
 if((x@catype=="DOCA")||(x@catype=="SOCA")||(x@catype=="DONSCA")||(x@catype=="SONSCA")){
+cat("\n Generalized correlation matrix \n")
+print(round(x@Z,digits=3))
 cat("\n Polynomial Components of Inertia \n")
 print(x@comps)
 }
