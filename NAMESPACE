@@ -1,2 +1,5 @@
 import(methods)
 exportPattern("^[[:alpha:]]+")
+exportClass("cacorporateplus")
+exportClass("cabasicresults")
+export("CAvariants")

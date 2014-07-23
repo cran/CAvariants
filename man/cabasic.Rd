@@ -31,7 +31,7 @@ The two-way contingency table.
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Methods and New Strategies. Wiley.
+Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh

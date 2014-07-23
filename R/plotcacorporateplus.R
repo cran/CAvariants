@@ -200,22 +200,27 @@ dev.new()
 M<-(min(nrow(x@DataMatrix), ncol(x@DataMatrix)) -1)
 
 switch(x@catype, "CA"=caellipse(N=x@DataMatrix,a1=firstaxis,a2=lastaxis,M=M,prop=prop,
-Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,g=cord1,f=cord2,dmu=diag(x@inertias[,1]),inertiapc=x@inertias[,2],plottype=plottype,biptype=biptype,pos=pos), 
+Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,g=cord1,f=cord2,dmu=diag(x@inertias[,1]),inertiapc=x@inertias[,2],
+plottype=plottype,biptype=biptype,pos=pos,arrow=T), 
 
 "SOCA"=caellipse(N=x@DataMatrix,a1=firstaxis,a2=lastaxis,M=M,prop=prop,
-Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,g=cord1,f=cord2,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2],plottype=plottype,biptype=biptype,pos=pos), 
+Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,g=cord1,f=cord2,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2],
+plottype=plottype,biptype=biptype,pos=pos,arrow=F), 
 
 "DOCA"=caellipse(N=x@DataMatrix,a1=firstaxis,a2=lastaxis,M=(M-1),prop=prop,
-Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,f=cord2,g=cord1,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2],plottype=plottype,biptype=biptype,pos=pos), 
+Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,f=cord2,g=cord1,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2],
+plottype=plottype,biptype=biptype,pos=pos,arrow=F), 
 
 "NSCA"=nsca.ellipse(x@DataMatrix,a1=firstaxis,a2=lastaxis,M=M,prop=prop,
-Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,g=cord1,f=cord2,dmu=diag(x@inertias[,1]),inertiapc=x@inertias[,2],plottype=plottype,biptype=biptype,pos=pos),
+Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,g=cord1,f=cord2,dmu=diag(x@inertias[,1]),inertiapc=x@inertias[,2],
+plottype=plottype,biptype=biptype,pos=pos,arrow=T),
 
 "SONSCA"=nsca.ellipse(x@DataMatrix,a1=firstaxis,a2=lastaxis,M= M,prop=prop,
-Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,f=cord2,g=cord1,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2],plottype=plottype,biptype=biptype,pos=pos), 
+Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,f=cord2,g=cord1,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2],
+plottype=plottype,biptype=biptype,pos=pos,arrow=F), 
 
 "DONSCA"=nsca.ellipse(x@DataMatrix,a1=firstaxis,a2=lastaxis,M= (M-1),prop=prop,
 Imass=x@Imass,Jmass=x@Jmass,a=x@S@Caxes,b=x@S@Raxes,f=cord2,g=cord1,dmu=diag(x@inertias2[,1]),inertiapc=x@inertias2[,2]),
-plottype=plottype,biptype=biptype,pos=pos)
+plottype=plottype,biptype=biptype,pos=pos,arrow=F)
 }#end if ellipse
 }#end plotfunction

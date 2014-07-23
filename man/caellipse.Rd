@@ -16,7 +16,8 @@ It uses the function \code{ellipse}.
 caellipse(N, a1 = 1, a2 = 2, alpha = 0.05, cols = c(2, 4), 
 M = min(nrow(N), ncol(N)) - 1, cex = 0.8, cex.lab = 0.5,  
 mar = c(5, 4, 4, 2) + 0.1, prop = 0.8, Inames, Jnames, Imass, 
-Jmass, a, b, f, g, dmu, inertiapc, pos = 2, plottype="biplot", biptype="row")
+Jmass, a, b, f, g, dmu, inertiapc, pos = 2, plottype="biplot", 
+biptype = "row", arrow = TRUE, length = 0.01)
 }
 \arguments{
 \item{N}{
@@ -86,6 +87,13 @@ The parameter for specifying the type of plot. By default, \code{plottype="class
  \item{biptype}{
 The parameter for specifying the type of biplot. By default, \code{biptype="row"}. 
 }
+\item{arrow}{
+The parameter for diplaying arrows in biplot in correspondence of points in principal coordinates. By default, \code{arrow=TRUE}. 
+}
+\item{length}{
+The parameter for setting the length of the arrow end in biplot. By default, \code{length=0.01}. 
+}
+
 }
 \details{
 The output values of this function
@@ -96,7 +104,7 @@ The output values of this function
   \item{col.summ }{Value of ellipse semi-axes for each column points.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Methods and New Strategies. Wiley.
+Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J Beh

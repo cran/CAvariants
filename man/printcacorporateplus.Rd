@@ -24,23 +24,41 @@ The value of output returned depends on the kind of correspondence analysis perf
 \item{DataTable }{The two-way contingency table.}
 \item{Row weights }{The row weight matrix.}
 \item{Column weights }{The column weight matrix.}
-\item{Inertias}{The inertia value and its percentage, in the row and column space for each principal or polynomial axis. 
-When \code{catype} is \code{CA}, \code{SOCA} or \code{NSCA}, \code{SONSCA}
-the associated inertia in the row and column spaces are the same for each principal axis.}
-\item{Row coordinates}{The row principal  polynomial coordinates.}
-\item{Column coordinates}{The column principal  polynomial coordinates.}
-\item{Row standard coordinates }{The row standard  polynomial coordinates.}
-\item{Column standard coordinates}{The column standard polynomial coordinates.}
+\item{Inertias}{The inertia value and its percentage, in the row and column space for each principal or polynomial axis when \code{catype} is \code{DOCA}, \code{DONSCA},
+\code{SOCA} or \code{SONSCA}. When \code{catype} is \code{CA} or \code{NSCA},
+the associated inertia values in the row and column spaces are the same.}
+\item{Generalized correlation matrix}{The generalized correlation matrix when \code{catype} is \code{DOCA}, \code{DONSCA}, 
+ \code{SOCA} or \code{SONSCA}.}
+\item{Diagonal elements of the squared generalized correlation matrix Z'Z}{The diagonal elements of the squared generalized correlation matrix when \code{catype} is \code{DOCA}, \code{DONSCA}, 
+ \code{SOCA} or \code{SONSCA}.}
+\item{Diagonal elements of Z'Z for the constant (n-1)*(I-1)}{The column polynomial sources of inertia when \code{catype} is \code{DOCA}, \code{DONSCA}, 
+ \code{SOCA} or \code{SONSCA}.}
+\item{Diagonal elements of the squared generalized correlation matrix ZZ'}{The diagonal elements of the squared generalized correlation matrix  when \code{catype} is \code{DOCA}, \code{DONSCA}, 
+ \code{SOCA} or \code{SONSCA}.}
+\item{Diagonal elements of ZZ' for the constant (n-1)*(I-1)}{The row polynomial sources of inertia when \code{catype} is \code{DOCA}, \code{DONSCA}, 
+ \code{SOCA} or \code{SONSCA}.}
+\item{Row principal coordinates}{The row principal  coordinates when \code{catype} is \code{CA} or \code{NSCA}.}
+\item{Column principal coordinates}{The column principal coordinates when \code{catype} is \code{CA} or \code{NSCA}.}
+\item{Row standard coordinates }{The row standard coordinates when \code{catype} is \code{CA} or \code{NSCA}.}
+\item{Column standard coordinates}{The column standard coordinates when \code{catype} is \code{CA} or \code{NSCA}.}
+\item{Row principal polynomial coordinates}{The row principal polynomial coordinates 
+when \code{catype} is \code{DOCA}, \code{DONSCA}, \code{SOCA} or \code{SONSCA}.}
+\item{Column principal plynomial coordinates}{The column principal coordinates when \code{catype} is \code{DOCA},\code{DONSCA}.}
+\item{Row standard polynomial coordinates }{The row standard polynomial coordinates when \code{catype} is \code{DOCA} or \code{DONSCA}.}
+\item{Column standard polynomial coordinates}{The column standard polynomial coordinates when \code{catype} is \code{DOCA}, \code{DONSCA}, 
+ \code{SOCA}, \code{SONSCA}.}
 \item{Total inertia}{The total inertia. For example in case of non symmetrical correspondence analysis, it gives
 the numerator of the Goodman-Kruskal tau index, the associated C-statistic and its p-value.}
 \item{Polynomial axes}{The column polynomial axes.}
 \item{Principal axes}{The row principal axes.}
 \item{Polynomial components}{The polynomial components of inertia and their p-values. The inertia of the column space is partitioned in terms
-of polynomial components.}
+of polynomial components when \code{catype} is \code{SOCA} or \code{SONSCA}.
+The inertia of the row and column space is partitioned in terms
+of polynomial components when \code{catype} is \code{DOCA} or \code{DONSCA}}
 \item{Inner product}{The inner product of coordinates.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Methods and New Strategies. Wiley.
+Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh}

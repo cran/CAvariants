@@ -2,7 +2,7 @@ CAvariants <-
 function(
   Xtable, mj=NULL,mi=NULL,prop=1,cex=.8, 
  printdims=3, firstaxis=1,lastaxis=2, 
-  catype = "CA",plottype="classic",biptype="row",scaleplot=3,posleg="topleft",pos=2,M=min(nrow(Xtable),ncol(Xtable))-1,ell=TRUE ) { 
+  catype = "CA",plottype="biplot",biptype="row",scaleplot=3,posleg="topleft",pos=2,M=min(nrow(Xtable),ncol(Xtable))-1,ell=TRUE ) { 
 
 if (printdims<1) stop(paste("Attention: number of dims for output must be at least 1\n\n"))
 if (lastaxis<2) stop(paste("Attention: last axis must be at least 2\n\n"))
@@ -77,10 +77,10 @@ Z1<-S@Z
 comps <- compstable.exe(Z1) 
 Icompnames <- c("** Row Components **", "Location", "Dispersion", "Error", "** Column Components **", "Location", "Dispersion", "Error", "** Chi-squared Statistic **")
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("Poly", 1:(rows - 1)), paste("Poly", 1:(cols - 1)))
+dimnames(Z) <- list(paste("u", 1:(rows - 1),sep=""), paste("v", 1:(cols - 1),sep=""))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
-#browser()
+browser()
 }
 #########################################################################---------SOCA
 if(catype=="SOCA"){
@@ -94,11 +94,12 @@ Gbi <-S@Raxes
 Fbi <- S@Caxes 
 inertia <- (S@mu*S@mu)/n
 inertia2<-(S@mu2[-1])/n
-comps<-diag(inertia2)
-comps <- compsonetable.exe(S@Z) 
+#comps<-diag(inertia2)
+Z1<-S@Z
+comps <- compsonetable.exe(Z1) 
 Icompnames <- c( "** Column Components **", "Location", "Dispersion", "Error", "** C-Statistic **")
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("Axis", 1:nrow(Z) ), paste("Poly", 1:(cols - 1)))
+dimnames(Z) <- list(paste("m", 1:nrow(Z),sep="" ), paste("v", 1:(cols - 1),sep=""))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
 #browser()
@@ -136,7 +137,7 @@ comps <- compstable.exe(Z2)
 Icompnames <- c("** Row Components **", "Location", "Dispersion", "Error", "** Column Components **", 
 "Location", "Dispersion", "Error", "** Chi-squared Statistic **")
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("Poly", 1:(rows-1 )), paste("Poly", 1:(cols -1)))
+dimnames(Z) <- list(paste("u", 1:(rows-1 ),sep=""), paste("v", 1:(cols -1),sep=""))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 
@@ -160,7 +161,7 @@ Z1<-sqrt((n-1)*(rows-1))*S@Z
 comps <- compsonetable.exe(Z1) 
 Icompnames <- c( "** Column Components **", "Location", "Dispersion", "Error", "** C-Statistic **")
 Jcompnames <- c("Component Value", "P-value")
-dimnames(S@Z) <- list(paste("Axis", 1:nrow(S@Z)), paste("Poly", 1:(cols - 1)))
+dimnames(Z) <- list(paste("m", 1:nrow(S@Z),sep=""), paste("v", 1:(cols - 1),sep=""))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-t(Gmat[,firstaxis:lastaxis]%*%t(Fbi[,firstaxis:lastaxis]))
 
@@ -208,10 +209,12 @@ Rprinccoord=Fmat, Cprinccoord=Gmat, Rstdcoord=Fbi, Cstdcoord=Gbi,
  inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,comps=comps,
   printdims=printdims,maxaxes=maxaxes,catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,Trend=Trend,Z=Z)
 
+
 #browser()
 printcacorporateplus(cacorpo)
 
 plotcacorporateplus(cacorpo,cex=cex,firstaxis=firstaxis,lastaxis=lastaxis,inert=inertias,inertsum=inertiasum,prop=prop,M=M,catype=catype,
 biptype=biptype,plottype=plottype,scaleplot=scaleplot,posleg=posleg,pos=pos,ell=ell)
+invisible(list(cacorpo=cacorpo))
 
 }

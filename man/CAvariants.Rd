@@ -16,7 +16,7 @@ It performs \cr
 \usage{
 CAvariants(Xtable, mj = NULL, mi = NULL, prop = 1, cex = 0.8, 
 printdims = 3, firstaxis = 1, lastaxis = 2, catype = "CA",  
-plottype = "classic", biptype="row", scaleplot = 3, posleg="topleft", 
+plottype = "biplot", biptype="row", scaleplot = 3, posleg="topleft", 
 pos = 2, M = min(nrow(Xtable), ncol(Xtable)) - 1,ell = TRUE)
 }
 \arguments{
@@ -108,7 +108,8 @@ of polynomial components.}
 \item{Trend}{The inner product matrix of biplot coordinates.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Methods and New Strategies. Wiley.
+Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons. \cr
+Lombardo R and Beh EJ 2014 Variants of Simple Correspondence Analysis. Submitted to Journal of Statistical Software.
 }
 \author{
 Rosaria Lombardo and Eric J Beh
@@ -119,9 +120,6 @@ one of the six functions which does a variant of correspndence analysis.
 After performing a variant of correpsondence analysis, it recall the code for printing and plotting the results. These two
 important functions are print.cacorporateplus and plot.cacorporateplus. 
 This function belongs to the class cacorporateplus. 
-It is well descripted in the paper written by Lombardo R Beh EJ (2014), titled 
-\dQuote{Variants of Simple Correspondence Analysis}. Submitted to the Journal of Statitical Software.
- 
 }
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 %\seealso{

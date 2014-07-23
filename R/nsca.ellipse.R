@@ -1,7 +1,6 @@
 nsca.ellipse <-
 function(N, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = min(nrow(N), ncol(N))-1, cex = .8, cex.lab = 0.5, mar = c(5, 4, 4, 2) + 0.1,  
- prop=.8,Inames,Jnames,Imass,Jmass,a,b,f,g,dmu,inertiapc,plottype="biplot",
-biptype="row",pos=2) 
+prop=.8,Inames,Jnames,Imass,Jmass,a,b,f,g,dmu,inertiapc,plottype="biplot",biptype="row",pos=2,arrow=TRUE,length=0.01) 
  {
 	  I <- nrow(f)
     J <- nrow(g)
@@ -78,23 +77,42 @@ for (i in 1:I) {
             2], col = cols[1])
     }
 }
-else 
+else {
 if ((biptype=="column")|(biptype=="col")|(biptype=="c")){
+#----------------------------------------------arrow on column principal coords
+nv <- rep(0, nrow(g))
+	vec <- g[, c(1, 2)]
 
+	if(arrow) {
+
+		arrows(nv, nv, vec[, 1], vec[, 2], length = length)
+	}
+	
  for (j in 1:J) {
         ellipse(hlax1.col[j], hlax2.col[j], , xc = g[j, 1], yc = g[j, 
             2], col = cols[2])
     }
 }
 if (biptype=="row"){
+#----------------------------------------------arrow on row principal coords
+nv <- rep(0, nrow(f))
+	vec <- f[, c(1, 2)]
+
+	if(arrow) {
+
+		arrows(nv, nv, vec[, 1], vec[, 2], length = length)
+	}
+	
+
+#-------------------------------------------------------------
  
 for (i in 1:I) {
         ellipse(hlax1.row[i], hlax2.row[i], xc = f[i, 1], yc = f[i, 
             2], col = cols[1])
     }
 }
-
-   eccentricity <- sqrt(1 - (dmu[2, 2]/dmu[1, 1])^2)
+}#end else
+   eccentricity <- sqrt(abs(1 - (dmu[2, 2]/dmu[1, 1])^2))
     area.row <- vector(mode = "numeric", length = I)
     area.col <- vector(mode = "numeric", length = J)
     for (i in 1:I) {

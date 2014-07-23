@@ -60,7 +60,9 @@ Class \code{"\linkS4class{cacorporateplus}"}, directly.
 No methods defined with class "cabasicresults" in the signature.
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Methods and New Strategies. Wiley.
+Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Lombardo R and Beh EJ 2014 Variants of Simple Correspondence Analysis. Submitted to Journal of Statistical Software.
+
 }
 \author{
 Rosaria Lombardo and Eric J. Beh

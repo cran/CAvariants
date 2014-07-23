@@ -26,7 +26,7 @@ The value returned is the matrix
 \item{comps}{the matrix of the polynomial component of inertia.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Methods and New Strategies. Wiley.
+Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh
@@ -75,4 +75,4 @@ This function belongs to the class called  \code{cacorporateplus}.
 %% Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 %\keyword{ ~kwd1 }
-\keyword{ multivariate }% __ONLY ONE__ keyword per line
+\keyword{multivariate}% __ONLY ONE__ keyword per line
