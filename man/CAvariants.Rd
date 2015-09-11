@@ -14,10 +14,9 @@ It performs \cr
 6) singly ordered non symmetrical correspondence analysis 
 }
 \usage{
-CAvariants(Xtable, mj = NULL, mi = NULL, prop = 1, cex = 0.8, 
-printdims = 3, firstaxis = 1, lastaxis = 2, catype = "CA",  
-plottype = "biplot", biptype="row", scaleplot = 3, posleg="topleft", 
-pos = 2, M = min(nrow(Xtable), ncol(Xtable)) - 1,ell = TRUE)
+CAvariants(
+  Xtable, mj=NULL,mi=NULL, printdims=4,firstaxis=1,lastaxis=2,
+  catype = "CA") 
 }
 \arguments{
   \item{Xtable}{
@@ -29,46 +28,21 @@ The ordered scores of a column variable. By default \code{mj=NULL}, the natural 
   \item{mi}{
  The ordered scores of a row variable. By default \code{mi=NULL}, the natural ordered numbers are computed.
 }
-  \item{prop}{
- The scaling parameter for specifying the limits of the plotting area. By default it is equal to 1. 
-}
-  \item{cex}{
- The scaling parameter for specifying the size of characters in plot.
-}
-  \item{printdims}{
- The parameter for specifying the dimension of a matrix in print. By default it is equal to 3.
+    \item{printdims}{
+ The parameter for specifying the dimension of a matrix in print. By default it is equal to 4.
 }
   \item{firstaxis}{
- The number of the corresponding horizontal (polynomial or principal) axis in graphical display.
+The dimension reflected along  the horizontal axis. By default it is equal to 1.
 }
   \item{lastaxis}{
- The number of the corresponding vertical (polynomial or principal) axis in graphical display.
+The dimension reflected along the vertical axis. By default it is equal to 2.
 }
-  \item{catype}{
+    \item{catype}{
 The input parameter for specifying what variant of correspondence analysis is considered. \cr
 By default  \code{catype = "CA"}, other possible values are: \cr
 \code{catype = "SOCA", catype = "DOCA", catype = "NSCA", catype = "SONSCA", catype = "DONSCA"}.
 }
-  \item{plottype}{
- The paramater for specifying what kind of graphical display is required. By default 
-\code{plottype="classic"}, otherwise \code{plottype="biplot"}. 
-}
-  \item{biptype}{
- The parameter for specifying what kind of biplot is equired. By default \code{biptype="row"}, otherwise \code{biptype="column"}.
-}
-  \item{scaleplot}{
- The scaling parameter for scaling biplot coordinates. By default, \code{scaleplot = 1}.
-}
-  \item{posleg}{
-The parameter for specifying the position of the legend in the graphical function \code{trendplot}. 
-By default, \code{pos= "topleft"}.} The location may also be specified by setting pos to a single
-keyword from the list \code{"bottomright", "bottom", 
-"bottomleft", "left","top", "topright", "right"} and \code{"center"}.
-  \item{pos}{
-The parameter for specifying the position of  point symbols in the graphical displays. 
-By default, \code{pos=2}.}
-  \item{M}{ The rank of the two-way contingency table.}
-\item{ell}{ The flag parameter to allow the building of algebraic ellipses. By default, \code{ell=TRUE}.}
+  
 }
 \details{
   ~~ This function belongs to the object class called "cacorporateplus"  ~~
@@ -109,7 +83,6 @@ of polynomial components.}
 }
 \references{
 Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons. \cr
-Lombardo R and Beh EJ 2014 Variants of Simple Correspondence Analysis. Submitted to Journal of Statistical Software.
 }
 \author{
 Rosaria Lombardo and Eric J Beh
@@ -129,8 +102,9 @@ This function belongs to the class cacorporateplus.
 asbestos<-matrix(c(310, 36, 0, 0, 212, 158, 9, 0, 21, 35, 17, 4, 25,102,  
 49, 18, 7, 35, 51, 28), 4, 5, dimnames = list(c("none","grade1", "grade2", "grade3"), 
 c("0-9", "10-19", "20-29", "30-39", "40")))
-CAvariants(asbestos,catype = "CA", plottype = "classic", prop = 0.8, 
-scaleplot = 3, ell = TRUE, posleg = "topleft") 
+CAvariants(asbestos,catype = "CA",firstaxis=1,lastaxis=2) 
+CAvariants(asbestos,catype = "DOCA",firstaxis=1,lastaxis=2) 
+CAvariants(asbestos,catype = "DONSCA",firstaxis=1,lastaxis=2) 
 shopdataM<-structure(c(81, 66, 150, 667, 67, 24, 47, 430, 743, 132, 32, 
 197, 209, 138, 204, 340, 1409, 259, 272, 117, 637, 684, 408, 
 57, 547, 550, 304, 193, 229, 527, 258, 368, 98, 246, 116, 298, 
@@ -144,13 +118,15 @@ c("clothing", "accessories", "tobacco", "stationary", "books",
 "records", "household", "candy", "toys", "jewelry", "perfumes", 
 "hobby", "other"), c("M12<", "M13", "M16", "M19", "M25", 
 "M35", "M45", "M57", "M65+")))
-CAvariants(shopdataM, catype = "CA", plottype = "biplot",biptype="row", scaleplot = 4,ell=TRUE)
+CAvariants(shopdataM, catype = "NSCA",firstaxis=1,lastaxis=2)
+CAvariants(shopdataM, catype = "SONSCA",firstaxis=1,lastaxis=2)
+CAvariants(shopdataM, catype = "SOCA",firstaxis=1,lastaxis=2)
 %%## The function is currently defined as
 %function (Xtable, mj = NULL, mi = NULL, prop = 1, cex = 0.8, 
 %    printdims = 3, firstaxis = 1, lastaxis = 2, catype = "CA", 
 %    plottype = "classic", biptype = "row", scaleplot = 3, pos = 2, 
 %    M = min(nrow(Xtable), ncol(Xtable)) - 1) 
-%{
+%{
 %    if (!any(catype == c("CA", "SOCA", "DOCA", "NSCA", "SONSCA", 
 %        "DONSCA"))) 
 %        stop(paste("Must be CA, DOCA, SOCA, NSCA, SONSCA or DONSCA"))

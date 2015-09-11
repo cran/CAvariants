@@ -1,5 +1,17 @@
+S3method("print","CAvariants")
+S3method("plot","CAvariants")
+S3method("summary","CAvariants")
 import(methods)
+ importFrom("grDevices", "dev.new")
+     importFrom("graphics", "abline", "arrows", "legend", "lines", "par",
+     "plot", "plot.new", "points", "text", "title")
+     importFrom("stats", "pchisq", "qchisq")
 exportPattern("^[[:alpha:]]+")
-exportClass("cacorporateplus")
-exportClass("cabasicresults")
-export("CAvariants")
+exportClasses("cacorporateplus",
+"cabasicresults")
+export(
+"CAvariants",
+"plot.CAvariants",
+"summary.CAvariants",
+"print.CAvariants"
+)

@@ -1,9 +1,7 @@
 CAvariants <-
 function(
-  Xtable, mj=NULL,mi=NULL,prop=1,cex=.8, 
- printdims=3, firstaxis=1,lastaxis=2, 
-  catype = "CA",plottype="biplot",biptype="row",scaleplot=3,posleg="topleft",pos=2,M=min(nrow(Xtable),ncol(Xtable))-1,ell=TRUE ) { 
-
+  Xtable, mj=NULL,mi=NULL, printdims=4,firstaxis=1,lastaxis=2,
+  catype = "CA") { 
 if (printdims<1) stop(paste("Attention: number of dims for output must be at least 1\n\n"))
 if (lastaxis<2) stop(paste("Attention: last axis must be at least 2\n\n"))
 if (!any(catype==c("CA","SOCA","DOCA","NSCA","SONSCA","DONSCA"))) stop(paste("Must be CA, DOCA, SOCA, NSCA, SONSCA or DONSCA"))
@@ -80,7 +78,7 @@ Jcompnames <- c("Component Value", "P-value")
 dimnames(Z) <- list(paste("u", 1:(rows - 1),sep=""), paste("v", 1:(cols - 1),sep=""))
 dimnames(comps) <- list(paste(Icompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
-browser()
+#browser()
 }
 #########################################################################---------SOCA
 if(catype=="SOCA"){
@@ -207,14 +205,16 @@ DataMatrix=X, rows=rows, cols=cols,
 rowlabels=rowlabels, collabels=collabels,
 Rprinccoord=Fmat, Cprinccoord=Gmat, Rstdcoord=Fbi, Cstdcoord=Gbi,
  inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,comps=comps,
-  printdims=printdims,maxaxes=maxaxes,catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,Trend=Trend,Z=Z)
+  maxaxes=maxaxes,catype=catype,printdims=printdims,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,
+Trend=Trend,Z=Z)
 
 
 #browser()
-printcacorporateplus(cacorpo)
+#print.CAvariants(cacorpo,printdims=printdims)
 
-plotcacorporateplus(cacorpo,cex=cex,firstaxis=firstaxis,lastaxis=lastaxis,inert=inertias,inertsum=inertiasum,prop=prop,M=M,catype=catype,
-biptype=biptype,plottype=plottype,scaleplot=scaleplot,posleg=posleg,pos=pos,ell=ell)
-invisible(list(cacorpo=cacorpo))
+#plot.CAvariants(cacorpo,cex=cex,firstaxis=firstaxis,lastaxis=lastaxis,
+#inert=inertias,inertsum=inertiasum,prop=prop,M=M,catype=catype,
+#biptype=biptype,plottype=plottype,scaleplot=scaleplot,posleg=posleg,pos=pos,ell=ell)
+(list(cacorpo=cacorpo))
 
 }

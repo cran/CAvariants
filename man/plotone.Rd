@@ -12,7 +12,7 @@ It is called internally from the main graphical function \code{plot.cacorporatep
 \usage{
 plotone(a1, a2, plottype, things, nthings, nvars, Thingcoord, Varcoord, 
 inertiapc, thinggroup, thinggrlab, vargroup, vargrlab, thinglabels, varlabels, 
-picsize, cex = 0.8, type = "p", catype = "CA", pos = 2)
+picsize, cex = 0.8, type , catype , pos = 2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

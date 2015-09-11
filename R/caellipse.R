@@ -1,11 +1,10 @@
 caellipse <-
-function (N, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = min(nrow(N), ncol(N)) - 
-    1, cex = .8, cex.lab = 0.5, mar = c(5, 4, 4, 2) + 0.1, 
-    prop=.8,Inames,Jnames,Imass,Jmass,a,b,f,g,dmu,inertiapc,pos=2,plottype="biplot",biptype="row",arrow=TRUE,length=0.01) 
+function (N, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = 2, cex = .8, cex.lab = 0.5, mar = c(5, 4, 4, 2) + 0.1, 
+    prop=.8,Inames,Jnames,Imass,Jmass,a,b,g,f,dmu,inertiapc,pos=2,plottype="biplot",biptype="row",arrow=TRUE,length=0.01) 
 {
-    I <- nrow(f)
-    J <- nrow(g)
-	n<-sum(N)
+    I <- nrow(Imass)
+    J <- nrow(Jmass)
+n<-sum(N)
 rowgroup <- list(1:I,rep(1,I))
 rowgrlab <- list(1,"","*","blue","T")
 colgroup <- list(1:J,rep(1,J))
@@ -75,7 +74,7 @@ points(g[, a1], g[, a2], pch="+",col=cols[2])
     if (plottype=="classic"){
 
  for (j in 1:J) {
-        ellipse(hlax1.col[j], hlax2.col[j], , xc = g[j, 1], yc = g[j, 
+        ellipse(hlax1.col[j], hlax2.col[j], xc = g[j, 1], yc = g[j, 
             2], col = cols[2])
     }
  
@@ -88,28 +87,28 @@ else {
 if ((biptype=="column")|(biptype=="col")|(biptype=="c")){
 #----------------------------------------------arrow on column principal coords
 nv <- rep(0, nrow(g))
-	vec <- g[, c(1, 2)]
+vec <- g[, c(1, 2)]
 
-	if(arrow) {
+if(arrow) {
 
-		arrows(nv, nv, vec[, 1], vec[, 2], length = length)
-	}
+arrows(nv, nv, vec[, 1], vec[, 2], length = length)
+}
 
  for (j in 1:J) {
-        ellipse(hlax1.col[j], hlax2.col[j], , xc = g[j, 1], yc = g[j, 
+        ellipse(hlax1.col[j], hlax2.col[j], xc = g[j, 1], yc = g[j, 
             2], col = cols[2])
     }
 }
 if ((biptype=="row")){
 #----------------------------------------------arrow on row principal coords
 nv <- rep(0, nrow(f))
-	vec <- f[, c(1, 2)]
+vec <- f[, c(1, 2)]
 
-	if(arrow) {
+if(arrow) {
 
-		arrows(nv, nv, vec[, 1], vec[, 2], length = length)
-	}
-	
+arrows(nv, nv, vec[, 1], vec[, 2], length = length)
+}
+
  
 for (i in 1:I) {
         ellipse(hlax1.row[i], hlax2.row[i], xc = f[i, 1], yc = f[i, 
@@ -162,4 +161,3 @@ for (i in 1:I) {
         col.summ = col.summ))
 
 }
-

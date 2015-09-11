@@ -8,11 +8,11 @@ Algebraic elliptical confidence regions in non symmetrical correspondence analys
 This function produces elliptical confidence regions when non symmetrical or ordered non symmetrical correspondence analysis is performed. 
 It allows to superimpose confidence ellipses in graphical displays, when the input parameter \code{catype} 
 of the main code \code{CAvariants} is equal to \code{"NSCA", "SONSCA"} or \code{"DONSCA"}.\cr
-It is called  from the main plot function \code{plot.cacorporateplus} and uses the function \code{ellipse}.
+It is called  from the main plot function \code{plot.CAvariants} and uses the function \code{ellipse}.
 }
 \usage{
 nsca.ellipse(N, a1 = 1, a2 = 2, alpha = 0.05, cols = c(2, 4), 
-M = min(nrow(N), ncol(N)) - 1, cex = 0.8, cex.lab = 0.5, 
+M = 2, cex = 0.8, cex.lab = 0.5, 
 mar = c(5, 4, 4, 2) + 0.1, prop = 0.8, Inames, Jnames, Imass, Jmass,
 a, b, f, g, dmu, inertiapc, plottype = "biplot", 
 biptype = "row", pos = 2, arrow = TRUE, length = 0.01)
@@ -34,8 +34,8 @@ The confidence level of the elliptical regions.
 The graphical parameter for setting the colours of points in graphical displays.
 }
   \item{M}{
-The rank of the two-way contingency table.
-}
+The number of  axes used when drawing ellypse. By default, it is equal to \code{M= 2}.
+Its maximum value is equal to the rank of the data matrix.}
   \item{cex}{
 The parameter for setting the size of character labels of points in graphical displays.
 }
@@ -111,8 +111,9 @@ Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Str
 Rosaria Lombardo and Eric J Beh
 }
 \note{
-This function is called from the main plot function \code{plot.cacorporateplus} and is executed when \code{catype="NSCA"} or \code{"SONSCA"} or 
-\code{"DONSCA"}.
+This function is called from the main plot function \code{plot.CAvariants} and 
+is executed when \code{catype="NSCA"}, \code{catype="SONSCA"} or 
+\code{catype="DONSCA"}.
 }
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 

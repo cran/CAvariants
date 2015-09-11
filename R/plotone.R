@@ -1,9 +1,9 @@
 plotone <-
 function(a1,a2,plottype,things,nthings,nvars,Thingcoord,Varcoord,
                        inertiapc,
-                       thinggroup,thinggrlab,vargroup,vargrlab,thinglabels,varlabels,picsize,cex=.8,type="p",catype="CA",pos=2) {
+                       thinggroup,thinggrlab,vargroup,vargrlab,thinglabels,varlabels,picsize,cex=.8,type , catype ,pos=2) {
 
-dev.new()
+plot.new()
 plot(Thingcoord[ ,a1], Thingcoord[ ,a2], xlim=picsize, ylim=picsize, 
      xlab=paste("Axis ", a1, "    ", inertiapc[a1], "%", sep=""), 
      ylab=paste("Axis ", a2, "    ", inertiapc[a2], "%", sep=""),  
