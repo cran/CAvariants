@@ -8,7 +8,7 @@ The function is called from the main print function \code{print.cacorporateplus}
 It adds the names to objects. 
 }
 \usage{
-printwithaxes(x, thenames)
+printwithaxes(x, thenames,digits=3)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -16,6 +16,7 @@ printwithaxes(x, thenames)
 An \code{R} object.}
   \item{thenames}{
 A character vector of up to the same length as \code{x}.}
+\item{digits}{ The minimum number of significant digits to be printed in values. Per default, it is equal to 3.}
 }
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -28,7 +29,7 @@ A character vector of up to the same length as \code{x}.}
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh

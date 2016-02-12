@@ -23,6 +23,7 @@ col names [1:9] "M12<" "M13" "M16" "M19" ...
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 %}
 \references{
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons. \cr
 Isra\''{e}ls A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.
 }
 \examples{

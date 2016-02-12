@@ -26,7 +26,7 @@ The value returned is the matrix
 \item{comps}{the matrix of the polynomial component of inertia.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh

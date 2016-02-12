@@ -36,7 +36,7 @@ The set of ordered column scores.
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons. \cr
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 %Beh EJ 1997 Simple Correspondence analysis of ordinal cross-classifications using orthogonal polynomials. 
 %Biometrical Journal, 39, 589 -- 613.
 }

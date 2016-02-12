@@ -16,7 +16,7 @@ It performs \cr
 \usage{
 CAvariants(
   Xtable, mj=NULL,mi=NULL, printdims=4,firstaxis=1,lastaxis=2,
-  catype = "CA") 
+  catype = "CA",digits=4) 
 }
 \arguments{
   \item{Xtable}{
@@ -42,7 +42,8 @@ The input parameter for specifying what variant of correspondence analysis is co
 By default  \code{catype = "CA"}, other possible values are: \cr
 \code{catype = "SOCA", catype = "DOCA", catype = "NSCA", catype = "SONSCA", catype = "DONSCA"}.
 }
-  
+\item{digits}{ The minimum number of significant digits to be printed in values. Per default, it is equal to 4.}
+   
 }
 \details{
   ~~ This function belongs to the object class called "cacorporateplus"  ~~
@@ -52,6 +53,7 @@ Description of the output returned
 \item{DataMatrix }{The two-way contingency table.}
 \item{rows }{The row number of the two-way contingency table.}
 \item{columns }{The column number of the two-way contingency table.}
+\item{r }{The rank of the two-way contingency table.}
 \item{rowlabels }{The label of the row variable.}
 \item{columnlabels }{The label of the column variable.}
 \item{Rprinccoord }{The row principal  coordinates. 
@@ -62,6 +64,8 @@ When the input parameter "catype" is \dQuote{DOCA}, \dQuote{SOCA}, \dQuote{SONSC
 When the input parameter "catype" is \dQuote{DOCA}, \dQuote{SOCA}, \dQuote{SONSCA} or \dQuote{DONSCA} then they are row standard polynomial coordinates.}
 \item{Cstdcoord }{The column standard  coordinates. 
 When the input parameter "catype" is \dQuote{DOCA}, \dQuote{SOCA}, \dQuote{SONSCA} or \dQuote{DONSCA} then they are column standard polynomial coordinates.}
+\item{tauden}{The tau denominator is given when the input parameter "catype" is \dQuote{NSCA}, \dQuote{SONSCA}, or \dQuote{DONSCA}, otherwise is a null value.}
+\item{tauden}{The tau index is given when the input parameter "catype" is \dQuote{NSCA}, \dQuote{SONSCA}, or \dQuote{DONSCA}, otherwise is a null value.}
 \item{inertiasum}{The total inertia of the classical correspondence analysis, when catype is  \dQuote{CA}, \dQuote{DOCA} or \dQuote{SOCA} (the Pearson's index) 
 or the inertia of non symmetrical correspondence analysis,  when catype is  \dQuote{NSCA}, \dQuote{DONSCA} or \dQuote{SONSCA}  
 (numerator of the Goodman-Kruskal tau index).}
@@ -70,8 +74,7 @@ or the inertia of non symmetrical correspondence analysis,  when catype is  \dQu
 When catype is CA or NSCA the associated inertia in the row and column spaces are the same for each principal axis.}
 \item{comps}{The polynomial components of inertia when the variables are ordered. The inertia of row and/or column space is partitioned in terms
 of polynomial components.}
-\item{printdims}{
- The  dimension of a matrix in print. By default it is equal to 3.}
+\item{printdims}{ The  dimension of a matrix in print. By default it is equal to 3.}
 \item{maxaxes}{The maximum number of allowed axes.}
 \item{catype}{The kind of correspondence analysis chosen.}
 \item{mj}{The ordered scores of a column variable. When mj=NULL, the natural ordered numbers are shown.}
@@ -82,7 +85,7 @@ of polynomial components.}
 \item{Trend}{The inner product matrix of biplot coordinates.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons. \cr
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J Beh

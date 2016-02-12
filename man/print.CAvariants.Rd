@@ -9,7 +9,7 @@ This function prints results of any of the specified six variants of corresponde
 The input parameter is the name of the output of the main function  \code{CAvariants}. 
 }
 \usage{
-\S3method{print}{CAvariants}(x,printdims,...) 
+\S3method{print}{CAvariants}(x,printdims,M,ellprint,alpha,digits,...) 
 %print.CAvariants(x,...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -18,6 +18,14 @@ The input parameter is the name of the output of the main function  \code{CAvari
 The output of the main function \code{CAvariants}.}
 \item{printdims}{ The dimension number in printing.
 }
+\item{M}{
+The number of  axes used when drawing ellypse. By default, it is equal to \code{M= 2}.
+Its maximum value is equal to the rank of the data matrix.
+}
+\item{ellprint}{ The flag parameter to allow the print  of the characteristics (semi-axis, area, pvalues) of the algebraic ellipses. By default, \code{ellprint = F}.}
+  \item{alpha}{
+The confidence level of the elliptical regions.}
+\item{digits}{ The minimum number of significant digits to be printed in values. Per default, it is equal to 3.}
 \item{...}{Further arguments passed to or from other methods.}
 }
 \details{
@@ -61,9 +69,14 @@ of polynomial components when \code{catype} is \code{SOCA} or \code{SONSCA}.
 The inertia of the row and column space is partitioned in terms
 of polynomial components when \code{catype} is \code{DOCA} or \code{DONSCA}}
 \item{Inner product}{The inner product of coordinates.}
+\item{eccentricity}{Value of ellipse eccentricity.}
+  \item{HL Axis 1}{Value of ellipse semi-axis 1 for each row and column points.}
+  \item{HL Axis 2}{Value of ellipse semi-axis 2 for each row and column points.}
+ \item{Area }{Ellipse area  for each row and column points.}
+  \item{pvalcol }{P-value for each row and column points.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh}

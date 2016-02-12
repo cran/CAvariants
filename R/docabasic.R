@@ -16,7 +16,7 @@ dcmh <- sqrt(dcm1)
 #ratio <- ( x%*%dcm1 - rsums%*%uni  )*sqrt(n)
 R <- drm1 %*% x
 C <- dcm1 %*% t(x)
-    rmax <- min(dim(xo)) - 1
+   # rmax <- min(dim(xo)) - 1
     Bpoly <- emerson.poly(mj, csums)$B
  #   Bpoly2 <- sqrt(dj) %*% Bpoly
     Apoly <- emerson.poly(mi, rsums)$B
@@ -29,10 +29,10 @@ Z <- t(Apoly) %*% x  %*% (Bpoly)*sqrt(n) #useful to check coordinates
     tZZ <-t(Z)%*%Z 
 mu<-diag(ZtZ) 
 mu2<-diag(tZZ)
-r <- sum(mu > 1e-15)
+#r<-rmax
 #browser()
 doca<- new("cabasicresults",
 RX=R,CX=C,Cweights=drmh,Rweights=dcmh,Raxes= Bpoly,
-Caxes=Apoly,r=r,mu=mu,mu2=diag(tZZ),tau=0,tauDen=0,catype="DOCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+Caxes=Apoly,mu=mu,mu2=diag(tZZ),catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
 }
 

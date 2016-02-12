@@ -24,16 +24,10 @@ C <- dcm1 %*% t(x)
 Z <- t(u) %*% ratio %*% Bpoly2 #useful to check coordinates
 ZtZ <- Z%*%t(Z)
 tZZ <- t(Z)%*%Z
-r <- sum(mu>1e-15)
-rmax <- min(dim(xo)) - 1
-    r <- sum(mu > 1e-15)
-    if (r < rmax) {
-        mu[(r + 1):rmax] <- 0
-        Raxes[, (r + 1):rmax] <- 0
-        Caxes[, (r + 1):rmax] <- 0
-    }
+#rmax <- min(dim(xo)) - 1
+#r<-rmax
 soca <- new("cabasicresults",
           RX=R,CX=C,Rweights=dcmh,Cweights=drmh,
-         Raxes= Bpoly,Caxes=u,r=r,mu=mu,mu2=diag(ZtZ),tau=0,tauDen=0,catype="SOCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+         Raxes= Bpoly,Caxes=u,mu=mu,mu2=diag(tZZ),tauDen=0,catype="SOCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ)
 
 }

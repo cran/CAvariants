@@ -6,17 +6,18 @@
 Summary of results of CA variants analysis
 }
 \description{
-This function prints summary results of any of the specified six variants of correspondence analysis. It is called internally from 
-\code{CAvariants}. 
+This function prints summary results of any of the specified six variants of correspondence analysis. 
 The input parameter is the name of the output of the main function  \code{CAvariants}. 
 }
 \usage{
-\S3method{summary}{CAvariants}(object,...)
+\S3method{summary}{CAvariants}(object,printdims,digits,...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
  \item{object}{
 The output of the main function \code{CAvariants}.}
+\item{printdims}{ The dimension number in printing.}
+\item{digits}{ The minimum number of significant digits to be printed in values. Per default, it is equal to 3.}
 \item{...}{Further arguments passed to or from other methods.}
 }
 \value{
@@ -45,7 +46,7 @@ of polynomial components when \code{catype} is \code{DOCA} or \code{DONSCA}}
 \item{Inner product}{The inner product of coordinates.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh}

@@ -15,9 +15,9 @@ When the input parameter \code{catype}  is equal to \code{catype = "SOCA"},
 \code{plottype} should be equal to \code{plottype="biplot"},  if \code{biptype="row"} , it will give back a row isometric polynomial biplot.
  }
 \usage{
-\S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, cex = 1, 
-prop = 1,  plottype = "biplot", biptype = "rows", M = 2, 
-scaleplot = 3, posleg = "topleft", pos = 2, ell = FALSE, \dots)
+\S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, cex = 0.8,cex.lab=0.8, 
+prop = 1,  plottype = "biplot", biptype = "row", M=x$r, 
+scaleplot = 1, posleg = "topleft", pos = 2, ell = FALSE, alpha=0.05,\dots)
 }
 \arguments{
   \item{x}{
@@ -30,8 +30,12 @@ The dimension reflected along  the horizontal axis. By default, it is equal to 1
 The dimension reflected along the vertical axis. By default, it is equal to 2.
 }
   \item{cex}{
-The parameter that specifies the size of character labels of points in graphical displays. By default, it is equal to 1.
+The parameter that specifies the size of character labels of points in graphical displays. By default, it is equal to .8.
 }
+  \item{cex.lab}{
+The parameter that specifies the size of character labels of axes in graphical displays. By default, it is equal to .8.
+}
+
   \item{prop}{
 The scaling parameter for specifying the limits of the plotting area. By default, it is equal to 1. 
 }
@@ -45,8 +49,8 @@ The input parameter specifying what kind of biplot is requested. By default, it 
 (row isometric biplot).
 }
 \item{M}{
-The number of  axes used when drawing ellypse. By default, it is equal to \code{M= 2}.
-Its maximum value is equal to the rank of the data matrix.
+The number of  axes used when drawing ellypse. By default, it is equal to the maximum value  \code{M=r$x}.
+i.e.,  to the rank of the data matrix.
 }
 \item{scaleplot}{
 The scaling parameter for scaling biplot coordinates. By default, \code{scaleplot = 1}.
@@ -58,6 +62,8 @@ By default, \code{posleg= "topleft"}.}
 The parameter for specifying the position of  point symbols in the graphical displays \cr
 By default, \code{pos=2}.}
 \item{ell}{ The flag parameter to allow the building of algebraic ellipses. By default, \code{ell = F}.}
+  \item{alpha}{
+The confidence level of the elliptical regions. By default, \code{alpha = 0.05}.}
 \item{\dots}{Further arguments passed to or from other methods.}
 }
 \details{
@@ -74,7 +80,7 @@ For classical biplot displays, it superimposes on it algebraic ellipses of confi
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \author{
 Rosaria Lombardo and Eric J Beh

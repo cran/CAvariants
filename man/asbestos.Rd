@@ -25,7 +25,7 @@ col names [1:5] "0-9" "10-19" "20-29" "30-39" "40+"
 %}
 \references{
 Selikoff IJ 1981 Household risks with inorganic fibers. Bulletin of the New York Academy of Medicine, 57, 947 -- 961. \cr
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
 \examples{
 asbestos <-

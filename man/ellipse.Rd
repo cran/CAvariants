@@ -39,7 +39,8 @@ The color of ellipses.
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence analysis, Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
+Macdonald PDM 2002 Drawing an ellipse in Splus or R. Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed September 20, 2015).
 }
 \author{
 Rosaria Lombardo and Eric J Beh

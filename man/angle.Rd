@@ -29,9 +29,10 @@ This function is used in two other functions that are "caellipse" and "nsca.elli
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 %}
-%\references{
+\references{
 %% ~put references to the literature/web site here ~
-%}
+Macdonald PDM 2002 Drawing an ellipse in Splus or R. Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed September 20, 2015).
+}
 %\author{
 %%  ~~who you are~~
 %}

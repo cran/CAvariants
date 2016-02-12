@@ -1,5 +1,5 @@
 printwithaxes <-
-function(x, thenames) { 
+function(x, thenames,digits=3) { 
 names(x) <- thenames
-print(x, digits=4)
+print(round(x,digits=digits))
 }
