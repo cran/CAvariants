@@ -1,10 +1,10 @@
 nscaellipse <-
-function(N, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = 2, cex = .8, cex.lab = 0.5, mar = c(5, 4, 4, 2) + 0.1,  
-prop=.8,Imass,Jmass,a,b,fr,g,dmu,tauden,inertiapc,plottype="biplot",biptype="row",pos=2,arrow=T,length=0,graphy=T) 
+function(Xtable, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = 2, cex = .8, cex.lab = 0.8, mar = c(5, 4, 4, 2) + 0.1,  
+prop=.8,Imass,Jmass,a,b,fr,g,dmu,tauden,inertiapc,plottype="biplot",biptype="row",pos=2,arrow=TRUE,length=0,graphy=TRUE,ell=TRUE) 
  {
   I <- nrow(Imass)
     J <- nrow(Jmass)
-n<-sum(N)
+n<-sum(Xtable)
 rowgroup <- list(1:I,rep(1,I))
 rowgrlab <- list(1,"","*","blue","T")
 colgroup <- list(1:J,rep(1,J))
@@ -59,16 +59,18 @@ plot.new()
   plot(0, 0,pch=" ",xlim=picsize, ylim=picsize, 
     xlab=paste("Axis ", a1, "    ", inertiapc[a1], "%", sep=""), 
      ylab=paste("Axis ", a2, "    ", inertiapc[a2], "%", sep=""),  
- asp=0,  col=rowgrlab[[4]][as.integer(rowgroup[[2]])],cex=cex)
+ asp=0,  col=rowgrlab[[4]][as.integer(rowgroup[[2]])],cex=cex,cex.lab=cex.lab)
 abline(h=0,v=0)
 text(fr[, a1], fr[, a2], labels = Inames[[1]],pos=pos,col = cols[1], 
         cex = cex)
-points(fr[, a1], fr[, a2], pch="*",col=cols[1])
+points(fr[, a1], fr[, a2], pch="*",col=cols[1],cex=cex)
     text(g[, a1], g[, a2], labels = Jnames[[1]], pos=pos, col = cols[2], 
         cex = cex)
-points(g[, a1], g[, a2], pch="+",col=cols[2])
+points(g[, a1], g[, a2], pch="+",col=cols[2],cex=cex)
     abline(h = 0, v = 0)
-    title(main = paste(100 * (1 - alpha), "% Confidence Ellipses"))
+if (ell){
+    title(main = paste(100 * (1 - alpha), "% Confidence Ellipses"))}
+else {title(main =  "Row Biplot")}
 if(plottype=="biplot"){
 if ((biptype=="column")|(biptype=="col")|(biptype=="c")){
 #----------------------------------------------arrow on column principal coords
@@ -90,11 +92,12 @@ if(arrow) {
 arrows(nv, nv, fr[, a1], fr[, a2], length = length)
 }
 #-------------------------------------------------------------
+if (ell){
 for (i in 1:I) {
         ellipse(hlax1.row[i], hlax2.row[i], xc = fr[i, a1], yc = fr[i, 
             a2], col = cols[1])
     }
-}#end row
+}}#end row end ell
 }#end biplot
 
 else {#when classic
@@ -110,7 +113,7 @@ for (i in 1:I) {
 }#end graphy
 
 #----------------------------------------
-   eccentricity <- (1 - (dmu[2, 2]/dmu[1, 1])^2)^(1/2)
+   eccentricity <- abs(1 - (dmu[2, 2]/dmu[1, 1])^2)^(1/2)
     area.row <- vector(mode = "numeric", length = I)
     area.col <- vector(mode = "numeric", length = J)
     for (i in 1:I) {

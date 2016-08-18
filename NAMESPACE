@@ -1,7 +1,7 @@
 S3method("print","CAvariants")
 S3method("plot","CAvariants")
 S3method("summary","CAvariants")
-import(methods)
+import(methods,tools)
  importFrom("grDevices", "dev.new")
      importFrom("graphics", "abline", "arrows", "legend", "lines", "par",
      "plot", "plot.new", "points", "text", "title")

@@ -5,14 +5,14 @@ Secondary plot function
 }
 \description{
 This function produces a classical plot when the input parameter of the main code \code{CAvariants} 
-has been set as \code{plottype="classic"}, or it gives a biplot when  \code{plottype="biplot"}.
+has been set as \code{plottype = "classic"}, or it gives a biplot when  \code{plottype = "biplot"}.
 This function allows the analyst to plot row and column points in graphical displays, using symbols and labels for each point. 
-It is called internally from the main graphical function \code{plot.cacorporateplus}.
+It is called internally from the main graphical function \code{plot.CAvariants}.
 }
 \usage{
 plotone(a1, a2, plottype, things, nthings, nvars, Thingcoord, Varcoord, 
 inertiapc, thinggroup, thinggrlab, vargroup, vargrlab, thinglabels, varlabels, 
-picsize, cex = 0.8, type , catype , pos = 2)
+picsize, cex = 0.8, cex.lab = 0.8, type , catype , pos = 2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -24,10 +24,10 @@ The dimension reflected along the horizontal (polynomial or principal) axis in t
 }
   \item{plottype}{
 The paramater for specifying what kind of graphical display is required. 
-By default \code{plottype="classic"}, otherwise \code{plottype="biplot"}. 
+By default, \code{plottype = "classic"}, otherwise \code{plottype = "biplot"}. 
 }
   \item{things}{
-The input parameter for specifying what variable is in principal coordinates. Its value is \code{"row"} or \code{"column"} in biplots \cr
+The input parameter for specifying what variable is in principal coordinates. Its value is \code{"row"} or \code{"column"} in biplots 
 \code{"rows&columns"} in classical plots.}
   \item{nthings}{
 The number of row categories.}
@@ -59,7 +59,10 @@ The labels of the column variable.}
   \item{picsize}{
 The graphical parameter for specifying the size of the plotting area.}
   \item{cex}{
-The parameter for setting the size of character labels of points in graphical displays.
+The parameter for setting the size of character labels of points in graphical displays. By default, \code{cex = 0.8}.
+}
+  \item{cex.lab}{
+The parameter that specifies the size of character labels of axes in graphical displays. By default, \code{cex.lab = 0.8}.
 }
   \item{type}{
 The graphical parameter that specifies the type of line to be drawn.}
@@ -67,19 +70,9 @@ The graphical parameter that specifies the type of line to be drawn.}
 The input parameter specifying what variant of correspondence analysis is to be performed.
 }
   \item{pos}{
-The parameter for specifying the position of  point symbols in the graphical displays. \cr
-By default, \code{pos=2}.}
+The parameter for specifying the position of  point symbols in the graphical displays. 
+By default, \code{pos = 2}.}
 }
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
-%\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-%}
 \references{
 Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 }
@@ -90,22 +83,6 @@ Rosaria Lombardo and Eric J Beh
 In classical graphical displays, both sets of coordinates are principal coordinates (see Greenacre's terminology).
 In biplot graphical displays, one set of coordinates is standard and the other is principal. 
 When the analysis is ordered, one set of coordinates consists of standard polynomial coordinates and the other one is of principal polynomial coordinates.
-This function is internally called by the main graphical function \code{plot.cacorporateplus}.
+This function is internally called by the main graphical function \code{plot.CAvariants}.
 }
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-%\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-%}
-%\examples{
-%##---- Should be DIRECTLY executable !! ----
-%##-- ==>  Define data, use random,
-%##--	or do  help(data=index)  for the standard data sets.
-%    }
-%  }
-%}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
 \keyword{ graph }% __ONLY ONE__ keyword per line

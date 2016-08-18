@@ -1,6 +1,6 @@
 nscabasic <-
-function(X) { 
-X <- X/sum(X)
+function(Xtable) { 
+X <- Xtable/sum(Xtable)
 #r<- min(dim(X))-1
 Imass<-rowSums(X)
 tauden <- 1 - sum(Imass^2)

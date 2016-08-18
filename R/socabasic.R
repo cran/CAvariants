@@ -1,8 +1,8 @@
 socabasic <-
-function (xo,mj) 
+function (Xtable,mj) 
 {
-n<-sum(xo)
-    x <- xo/n
+n<-sum(Xtable)
+    x <- Xtable/n
 rsums <- as.vector(rowSums(x))
 csums <- as.vector(colSums(x))
 di<-diag(rsums)

@@ -1,19 +1,19 @@
 plot.CAvariants<-function(x,  firstaxis=1, lastaxis=2, cex=0.8,cex.lab=0.8,prop=1,
-plottype="biplot", biptype = "row",M=x$r,scaleplot=1,
-posleg="topleft",pos=2,ell=FALSE,alpha=0.05,...) {
+plottype="biplot", biptype = "row",scaleplot=1,
+posleg="topleft",pos=2,ell=FALSE,Mell=x$Mell,alpha=0.05,...) {
 
 ## internal function to plot a  single picture
 ##
 
-if ((firstaxis<1)|(firstaxis>x$maxaxes-1)) stop(paste("incorrect first axis =", firstaxis, "\n\n")) 
-if (lastaxis>x$maxaxes) stop(paste("incorrect last axis =", lastaxis, "\n\n")) 
+if ((firstaxis<1)|(firstaxis>x$r)) stop(paste("incorrect first axis =", firstaxis, "\n\n")) 
+if (lastaxis>x$r) stop(paste("incorrect last axis =", lastaxis, "\n\n")) 
 if (firstaxis>=lastaxis) stop(paste("last axis must be greater than first axis\n\n"))
 #if (!any(plottype==c("classic","classical","c","biplot","bip","b"))) stop(paste("Must be specified the kind of graph: classic, or biplot"))
 
 # Groups file must have no blank line at start and only one between sections
 # group number   group name   symbol   colour   plot ellipse? 
-n<-sum(x$DataMatrix)
-I<-nrow(x$DataMatrix)
+n<-sum(x$Xtable)
+I<-nrow(x$Xtable)
 rowgroup <- list(1:x$rows,rep(1,x$rows))
 rowgrlab <- list(1,"","*","red","T")
 colgroup <- list(1:x$cols,rep(1,x$cols))
@@ -28,8 +28,8 @@ cord1<- x$Cprinccoord
 cord2<-x$Rprinccoord
 dmu=diag(x$inertias[,1])
 inertiapc=x$inertias[,2] #inertia in percentage of row axes 
-dimnames(cord1)[1]<-dimnames(x$DataMatrix)[2]
-dimnames(cord2)[1]<-dimnames(x$DataMatrix)[1]
+dimnames(cord1)[1]<-dimnames(x$Xtable)[2]
+dimnames(cord2)[1]<-dimnames(x$Xtable)[1]
 thinggroup<-colgroup
 thinggrlab<-colgrlab
 vargroup<-rowgroup
@@ -68,8 +68,8 @@ vargrlab<-colgrlab
 main<-"Row Isometric Biplot"
 inertiapc=x$inertias[,2] #inertia of column poly
 dmu=diag(x$inertias[,1])
-dimnames(cord2)[1]<-dimnames(x$DataMatrix)[2]
-dimnames(cord1)[1]<-dimnames(x$DataMatrix)[1]
+dimnames(cord2)[1]<-dimnames(x$Xtable)[2]
+dimnames(cord1)[1]<-dimnames(x$Xtable)[1]
 if ((x$catype=="DONSCA")|(x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA"))
 {
 #if (ell==TRUE) { scaleplot<-1
@@ -86,8 +86,8 @@ vargroup<-rowgroup
 vargrlab<-rowgrlab
 inertiapc=x$inertias2[,2] #inertia of column poly
 dmu=diag(x$inertias2[,1])
-dimnames(cord2)[1]<-dimnames(x$DataMatrix)[1]
-dimnames(cord1)[1]<-dimnames(x$DataMatrix)[2]
+dimnames(cord2)[1]<-dimnames(x$Xtable)[1]
+dimnames(cord1)[1]<-dimnames(x$Xtable)[2]
 }#end catype
 
 } #end bip row
@@ -103,15 +103,15 @@ nthings<-x$cols
 nvars<-x$rows
 thinggroup<-colgroup
 thinggrlab<-colgrlab
-vargroup<-colgroup
+vargroup<-rowgroup
 vargrlab<-rowgrlab
 thinglabels<-x$collabels
 varlabels<-x$rowlabels
 main<-"Column Isometric Biplot"
 inertiapc=x$inertias[,2] #inertia of row 
 dmu=diag(x$inertias[,1])
-dimnames(cord1)[1]<-dimnames(x$DataMatrix)[2]
-dimnames(cord2)[1]<-dimnames(x$DataMatrix)[1]
+dimnames(cord1)[1]<-dimnames(x$Xtable)[2]
+dimnames(cord2)[1]<-dimnames(x$Xtable)[1]
 }
 if ((x$catype=="DONSCA")|(x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA"))
 {
@@ -129,8 +129,8 @@ thinglabels<-x$rowlabels
 varlabels<-x$collabels
 inertiapc=x$inertias[,2] #inertia of row poly
 dmu=diag(x$inertias[,1])
-dimnames(cord1)[1]<-dimnames(x$DataMatrix)[1]
-dimnames(cord2)[1]<-dimnames(x$DataMatrix)[2]
+dimnames(cord1)[1]<-dimnames(x$Xtable)[1]
+dimnames(cord2)[1]<-dimnames(x$Xtable)[2]
 }#end catype
 }#end bip column
 }
@@ -148,8 +148,9 @@ if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSC
 #trendplot(x@mi,t(x@pcc), position="topleft",main="Original Trends of Centered #Column Profile",xlab="ordered scores")
 ############################################################## reconstructed TREND
 #windows()
+dev.new()
 trendplot(x$mj,(x$Trend), posleg=posleg,main="Reconstructed rows of the centred column profile",xlab="ordered scores",prop=prop)
-plot.new()
+dev.new()
 trendplot(x$mi,t(x$Trend), posleg=posleg,main="Reconstructed columns of the centred column profile",xlab="ordered scores",prop=prop)
 #browser()
 }
@@ -159,10 +160,11 @@ picsize1<-c(range(cord1[,c(firstaxis,lastaxis)], cord2[,c(firstaxis,lastaxis)])/
 
 if (picsize1[1]>=picsize1[2]) stop(paste("incorrect axis scale picsize =", picsize1[1], picsize1[2], "\n\n"))
 ########################################################################################## 
+dev.new()
 if ((x$catype=="DONSCA")||(x$catype=="DOCA"))
 {
 plotone (firstaxis,lastaxis,plottype=plottype,things=x$catype,nthings,nvars,cord1,cord2,
-inertiapc=inertiapc, thinggroup,thinggrlab,vargroup,vargrlab, thinglabels, varlabels,picsize=picsize1,cex=cex,type="b",
+inertiapc=round(inertiapc,digits=1), thinggroup,thinggrlab,vargroup,vargrlab, thinglabels, varlabels,picsize=picsize1,cex=cex,cex.lab=cex.lab,type="b",
 catype=x$catype,pos=pos) 
 }
 ######################
@@ -171,18 +173,19 @@ if ((x$catype=="SOCA")||(x$catype=="SONSCA"))
 if (biptype=="row"){type="b"}
 else {type="p"}
 plotone (firstaxis,lastaxis,plottype=plottype,things=x$catype,nthings,nvars,cord1,cord2,
-inertiapc=inertiapc, thinggroup,thinggrlab,vargroup,vargrlab, thinglabels, varlabels,picsize=picsize1,cex=cex,catype=x$catype,type=type,pos=pos) 
+inertiapc=round(inertiapc,digits=1), thinggroup,thinggrlab,vargroup,vargrlab, thinglabels, varlabels,picsize=picsize1,cex=cex,cex.lab=cex.lab,catype=x$catype,type=type,pos=pos) 
 }
 
 ###############################
 if ((x$catype=="CA")||(x$catype=="NSCA"))
 {
 plotone (firstaxis,lastaxis,plottype=plottype,things=x$catype,nthings,nvars,cord1,cord2,
-inertiapc=inertiapc, thinggroup,thinggrlab,vargroup,vargrlab, thinglabels, varlabels,picsize=picsize1,cex=cex,type="p",catype=x$catype,pos=pos) 
+inertiapc=round(inertiapc,digits=1), thinggroup,thinggrlab,vargroup,vargrlab, thinglabels, varlabels,picsize=picsize1,cex=cex,cex.lab=cex.lab,type="p",catype=x$catype,pos=pos) 
 }
 ################################################################################
 #cat("\nIncluding Beh's Confidence Ellipses\n")
 ################################################################################
+
 if (ell==TRUE) {
 
 if (((x$catype=="NSCA")|(x$catype=="CA")|(x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")) & (plottype=="biplot")&(biptype=="row")|(biptype=="r")|(biptype=="rows")){
@@ -192,36 +195,36 @@ cord1<-cordr
 cord2<-cordc
 }
 
-plot.new()
+dev.new()
 
-switch(x$catype, "CA"=caellipse(N=x$DataMatrix,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,b=x$Cstdcoord,g=cord1,fr=cord2,dmu=dmu,inertiapc=inertiapc,
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T), 
+switch(x$catype, "CA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
+Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,b=x$Cstdcoord,g=cord1,fr=cord2,dmu=dmu,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=TRUE,length=0,graphy=TRUE,ell=TRUE), 
 
-"SOCA"=caellipse(N=x$DataMatrix,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
-Imass=x$Imass,Jmass=x$Jmass,a=solve(x$Imass^0.5)%*%x$Rstdcoord,b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,inertiapc=inertiapc,
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T),
+"SOCA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
+Imass=x$Imass,Jmass=x$Jmass,a=solve(x$Imass^0.5)%*%x$Rstdcoord,b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE),
 
-"DOCA"=caellipse(N=x$DataMatrix,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
+"DOCA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=solve(x$Imass^0.5)%*%x$Rstdcoord,
-b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,inertiapc=inertiapc,
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T), 
+b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE), 
 
-"NSCA"=nscaellipse(x$DataMatrix,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
+"NSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
 b=x$Cstdcoord,g=cord1,fr=cord2,dmu=dmu, tauden=x$tauden,
-inertiapc=inertiapc,
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T),
+inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T,ell=TRUE),
 
-"SONSCA"=nscaellipse(x$DataMatrix,a1=firstaxis,a2=lastaxis,alpha=alpha,M= M,cex=cex,cex.lab=cex.lab,prop=prop,
+"SONSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M= Mell,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,tauden=x$tauden,inertiapc=inertiapc,
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T), 
+b=x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,tauden=x$tauden,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE), 
 
-"DONSCA"=nscaellipse(x$DataMatrix,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
+"DONSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,tauden=x$tauden,inertiapc=inertiapc,
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T))
+b=x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,tauden=x$tauden,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE))
 
 }#end if ellipse
 

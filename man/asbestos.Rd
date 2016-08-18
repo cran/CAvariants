@@ -9,11 +9,11 @@ Selikoff's data, two-way contingency table.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 The data set consists of 4 rows and 5 columns. 
 The rows represent the degree of severity of asbestosis and the 
-columns concern the time of exposure to asbestos of workers
+columns are concerned with the time of exposure to asbestos of workers
 }
 \usage{data(asbestos)}
 \format{
-  The format is:
+The format is:
 row names [1:4] "None" "Grade1" "Grade2" "Grade3"    \cr
 col names [1:5] "0-9" "10-19" "20-29" "30-39" "40+" 
 }

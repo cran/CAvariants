@@ -1,9 +1,8 @@
 docabasic <-
-function (xo,mi,mj) 
+function (Xtable,mi,mj) 
 {
-n<-sum(xo)
- x <- xo/n
-#J <- dim(xo)[2]
+n<-sum(Xtable)
+x <- Xtable/n
 rsums <- as.vector(rowSums(x))
 csums <- as.vector(colSums(x))
 dj<-diag(csums)

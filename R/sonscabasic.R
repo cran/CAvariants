@@ -1,8 +1,7 @@
 sonscabasic <-
-function (xo,mj) 
+function (Xtable,mj) 
 {
-#rmax <- min(dim(xo)) - 1
-x <- xo/sum(xo)
+x <- Xtable/sum(Xtable)
 rsums <- as.matrix(rowSums(x))
 csums <- as.vector(colSums(x))
 tauden <- 1 - sum(rsums^2)

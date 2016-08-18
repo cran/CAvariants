@@ -1,8 +1,8 @@
 donscabasic <-
-function (xo,mi,mj) 
+function (Xtable,mi,mj) 
 {
 #  rmax <- min(dim(xo)) - 1
-x <- xo/sum(xo)
+x <- Xtable/sum(Xtable)
 rsums <- as.vector(rowSums(x))
 csums <- as.vector(colSums(x))
 drm1 <- diag( 1/( rsums + (rsums==0) ) * (1-(rsums==0)) )
@@ -30,7 +30,7 @@ tZZ<-t(Z)%*%Z
     Cweights <- dj
 #browser()
 donsca<- new("cabasicresults",
-RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(rep(1,nrow(xo))),
+RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(rep(1,nrow(x))),
         Raxes=Bpoly,Caxes=Apoly2,mu=mu,mu2=mu2,catype="DONSCA",tauDen=tauden,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
 }
 

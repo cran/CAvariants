@@ -20,7 +20,7 @@ The \pkg{R} internal function \code{angle} is used to draw ellipses around point
 %}
 %}
 \details{
-This function is used in two other functions that are "caellipse" and "nsca.ellipse".
+This function is used in two other functions that are \code{caellipse} and \code{nscaellipse}.
 }
 %\value{
 %%  ~Describe the value returned
@@ -31,7 +31,8 @@ This function is used in two other functions that are "caellipse" and "nsca.elli
 %}
 \references{
 %% ~put references to the literature/web site here ~
-Macdonald PDM 2002 Drawing an ellipse in Splus or R. Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed September 20, 2015).
+Macdonald PDM 2002 Drawing an ellipse in Splus or R. \cr
+Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed August 18, 2016).
 }
 %\author{
 %%  ~~who you are~~

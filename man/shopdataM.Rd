@@ -8,7 +8,7 @@ Two-way contingency table
 \description{
 This two-way contingency table summarises, in part, the results of a survey 
 of the Dutch Central Bureau of Statistics (Isra\''{e}ls, 1987). The table considers a 
-sample od 20819 men who were suspected of shoplifting in Dutch stores between 1977 and 1978.}
+sample of 20819 men who were suspected of shoplifting in Dutch stores between 1977 and 1978.}
 \usage{data(shopdataM)}
 \format{
   The format is:

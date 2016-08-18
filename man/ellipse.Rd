@@ -3,8 +3,8 @@
 \title{
 Ellipse}
 \description{
-This function is called internally from the graphical functions \code{caellipse} and \code{nsca.ellipse}.
-It allows the analyst the construction of algebraic ellipses of confidence.
+This function is called internally from the graphical functions \code{caellipse} and \code{nscaellipse}.
+It constructs the algebraic ellipses of confidence.
 }
 %\usage{
 %ellipse(hlaxa = 1, hlaxb = 1, theta = 0, xc = 0, yc = 0, npoints = 100, col)
@@ -24,7 +24,7 @@ The coordinate of the generic point on the vertical axis.}
 %  \item{npoints}{
 %%     ~~Describe \code{npoints} here~~
 %}
-  \item{col}{
+ \item{col}{
 The color of ellipses.
 }
 }
@@ -39,19 +39,18 @@ The color of ellipses.
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
-Macdonald PDM 2002 Drawing an ellipse in Splus or R. Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed September 20, 2015).
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons. \cr
+Macdonald PDM 2002 Drawing an ellipse in Splus or R. \cr
+Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed August 18, 2016).
 }
 \author{
 Rosaria Lombardo and Eric J Beh
 }
 \note{
-This function is called from the secondary graphical function \code{caellipse} or \code{nsca.ellipse}, which is 
-called from the main plot function \code{plot.cacorporateplus} and it can be executed 
+This function is called from the secondary graphical function \code{caellipse} or \code{nscaellipse}, which is 
+called from the main plot function \code{plot.CAvariants} and it can be executed 
 for all variants of correspondence analysis.}
-
 %% ~Make other sections like Warning with \section{Warning }{....} ~
-
 %\seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
@@ -59,7 +58,6 @@ for all variants of correspondence analysis.}
 %##---- Should be DIRECTLY executable !! ----
 %##-- ==>  Define data, use random,
 %##--	or do  help(data=index)  for the standard data sets.
-
 %## The function is currently defined as
 %function (hlaxa = 1, hlaxb = 1, theta = 0, xc = 0, yc = 0, npoints = 100, 
 %    col) 

@@ -1,7 +1,7 @@
 cabasic <-
-function(X) { 
-n<-sum(X)
-X <- X/n
+function(Xtable) { 
+n<-sum(Xtable)
+X <- Xtable/n
 #rmax <- min(dim(X))-1
 rsums <- as.vector(rowSums(X))
 csums <- as.vector(colSums(X))
