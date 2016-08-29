@@ -39,12 +39,19 @@ The parameter \code{cex.lab} that specifies the size of character labels of axes
 The scaling parameter for specifying the limits of the plotting area. By default, \code{prop = 1}. 
 }
  \item{plottype}{
-The type of graphical display required (either a classical correspondence plot or a biplot). The user can look at a classical correspondence plot by defining the input
-parameter  \code{plottype = "classic"}. By default, \code{plottype = "biplot"}.
+The type of graphical display required (either a classical correspondence plot or a biplot). 
+The user can look at a classical correspondence plot by defining the input
+parameter  \code{plottype = "classic"}.
+When \code{plottype = "biplot"}, it produces biplot graphical displays, or polynomial biplots in case of an ordered analysis.
+
+Note that for ordered analysis only polynomial biplots are suitable.  In particular  for the singly ordered variants, 
+only row isometric polynomial biplots make sense, as we assume that the ordered variable is the column variable 
+(the column coordinates are standard polynomial coordinates and the row coordinates are principal polynomial coordinates). 
+ By default, \code{plottype = "biplot"}.
 }
 \item{biptype}{
 For a biplot, one may specify that it be a row-isometric biplot  (\code{biptype = "row"}) or a column-isometric biplot (\code{biptype = "column"}).  
-This feature is available for the nominal symmetrical and the non symmetrical CA analyses. 
+This feature is available for the nominal symmetrical and the non symmetrical correspondence analyses. 
 By default, a row-isometric biplot, \code{biptype = "row"}, is produced.
 }
 \item{scaleplot}{
@@ -52,16 +59,18 @@ The parameter for scaling the biplot coordinates, \code{scaleplot}, originally p
 described on page 135 of  Beh and Lombardo (2014). By default, \code{scaleplot = 1}.
 }
 \item{posleg}{
-The parameter \code{posleg} for specifying the position of the legend when portraying trends of ordered categories in ordered variants of correspondence analysis. 
+The parameter \code{posleg} for specifying the position of the legend when portraying trends of ordered categories 
+in ordered variants of correspondence analysis. 
 By default, \code{posleg = "topleft"}. }
  \item{pos}{
 The parameter for specifying the position of  point symbols in the graphical displays.
 By default, \code{pos = 2}.}
 \item{ell}{ The logical parameter, \code{ell} which specifies whether algebraic confidence ellipses are to be included in the plot or not.  
-Setting the input parameter to \code{ell = TRUE} will allow the analyst to assess the statistical significance of each category to 
+Setting the input parameter to \code{ell = TRUE} will allow the user to assess the statistical significance of each category to 
 the association between the variables. The ellipses will be included when the plot is constructed using principal coordinates 
 (being either row and column principal coordinates or row and column principal polynomial coordinates). 
-By default, this input parameter is set to \code{ell = FALSE}.  See also the input parameter \code{ellcomp}  of the function \code{CAvariants} 
+By default, this input parameter is set to \code{ell = FALSE}.  See also the input parameter \code{ellcomp}  
+of the function \code{CAvariants} 
 for a  description of the numeric characteristics of the confidence ellipses  (eccentricity, area, etc.), as well as the
 input parameter \code{ellprint} of the function \code{print.CAvariants} for getting a print of these parameters.
 }

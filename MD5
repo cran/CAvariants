@@ -1,4 +1,4 @@
-ba3ec6dacdf68376d92d4bff192a331c *DESCRIPTION
+288da0e632ba96eab21b648fe888b7cf *DESCRIPTION
 570712404b4aa0fa73901091f346dc3c *NAMESPACE
 fedb3e0f0dc045f7ffdc688b1a9a7781 *R/CAvariants.R
 b2c4bb1ae6b60acf64095a9bc351fd5a *R/angle.R
@@ -23,7 +23,7 @@ c719dbe0ed90371f44d939dd307d3da8 *R/sonscabasic.R
 4da28b4b3e8e36bf58a5101041589042 *R/trendplot.R
 c21bba1abe758df171aba027ede069f9 *data/asbestos.rda
 ec4008bab92ae94b964c7d5b7b511e01 *data/shopdataM.rda
-d9a10f2e00f45307ef17a5480b2ebe88 *man/CAvariants.Rd
+b7e9af5af1b5c522eb551aadb0c8930f *man/CAvariants.Rd
 214c7c0fbfbd0a19451e4aba1ca1437b *man/angle.Rd
 2cb8928d886e507d98701e316ebaee53 *man/asbestos.Rd
 dd090eff26b735d5fefd301674734730 *man/cabasic.Rd
@@ -37,9 +37,9 @@ f4164a9aec639c81b48f9a2104fb96bc *man/donscabasic.Rd
 b21d8cae74556085dcbeafd62a8a9ef5 *man/emerson.poly.Rd
 e7f69e7cab54b6009d945b0e7ef927e2 *man/nscabasic.Rd
 b51229462ca99d77522f5d3ee7c67102 *man/nscaellipse.Rd
-b803d79af4d964e6258ee31a907f05f8 *man/plot.CAvariants.Rd
+75dec7c28525056de73b39f2518ac534 *man/plot.CAvariants.Rd
 cee56c82404fe5362d02ed274d792522 *man/plotone.Rd
-ff6602e97c72c520da73f49cfc8e51ca *man/print.CAvariants.Rd
+366279e45d537be81457a9f815435e76 *man/print.CAvariants.Rd
 5356f0edde85ee90c28edef8dc04b6a3 *man/printwithaxes.Rd
 a3b9923b8b57964ea250cdb73355a0df *man/shopdataM.Rd
 3ba5ba0a5398d3e6fa4facc2d1dbc382 *man/socabasic.Rd

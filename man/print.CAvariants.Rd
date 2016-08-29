@@ -5,7 +5,7 @@ Main printing function
 }
 \description{
 This function prints the results of any of the specified six variants of correspondence analysis. \cr
-It is called internally from  \code{CAvariants}. The input parameter is the name of the output of the main function  \code{CAvariants}. 
+The input parameter is the name of the output of the main function  \code{CAvariants}. 
 }
 \usage{
 \S3method{print}{CAvariants}(x, printdims = 2, ellprint = TRUE, Mell = min(nrow(x$Xtable), ncol(x$Xtable)) - 1, 
@@ -20,8 +20,9 @@ and for summarising the numerical output of the analysis. By default, \code{prin
 \item{ellprint}{The flag parameter, \code{ellprint}, allows that the characteristics of the confidence ellipses (eccentricity, semi-axis, area, p-values)  are displayed. \cr
 By default, \code{ellprint  =  TRUE}. }
 \item{Mell}{The number of axes \code{Mell} used for the construction of the confidence ellipses. By default, 
-it is equal to its maximum value, \code{Mell = min(nrow(x$Xtable), ncol(x$Xtable)) - 1}, i.e. the rank of the data matrix.}
-\item{alpha}{The level of significance used for the construction of the elliptical regions, \code{alpha}. By default, \code{alpha = 0.05}.}
+it is equal to its maximum value, \code{Mell = min(nrow(x$Xtable), ncol(x$Xtable)) - 1}, i.e. the rank of the data matrix.
+This input parameter is identical to the parameter \code{Mell} of both the functions \code{CAvariants} and \code{plot.CAvariants}.}
+\item{alpha}{The level of significance used for the construction of the elliptical regions. By default, \code{alpha = 0.05}.}
 \item{digits}{The minimum number of decimal places, \code{digits}, used for displaying the numerical summaries of the analysis. 
 By default, \code{digits = 3}.}
 \item{...}{Further arguments passed to or from other methods.}
@@ -37,7 +38,7 @@ This function uses another function (called \code{printwithaxes}) for specifying
 of non symmetrical correspondence analysis, the numerator of the Goodman-Kruskal tau index, \cr
 the associated C-statistic and its p-value is produced.}
 \item{Inertias}{The inertia values, their percentage contribution to the total inertia and the cumulative \cr
-percent inertias of the row and column space \code{Inertias}. \cr
+percent inertias of the row and column space. \cr
 When performing an ordered correspondence analysis, this output summary describes both the row and column spaces \cr
 for each principal or polynomial axis. When \code{catype} is \code{CA} or \code{NSCA}, \cr
 the associated inertia values in the row and column spaces are identical.}
@@ -49,8 +50,10 @@ the associated inertia values in the row and column spaces are identical.}
 \item{Column standard coordinates}{The column standard coordinates when \code{catype} is \code{"CA"} or \code{"NSCA"}.}
 \item{Row principal polynomial coordinates}{The row principal polynomial coordinates  when performing an ordered correspondence analysis.}
 \item{Column principal polynomial coordinates}{The column principal coordinates  when performing a doubly  ordered correspondence analysis.}
-\item{Row standard polynomial coordinates }{The row standard polynomial coordinates, i.e. row polynomial axes, when performing a doubly ordered correspondence analysis.}
-\item{Column standard polynomial coordinates}{The column standard polynomial coordinates, i.e. column polynomial axes,  when performing an ordered correspondence analysis.}
+\item{Row standard polynomial coordinates }{The row standard polynomial coordinates, i.e. standard polynomial coordinates
+for the row categories, when performing a doubly ordered correspondence analysis.}
+\item{Column standard polynomial coordinates}{The column standard polynomial coordinates, i.e. standard polynomial coordinates for the column categories,
+when performing an ordered correspondence analysis.}
 \item{Row distances from the origin of the plot}{The Euclidean distance of the row categories from the origin of the plot.}
 \item{Column distances from the origin of the plot}{The Euclidean distance of the column categories from the origin of the plot.}
 \item{Polynomial components}{The polynomial components of the total inertia and their p-values. The total inertia of the column space \cr

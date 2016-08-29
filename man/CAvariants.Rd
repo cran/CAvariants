@@ -41,15 +41,16 @@ The vertical polynomial or principal axis.  By default \code{lastaxis = 2}.
 The input parameter for specifying what variant of correspondence analysis is considered. By default,  \code{catype = "CA"}. 
 Other possible values are:  \code{catype = "SOCA"}, \code{catype = "DOCA"}, \code{catype = "NSCA"}, \code{catype = "SONSCA"}, \code{catype = "DONSCA"}.
 }
-\item{ellcomp}{The flag parameter for allowing the storage and computation  of the characteristics of the algebraic ellipses. 
-When  \code{ellcomp = TRUE}, the output includes the ellipse characteristics:
-The eccentricity,  of the confidence ellipses, \code{eccentricity}  (this is the distance between its center and either of its two foci, 
-which can be thought of as a measure of how much the conic section deviates from being circular, when  it is equal to zero then the region becomes circular);  
-the semi-major axis length of the ellipse for each row and column point, \code{HL Axis 1};  
-the semi-minor axis length for the ellipse for each row and column point, \code{HL Axis 2};  
-the area of the ellipse for each row and column point, \code{Area} and the p-value for each row and column point, \code{P-value}. \cr    
-By default, \code{ellcomp = TRUE}.
-}
+\item{ellcomp}{This input parameter ensures that the characteristics of the algebraic confidence ellipses are computed and stored. 
+When \code{ellcomp = TRUE} (which is by default), the output includes the characteristics of the ellipses. 
+The eccentricity of the confidence ellipses is summarised by the quantity \code{eccentricity}, this is the distance between the center and either 
+of its two foci,
+which can be thought of as a measure of how much the conic section deviates from being circular
+ 
+(when  it is equal to zero then the region becomes circular).
+ The semi-major axis length of the ellipse for each row and column 
+point is given by \code{HL Axis 1} while \code{HL Axis 2} gives the semi-minor axis length of the points along the second axis. 
+The area of the ellipse for each row and column category is given by \code{Area} while the p-value of each category  is defined by \code{P-value}.}
 \item{Mell}{
 The number of axes \code{Mell} considered in determining the structure of the elliptical confidence regions. 
 By default,  \code{Mell = min(nrow(Xtable), ncol(Xtable)) - 1}, i.e. the rank of the data matrix.
