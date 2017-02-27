@@ -30,13 +30,12 @@ mu<- diag(ZtZ) #these are coincident with each eigenvalue (mu^2)
 #tau<-sum(mu)
 #r<-rmax
 #browser()
-sonsca <- new("cabasicresults",
-          RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(uni1),
-          Raxes=Bpoly,Caxes=u,mu=mu,mu2=mu2,catype="SONSCA",tauDen=tauden,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+#sonsca <- new("cabasicresults",
+ #         RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(uni1),
+  #        Raxes=Bpoly,Caxes=u,mu=mu,mu2=mu2,catype="SONSCA",tauDen=tauden,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
 
-#sonsca <- list(RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(uni1),
-#          Raxes=Bpoly,Caxes=u,mu=mu,mu2=mu2,tauDen=tauden,catype="SONSCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+ressonsca<-( list(RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(uni1),
+          Raxes=Bpoly,Caxes=u,mu=mu,mu2=mu2,tauDen=tauden,catype="SONSCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ))
 
-#class(sonsca)<-"cabasicresults"
-#getClass("cabasicresults")
+return(ressonsca)
 }

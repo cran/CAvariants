@@ -41,6 +41,7 @@ The parameter for setting the  character label of the vertical axis in graphical
 }
 \references{
 Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
+Lombardo R Beh EJ Variants of Simple Correspondence Analysis. The R Journal (accepted).
 }
 \author{
 Rosaria Lombardo and Eric J. Beh

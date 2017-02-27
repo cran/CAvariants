@@ -29,8 +29,11 @@ tZZ<-t(Z)%*%Z
 #r<-rmax
     Cweights <- dj
 #browser()
-donsca<- new("cabasicresults",
-RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(rep(1,nrow(x))),
-        Raxes=Bpoly,Caxes=Apoly2,mu=mu,mu2=mu2,catype="DONSCA",tauDen=tauden,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+#donsca<- new("cabasicresults",
+#RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(rep(1,nrow(x))),
+ #       Raxes=Bpoly,Caxes=Apoly2,mu=mu,mu2=mu2,catype="DONSCA",tauDen=tauden,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+resdonsca<-(list(RX=pcc,CX=t(pcc),Rweights=dj,Cweights=diag(rep(1,nrow(x))),
+        Raxes=Bpoly,Caxes=Apoly2,mu=mu,mu2=mu2,catype="DONSCA",tauDen=tauden,Z=Z,ZtZ=ZtZ,tZZ=tZZ))
+return(resdonsca)
 }
 

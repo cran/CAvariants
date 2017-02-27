@@ -17,7 +17,6 @@ X <- as.matrix(Xtable)
 M<-min(nrow(Xtable),ncol(Xtable))-1
   rowlabels <- rownames(Xtable)
   collabels <- colnames(Xtable) 
-
 rows <- dim(X)[1]
 cols <- dim(X)[2]
 n <- sum(X)
@@ -32,167 +31,202 @@ mi<-c(mi)  #natural scores for rows
 r<- min(rows,cols)-1
 S <- switch(catype, "CA"=cabasic(X),  "SOCA"=socabasic(X,mj),"DOCA"=docabasic(X,mi,mj),"NSCA"=nscabasic(X),"SONSCA"=sonscabasic(X,mj),
 "DONSCA"=donscabasic(X,mi,mj))
-
 ##########################------CA
 if(catype=="CA"){
-Fmat <- S@RX %*% S@Rweights %*% S@Raxes[,1:r]
-Gmat <- S@CX %*% S@Cweights %*% S@Caxes[,1:r]
-#dmum1 <- diag( (S@mu + (S@mu==0)) * (1-(S@mu==0)) )
-Fbi <- S@Cweights %*%  S@Caxes[,1:r] # no orthonormal
-Gbi <-S@Rweights %*%   S@Raxes[,1:r] # no orthonormal
-pcc <- t(S@CX)
+Fmat <- S$RX %*% S$Rweights %*% S$Raxes[,1:r]
+Gmat <- S$CX %*% S$Cweights %*% S$Caxes[,1:r]
+#dmum1 <- diag( (S$mu + (S$mu==0)) * (1-(S$mu==0)) )
+Fbi <- S$Cweights %*%  S$Caxes[,1:r] # no orthonormal
+Gbi <-S$Rweights %*%   S$Raxes[,1:r] # no orthonormal
+pcc <- t(S$CX)
 #dimnames(pcc)<-dimnames(X)
 tau=NULL
 tauden=NULL
-inertia <- (S@mu[1:r]*S@mu[1:r])
+inertia <- (S$mu[1:r]*S$mu[1:r])
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 Z<-Trend
 dimnames(Z) <- list(rowlabels,collabels)
-
 }
 #########################################################---------DOCA
 if(catype=="DOCA"){
-Z<-S@Z/sqrt(n)
-pcc<-S@RX #centered column profile matrix
-Gbi <- S@Raxes[,1:r]
-Fbi<- S@Caxes[,1:r] 
-Gmat <-  S@CX %*%  S@Caxes[,1:r] #row principal coordinates
-Fmat <- S@RX  %*% S@Raxes[,1:r] #column principal coordinates
-if (rows>2){
+Z<-S$Z/sqrt(n)
+pcc<-S$RX #centered column profile matrix
+Gbi <- S$Raxes[,1:r]
+Fbi<- S$Caxes[,1:r] 
+Gmat <-  S$CX %*%  S$Caxes[,1:r] #row principal coordinates
+Fmat <- S$RX  %*% S$Raxes[,1:r] #column principal coordinates
+nr<-nrow(Z)
+nc<-ncol(Z)
+if (nr>2){
 if  ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){
 Gmat<-(-1)*Gmat
 Fmat<-(-1)*Fmat
 }}
-reconstruction<-t(Gmat%*%t(S@Cweights%*%Fbi))
+reconstruction<-t(Gmat%*%t(S$Cweights%*%Fbi))
 dimnames(reconstruction)<-dimnames(X)
-inertia <- S@mu[1:r]/n #number of inertia of row poly
-inertia2<-S@mu2[1:r]/n #number of inertias of column poly
-Z1<-S@Z
+inertia <- S$mu[1:r]/n #number of inertia of row poly
+inertia2<-S$mu2[1:r]/n #number of inertias of column poly
+Z1<-S$Z
 tau=NULL
 tauden=NULL
 comps <- compstable.exe(Z1)
-#browser() 
-if (rows>2){
-Icompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
-else{
-Icompnames <- c( "Location", "** Chi-squared Statistic **")}
+#----------------------------------------rows comps
+if (nr>3){
+Rcompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
+if(nr == 3){
+Rcompnames <- c( "Location", "Dispersion","Error","** Chi-squared Statistic **")}
+if(nr == 2){
+Rcompnames <- c( "Location", "Dispersion","** Chi-squared Statistic **")}
 
+#----------------------columns comps
+if (nc>3){
+Ccompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
+if (nc==3){
+Ccompnames <- c( "Location", "Dispersion","Error","** Chi-squared Statistic **")}
+if (nc==2){
+Ccompnames <- c( "Location", "Dispersion","** Chi-squared Statistic **")}
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("u", 1:(rows - 1),sep=""), paste("v", 1:(cols - 1),sep=""))
-dimnames(comps$compsR) <- list(paste(Icompnames), paste(Jcompnames))
-dimnames(comps$compsC) <- list(paste(Icompnames), paste(Jcompnames))
-
-Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
+dimnames(Z) <- list(paste("u", 1:nr,sep=""), paste("v", 1:nc,sep=""))
+#browser()
+dimnames(comps$compsR) <- list(paste(Rcompnames), paste(Jcompnames))
+dimnames(comps$compsC) <- list(paste(Ccompnames), paste(Jcompnames))
+Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S$Rweights%*%Gbi[,firstaxis:lastaxis]))
 #browser()
 }
 #########################################################################---------SOCA
 if(catype=="SOCA"){
-pcc<-S@RX
-Z<-S@Z/sqrt(n)
+pcc<-S$RX
+Z<-S$Z/sqrt(n)
+nr<-nrow(Z)
+nc<-ncol(Z)
 dimnames(pcc)<-dimnames(X)
-Gmat <- S@CX %*%  S@Caxes[,1:r] #row principal coordinates
-Fmat <- S@RX %*% S@Rweights %*% S@Raxes[,1:r] #column principal coordinates
+Gmat <- S$CX %*%  S$Caxes[,1:r] #row principal coordinates
+Fmat <- S$RX %*% S$Rweights %*% S$Raxes[,1:r] #column principal coordinates
 if ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat}
-Gbi <-S@Raxes[,1:r]
-Fbi <- S@Caxes[,1:r] 
-inertia <- (S@mu[1:r]^2)/n
-inertia2<-(S@mu2[1:r])/n
-#inertia2<-(S@mu2[-1])/n
+Gbi <-S$Raxes[,1:r]
+Fbi <- S$Caxes[,1:r] 
+inertia <- (S$mu[1:r]^2)/n
+inertia2<-(S$mu2[1:r])/n
+#inertia2<-(S$mu2[-1])/n
 #comps<-diag(inertia2)
 tauden=NULL
 tau=NULL
-Z1<-S@Z
+Z1<-S$Z
 comps <- compsonetable.exe(Z1) 
-#Icompnames <- c( "** Column Components **", "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")
-Icompnames <- c( "Location", "Dispersion","Cubic", "Error", "** Chi-squared Statistic **")
+#----------------------columns comps
+if (nc>3){
+Ccompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
+if (nc==3){
+Ccompnames <- c( "Location", "Dispersion","Error","** Chi-squared Statistic **")}
+if (nc==2){
+Ccompnames <- c( "Location", "Dispersion","** Chi-squared Statistic **")}
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("m", 1:nrow(Z),sep="" ), paste("v", 1:(cols - 1),sep=""))
-dimnames(comps$comps) <- list(Icompnames, Jcompnames)
-Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
+dimnames(Z) <- list(paste("m", 1:nr,sep="" ), paste("v", 1:nc,sep=""))
 #browser()
+dimnames(comps$comps) <- list(Ccompnames, Jcompnames)
+Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S$Rweights%*%Gbi[,firstaxis:lastaxis]))
+#-----------------------------
 }
-
 ####################################-------------NSCA
 if(catype=="NSCA"){
-Fbi <-  S@Caxes[,1:r]
-Gbi <-   S@Raxes[,1:r] 
-#dmum1 <-diag( (S@mu + (S@mu==0)) * (1-(S@mu==0)) )
-dmum1 <-diag( S@mu [1:r])
-pcc<-S@RX
+Fbi <-  S$Caxes[,1:r]
+Gbi <-   S$Raxes[,1:r] 
+#dmum1 <-diag( (S$mu + (S$mu==0)) * (1-(S$mu==0)) )
+dmum1 <-diag( S$mu [1:r])
+pcc<-S$RX
 dimnames(pcc)<-dimnames(X)
-Gmat <-  S@Raxes[,1:r] %*% dmum1
-Fmat <- S@Caxes[,1:r] %*% dmum1
-tauden<-S@tauDen
-inertia <- S@mu[1:r]*S@mu[1:r]
+Gmat <-  S$Raxes[,1:r] %*% dmum1
+Fmat <- S$Caxes[,1:r] %*% dmum1
+tauden<-S$tauDen
+inertia <- S$mu[1:r]*S$mu[1:r]
 tau<-sum(inertia)/tauden
 comps<-diag(inertia)
-Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S@Rweights%*%Gbi[,firstaxis:lastaxis]))
+Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S$Rweights%*%Gbi[,firstaxis:lastaxis]))
 Z<-Trend
 dimnames(Z) <- list(rowlabels,collabels)
 
 }
 ##################################-------------DONSCA
 if(catype=="DONSCA"){
-Fbi <- S@Caxes[,1:r]
-Gbi<-S@Raxes[,1:r]
-pcc<-S@RX
-Z<-S@Z
+Fbi <- S$Caxes[,1:r]
+Gbi<-S$Raxes[,1:r]
+pcc<-S$RX
+Z<-S$Z
+nr<-nrow(Z)
+nc<-ncol(Z)
 dimnames(pcc)<-dimnames(X)
-Gmat <-  S@CX %*% S@Cweights %*% S@Caxes[,1:r] #row principal coordinates
-Fmat <- S@RX  %*% S@Rweights %*% S@Raxes[,1:r] #column principal coordinates
+Gmat <-  S$CX %*% S$Cweights %*% S$Caxes[,1:r] #row principal coordinates
+Fmat <- S$RX  %*% S$Rweights %*% S$Raxes[,1:r] #column principal coordinates
 if  ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat}
-inertia <- S@mu[1:r]
-inertia2<-S@mu2[1:r] 
-tauden<-S@tauDen
-Z2<-1/sqrt(tauden)*sqrt((n-1)*(rows-1))*S@Z
-#Z2<-sqrt((n-1)*(rows-1))*S@Z #when tau
+inertia <- S$mu[1:r]
+inertia2<-S$mu2[1:r] 
+tauden<-S$tauDen
+Z2<-1/sqrt(tauden)*sqrt((n-1)*(rows-1))*S$Z
+#Z2<-sqrt((n-1)*(rows-1))*S$Z #when tau
 tau<-sum(inertia)/tauden
 comps <- compstable.exe(Z2) 
-Icompnames <- c( "Location", "Dispersion","Cubic", "Error", "** C-Statistic **")
+#----------------------------------------rows comps
+if (nr>3){
+Rcompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
+if(nr == 3){
+Rcompnames <- c( "Location", "Dispersion","Error","** Chi-squared Statistic **")}
+if(nr == 2){
+Rcompnames <- c( "Location", "Dispersion","** Chi-squared Statistic **")}
+
+#----------------------columns comps
+if (nc>3){
+Ccompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
+if (nc==3){
+Ccompnames <- c( "Location", "Dispersion","Error","** Chi-squared Statistic **")}
+if (nc==2){
+Ccompnames <- c( "Location", "Dispersion","** Chi-squared Statistic **")}
 Jcompnames <- c("Component Value", "P-value")
 dimnames(Z) <- list(paste("u", 1:(rows-1 ),sep=""), paste("v", 1:(cols -1),sep=""))
 #dimnames(Z) <- list(paste("u", 1:(rows ),sep=""), paste("v", 1:(cols -1),sep=""))
-dimnames(comps$compsR) <- list(paste(Icompnames), paste(Jcompnames))
-dimnames(comps$compsC) <- list(paste(Icompnames), paste(Jcompnames))
-
+dimnames(comps$compsR) <- list(paste(Rcompnames), paste(Jcompnames))
+dimnames(comps$compsC) <- list(paste(Ccompnames), paste(Jcompnames))
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
-
-#browser()
 }
 ############################################------------------SONSCA
 if(catype=="SONSCA"){
-pcc<-S@RX
+pcc<-S$RX
 dimnames(pcc)<-dimnames(X)
-Z<-S@Z
-Gmat <- S@CX %*% S@Cweights %*% S@Caxes[,1:r] #column principal coordinates with principal axes
-Fmat <- S@RX %*% (S@Rweights) %*% S@Raxes[,1:r] #row principal coordinates with polys
-Gbi <- S@Raxes[,1:r]
-#Gbi<-(sqrt(S@Rweights))%*%S@Raxes
-Fbi <- S@Caxes[,1:r] 
+Z<-S$Z
+nr<-nrow(Z)
+nc<-ncol(Z)
+Gmat <- S$CX %*% S$Cweights %*% S$Caxes[,1:r] #column principal coordinates with principal axes
+Fmat <- S$RX %*% (S$Rweights) %*% S$Raxes[,1:r] #row principal coordinates with polys
+Gbi <- S$Raxes[,1:r]
+#Gbi<-(sqrt(S$Rweights))%*%S$Raxes
+Fbi <- S$Caxes[,1:r] 
 if ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat
 #Fbi<-(-1)*Fbi
 }
-inertia <- S@mu[1:r]
-inertia2 <- S@mu2[1:r]
-tauden<-S@tauDen
+inertia <- S$mu[1:r]
+inertia2 <- S$mu2[1:r]
+tauden<-S$tauDen
 tau<-sum(inertia)/tauden
-Z1<-1/sqrt(tauden)*sqrt((n-1)*(rows-1))*S@Z
+Z1<-1/sqrt(tauden)*sqrt((n-1)*(rows-1))*S$Z
 comps <- compsonetable.exe(Z1) 
-Icompnames <- c( "Location", "Dispersion", "Cubic","Error", "** C-Statistic **")
+#----------------------columns comps
+if (nc>3){
+Ccompnames <- c( "Location", "Dispersion", "Cubic","Error", "** Chi-squared Statistic **")}
+if (nc==3){
+Ccompnames <- c( "Location", "Dispersion","Error","** Chi-squared Statistic **")}
+if (nc==2){
+Ccompnames <- c( "Location", "Dispersion","** Chi-squared Statistic **")}
 Jcompnames <- c("Component Value", "P-value")
-dimnames(Z) <- list(paste("m", 1:nrow(S@Z),sep=""), paste("v", 1:(cols - 1),sep=""))
-dimnames(comps$comps) <- list(Icompnames, Jcompnames)
+dimnames(Z) <- list(paste("m", 1:nr,sep=""), paste("v", 1:nc,sep=""))
+dimnames(comps$comps) <- list(Ccompnames, Jcompnames)
 Trend<-t(Gmat[,firstaxis:lastaxis]%*%t(Fbi[,firstaxis:lastaxis]))
-
-#browser()
 }
 
 ##################################################################################################################
 # OTHER CALCULATIONS
 
 # Calc inertia sum
-#dmum2 <- diag( 1/(inertia + (S@mu==0)) * (1-(S@mu==0)) )
+#dmum2 <- diag( 1/(inertia + (S$mu==0)) * (1-(S$mu==0)) )
 inertiasum <- sum(inertia)
 inertiapc <- 100*inertia/inertiasum
 cuminertiapc <- cumsum(inertiapc)
@@ -282,12 +316,13 @@ risell<-NULL}
 #inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,comps=comps,
 #catype=catype,printdims=printdims,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,
 #Trend=Trend,Z=Z))
-list(Xtable=X, rows=rows, cols=cols, r=r,
+resultCA<-list(Xtable=X, rows=rows, cols=cols, r=r,
 rowlabels=rowlabels, collabels=collabels,
 Rprinccoord=Fmat, Cprinccoord=Gmat, Rstdcoord=Fbi, Cstdcoord=Gbi,tauden=tauden,tau=tau,
  inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,comps=comps,
  catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,
 Trend=Trend,Z=Z,ellcomp=ellcomp,risell=risell,Mell=Mell)
-
+class(resultCA)<-"CAvariants"
+return(resultCA)
 #-----------------------------------------------
 }

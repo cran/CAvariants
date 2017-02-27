@@ -7,10 +7,10 @@ import(methods,tools)
      "plot", "plot.new", "points", "text", "title")
      importFrom("stats", "pchisq", "qchisq")
 exportPattern("^[[:alpha:]]+")
-exportClasses("cabasicresults")
-export(
-"CAvariants",
-"plot.CAvariants",
-"summary.CAvariants",
-"print.CAvariants"
-)
+#exportClasses("cabasicresults")
+#export(
+#"CAvariants",
+#"plot.CAvariants",
+#"summary.CAvariants",
+#"print.CAvariants"
+#)

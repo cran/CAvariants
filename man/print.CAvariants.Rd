@@ -82,7 +82,7 @@ Rosaria Lombardo and Eric J. Beh}
 \examples{
 data(asbestos)
 risasbestos<-CAvariants(asbestos, catype = "DOCA", firstaxis = 1, lastaxis = 2) 
-print.CAvariants(risasbestos)
+print(risasbestos)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

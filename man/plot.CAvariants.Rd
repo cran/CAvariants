@@ -92,6 +92,7 @@ For classical biplot displays, it superimposes on it algebraic ellipses of confi
 \references{
 Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
 Gower J, Lubbe S, and le Roux, N 2011 Understanding Biplots. John Wiley & Sons.
+Lombardo R Beh EJ Variants of Simple Correspondence Analysis. The R Journal (accepted).
 }
 \author{
 Rosaria Lombardo and Eric J Beh
@@ -105,7 +106,7 @@ the other one is of principal polynomial coordinates.
 \examples{
 data(asbestos)
 risasbestos<-CAvariants(asbestos, catype = "DOCA", firstaxis=1, lastaxis=2) 
-plot.CAvariants(risasbestos, plotype = "biplot", biptype = "row")
-plot.CAvariants(risasbestos, plotype = "biplot", biptype = "row", ell = TRUE)
+plot(risasbestos, plotype = "biplot", biptype = "row")
+plot(risasbestos, plotype = "biplot", biptype = "row", ell = TRUE)
 }
 \keyword{multivariate}% __ONLY ONE__ keyword per line

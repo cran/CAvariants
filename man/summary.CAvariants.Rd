@@ -47,6 +47,7 @@ of polynomial components when \code{catype} is \code{"DOCA"} or \code{"DONSCA"}.
 }
 \references{
 Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
+Lombardo R Beh EJ Variants of Simple Correspondence Analysis. The R Journal (accepted).
 }
 \author{
 Rosaria Lombardo and Eric J. Beh}
@@ -55,6 +56,6 @@ asbestos<-matrix(c(310, 36, 0, 0, 212, 158, 9, 0, 21, 35, 17, 4, 25,102,
 49, 18, 7, 35, 51, 28), 4, 5, dimnames = list(c("none","grade1", "grade2", "grade3"), 
 c("0-9", "10-19", "20-29", "30-39", "40")))
 risasbestos<-CAvariants(asbestos, catype = "DOCA", firstaxis = 1, lastaxis = 2) 
-summary.CAvariants(risasbestos)
+summary(risasbestos)
 }
 \keyword{ summary }% __ONLY ONE__ keyword per line

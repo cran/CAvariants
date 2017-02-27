@@ -34,11 +34,11 @@ CX <- dcm1 %*% t(X)
 #  RX="matrix", CX="matrix", Rweights="matrix", Cweights="matrix",
 #  Raxes="matrix", Caxes="matrix", r="numeric", mu="numeric",mu2="numeric",catype="character",
 #tau="numeric",tauDen="numeric",Z="matrix",ZtZ="matrix",tZZ="matrix"),S3methods=FALSE )
-
-cabasic<-new("cabasicresults", RX=RX,CX=CX,Rweights=dcmh,Cweights=drmh,
-          Raxes=Y$v,Caxes=Y$u,mu=mu,mu2=0,catype="CA",tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX)
-
-#class(ca)<-"cabasicresults"
-cabasic
+#cabasic<-new("cabasicresults", RX=RX,CX=CX,Rweights=dcmh,Cweights=drmh,
+ #         Raxes=Y$v,Caxes=Y$u,mu=mu,mu2=0,catype="CA",tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX)
+#cabasic
+resca=(list( RX=RX,CX=CX,Rweights=dcmh,Cweights=drmh,
+          Raxes=Y$v,Caxes=Y$u,mu=mu,mu2=0,catype="CA",tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX))
+return(resca)
 }
 

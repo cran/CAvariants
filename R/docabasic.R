@@ -24,14 +24,18 @@ C <- dcm1 %*% t(x)
 Z <- t(Apoly) %*% x  %*% (Bpoly)*sqrt(n) #useful to check coordinates
     ZZ <- Z^2
     pi <- (Apoly) %*% Z %*% t(Bpoly)
+#browser()
     ZtZ <- Z%*%t(Z)
     tZZ <-t(Z)%*%Z 
 mu<-diag(ZtZ) 
 mu2<-diag(tZZ)
 #r<-rmax
 #browser()
-doca<- new("cabasicresults",
-RX=R,CX=C,Cweights=drmh,Rweights=dcmh,Raxes= Bpoly,
-Caxes=Apoly,mu=mu,mu2=diag(tZZ),catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+#doca<- new("cabasicresults",
+#RX=R,CX=C,Cweights=drmh,Rweights=dcmh,Raxes= Bpoly,
+#Caxes=Apoly,mu=mu,mu2=diag(tZZ),catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+resdoca<-(list(RX=R,CX=C,Cweights=drmh,Rweights=dcmh,Raxes= Bpoly,
+Caxes=Apoly,mu=mu,mu2=diag(tZZ),catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ))
+return(resdoca)
 }
 

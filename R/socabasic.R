@@ -26,8 +26,12 @@ ZtZ <- Z%*%t(Z)
 tZZ <- t(Z)%*%Z
 #rmax <- min(dim(xo)) - 1
 #r<-rmax
-soca <- new("cabasicresults",
+#soca <- new("cabasicresults",
+ #         RX=R,CX=C,Rweights=dcmh,Cweights=drmh,
+  #       Raxes= Bpoly,Caxes=u,mu=mu,mu2=diag(tZZ),tauDen=0,catype="SOCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+#------------------------------------------
+ressoca<-(list(
           RX=R,CX=C,Rweights=dcmh,Cweights=drmh,
-         Raxes= Bpoly,Caxes=u,mu=mu,mu2=diag(tZZ),tauDen=0,catype="SOCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ)
-
+         Raxes= Bpoly,Caxes=u,mu=mu,mu2=diag(tZZ),tauDen=0,catype="SOCA",Z=Z,ZtZ=ZtZ,tZZ=tZZ))
+return(ressoca)
 }
