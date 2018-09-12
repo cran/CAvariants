@@ -24,7 +24,8 @@ col names [1:9] "M12<" "M13" "M16" "M19" ...
 %}
 \references{
 Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons. \cr
-Isra\''{e}ls A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.
+Isra\''{e}ls A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.\cr
+Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.
 }
 \examples{
 shopdataM <-structure(c(81, 66, 150, 667, 67, 24, 47, 430, 743, 132, 32, 

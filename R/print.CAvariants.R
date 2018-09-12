@@ -29,24 +29,38 @@ cat("Inertias, percent inertias and cumulative percent inertias of the row  spac
 print(round(data.frame(x$inertias),digits=digits))
 cat("Inertias, percent inertias and  cumulative percent inertias of the column space \n\n")
 print(round(data.frame(x$inertias2),digits=digits))
-#cat("\n Diagonal element of the squared generalized correlation matrix:\n  Z'Z \n")
-#print(round(diag(t(x$Z)%*%x$Z),digits=digits))
-#cat("\n Diagonal element of the squared generalized correlation matrix for a constant:\n  Z'Z for (n-1)*(I-1) \n")
-#print(round((sum(x$Xtable)-1)*(nrow(x$Xtable)-1)*diag(t(x$Z)%*%x$Z),digits=digits))
-#cat("\n Diagonal element of the squared generalized correlation matrix:\n ZZ' \n")
-#print(round(diag(x$Z%*%t(x$Z)),digits=digits))
-#cat("\n Diagonal element of the squared generalized correlation matrix for a constant:\n  ZZ' for (n-1)*(I-1) \n")
-#print(round((sum(x$Xtable)-1)*(nrow(x$Xtable)-1)*diag(x$Z%*%t(x$Z)),digits=digits))
-#cat("\n Polynomial Components of Inertia \n")
-#print(x$comps)
+cat("\n Absolute Contributions of Rows (per 100):\n")
+ctrRow<-x$Imass%*%x$Rprinccoord^2%*%diag(1/x$inertias[,1])*100
+print(round(ctrRow,digits=digits))
+cat("\n Absolute Contributions of Columns (per 100):\n")
+ctrCol<-x$Jmass%*%x$Cprinccoord^2%*%diag(1/x$inertias[,1])*100
+print(round(ctrCol,digits=digits))
+cat("\n Relative Contributions of Rows (per 100):\n")
+ctrRowrel<-x$Rprinccoord^2/apply(x$Rprinccoord^2,1,sum)*100
+printwithaxes(data.frame((ctrRowrel)[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
+cat("\n Relative Contributions of Columns (per 100):\n")
+ctrColrel<-x$Cprinccoord^2/apply(x$Cprinccoord^2,1,sum)*100
+printwithaxes(data.frame((ctrColrel)[, 1:d], row.names=x$collabels), axnames,digits=digits)
 }
 #-----------------------------------------------------------------------------------------------
 if ((x$catype=="DOCA")|(x$catype=="SOCA") ){
 cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
 cat("Inertias, percent inertias and cumulative percent inertias of the row space\n\n")
 print(round(data.frame(x$inertias),digits=digits))
+ctrRow<-x$Imass%*%x$Rprinccoord^2%*%diag(1/x$inertias[,1])*100
 cat("Inertias, percent inertias and  cumulative percent inertias of the column space \n\n")
 print(round(data.frame(x$inertias2),digits=digits))
+ctrCol<-x$Jmass%*%x$Cprinccoord^2%*%diag(1/x$inertias[,1])*100
+cat("\n Absolute Contributions of Columns (per 100):\n")
+print(round(ctrCol,digits=digits))
+cat("\n Absolute Contributions of Rows (per 100):\n")
+print(round(ctrRow,digits=digits))
+cat("\n Relative Contributions of Rows (per 100):\n")
+ctrRowrel<-x$Rprinccoord^2/apply(x$Rprinccoord^2,1,sum)*100
+printwithaxes(data.frame((ctrRowrel)[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
+cat("\n Relative Contributions of Columns (per 100):\n")
+ctrColrel<-x$Cprinccoord^2/apply(x$Cprinccoord^2,1,sum)*100
+printwithaxes(data.frame((ctrColrel)[, 1:d], row.names=x$collabels), axnames,digits=digits)
 }
 #############################################################
 if ((x$catype=="NSCA")||(x$catype=="DONSCA")||(x$catype=="SONSCA")){
@@ -87,7 +101,7 @@ cat("\n Polynomial Components of Inertia \n
 print(round(x$comps$comps,digits=digits))
 cat("\n Generalized correlation matrix of Hybrid Decomposition\n")
 print(round(x$Z,digits=digits))
-cat("\n Column standard polynomial coordinates = column polynomial axes \n")
+cat("\n Column standard polynomial coordinates  \n")
 printwithaxes(data.frame(x$Cstdcoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
 #cat("\n Row standard  coordinates  = row principal axes\n")
 #printwithaxes(data.frame(x$Rstdcoord[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
@@ -97,14 +111,27 @@ cat("\n Row principal polynomial coordinates \n")
 printwithaxes(data.frame(x$Rprinccoord[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
 }
 if ((x$catype=="CA")|(x$catype=="NSCA")){
-cat("\n Column standard coordinates = column principal axes\n")
+cat("\n Column standard coordinates \n")
 printwithaxes(data.frame(x$Cstdcoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
-cat("\n Row standard coordinates = row principal axes \n")
+cat("\n Row standard coordinates \n")
 printwithaxes(data.frame(x$Rstdcoord[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
 cat("\n Column principal  coordinates \n")
 printwithaxes(data.frame(x$Cprinccoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
 cat("\n Row principal coordinates \n")
 printwithaxes(data.frame(x$Rprinccoord[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
+cat("\n Absolute Contributions of Rows (per 100):\n")
+ctrRow<-x$Imass%*%x$Rprinccoord^2%*%diag(1/x$inertias[,1])*100
+print(round(ctrRow,digits=digits))
+cat("\n Absolute Contributions of Columns (per 100):\n")
+ctrCol<-x$Jmass%*%x$Cprinccoord^2%*%diag(1/x$inertias[,1])*100
+print(round(ctrCol,digits=digits))
+cat("\n Relative Contributions of Rows (per 100):\n")
+ctrRowrel<-x$Rprinccoord^2/apply(x$Rprinccoord^2,1,sum)*100
+printwithaxes(data.frame((ctrRowrel^2)[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
+cat("\n Relative Contributions of Columns (per 100):\n")
+ctrColrel<-x$Cprinccoord^2/apply(x$Cprinccoord^2,1,sum)*100
+printwithaxes(data.frame((ctrColrel)[, 1:d], row.names=x$collabels), axnames,digits=digits)
+
 }
 cat("\n Column distances from the origin of the plot\n")
 printwithaxes(data.frame((x$Cprinccoord^2)[, 1:d], row.names=x$collabels), axnames,digits=digits)
@@ -112,54 +139,16 @@ cat("\n Row distances from the origin of the plot \n")
 printwithaxes(data.frame((x$Rprinccoord^2)[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
 cat("\n Inner product of coordinates (first two axes when 'firstaxis=1' and 'lastaxis=2')   \n")
 print(round(x$Trend,digits=digits))
-
+#browser()
 if (ellprint==TRUE){
-
-cord1<-x$Cprinccoord
-cord2<-x$Rprinccoord
-if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA") ){
-cordr<-cord2
-cordc<-cord1
-cord1<-cordr
-cord2<-cordc
-}
-risell<-switch(x$catype, "CA"=caellipse(Xtable=x$Xtable,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,b=x$Cstdcoord,g=cord1,fr=cord2,dmu=diag(x$inertias[,1]),inertiapc=x$inertias[,2],
-plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=F), 
-
-"SOCA"=caellipse(Xtable=x$Xtable,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,b=x$Cstdcoord,g=cord2,fr=cord1,dmu=diag(x$inertias2[,1]),inertiapc=x$inertias2[,2],
-plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=F), 
-
-"DOCA"=caellipse(Xtable=x$Xtable,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=diag(x$inertias2[,1]),inertiapc=x$inertias2[,2],
-plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=F), 
-
-"NSCA"=nscaellipse(Xtable=x$Xtable,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord1,fr=cord2,dmu=diag(x$inertias[,1]), tauden=x$tauden,
-inertiapc=x$inertias[,2],
-plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=F),
-
-"SONSCA"=nscaellipse(Xtable=x$Xtable,a1=1,a2=2,alpha=alpha,M= Mell,prop=1,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=diag(x$inertias2[,1]),tauden=x$tauden,inertiapc=x$inertias2[,2],
-plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=F), 
-
-"DONSCA"=nscaellipse(Xtable=x$Xtable,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=diag(x$inertias2[,1]),tauden=x$tauden,inertiapc=x$inertias2[,2],
-plottype="biplot",biptype="row",pos=1,arrow=F,length=0,graphy=F))
-dimnames(risell$row.summ)[[1]]<-dimnames(x$Xtable)[[1]]
-dimnames(risell$col.summ)[[1]]<-dimnames(x$Xtable)[[2]]
+#dimnames(x$risell$row.summ)[[1]]<-dimnames(x$Xtable)[[1]]
+#dimnames(x$risell$col.summ)[[1]]<-dimnames(x$Xtable)[[2]]
 cat("\n    Eccentricity of ellipses\n")
-print(round(risell$eccentricity,digits=digits))
+print(round(x$risell$eccentricity,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of rows\n")
-print(round(risell$row.summ,digits=digits))
-#print(round(risell$row.summ))
+print(round(x$risell$row.summ,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of columns\n")
-print(round(risell$col.summ,digits=digits))
+print(round(x$risell$col.summ,digits=digits))
 }#end ell
 
 }

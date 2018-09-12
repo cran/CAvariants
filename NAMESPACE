@@ -1,11 +1,14 @@
 S3method("print","CAvariants")
 S3method("plot","CAvariants")
 S3method("summary","CAvariants")
-import(methods,tools)
+import(methods,tools,ggplot2,ggrepel,gridExtra)
  importFrom("grDevices", "dev.new")
      importFrom("graphics", "abline", "arrows", "legend", "lines", "par",
      "plot", "plot.new", "points", "text", "title")
      importFrom("stats", "pchisq", "qchisq")
+importFrom("ggplot2","ggplot")
+importFrom("rgl","plot3d","points3d","text3d","segments3d")
+importFrom("gridExtra","grid.arrange")
 exportPattern("^[[:alpha:]]+")
 #exportClasses("cabasicresults")
 #export(

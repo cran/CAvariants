@@ -29,7 +29,8 @@ A character vector of up to the same length as \code{x}.}
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
+Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh

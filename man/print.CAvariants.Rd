@@ -41,7 +41,8 @@ the associated C-statistic and its p-value is produced.}
 percent inertias of the row and column space. \cr
 When performing an ordered correspondence analysis, this output summary describes both the row and column spaces \cr
 for each principal or polynomial axis. When \code{catype} is \code{CA} or \code{NSCA}, \cr
-the associated inertia values in the row and column spaces are identical.}
+the associated inertia values in the row and column spaces are identical. For all kind of variants, the absolute
+and relative contributions of rows and columns are given.}
 \item{Generalized correlation matrix}{The generalized correlation matrix when performing an ordered correspondence analysis, \cr
 \code{catype} should be \code{"DOCA"}, \code{"DONSCA"},  \code{"SOCA"} or \code{"SONSCA"}.}
 \item{Row principal coordinates}{The row principal  coordinates when \code{catype} is \code{"CA"} or \code{"NSCA"}.}
@@ -75,7 +76,8 @@ see also the parameter \code{ellcomp} of the function \code{CAvariants} for a de
 %\item{pvalcol }{P-value for each row and column points.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
+Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.
 }
 \author{
 Rosaria Lombardo and Eric J. Beh}

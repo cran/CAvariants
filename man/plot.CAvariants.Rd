@@ -11,14 +11,15 @@ When we set \code{plottype = "biplot"}, it produces biplot graphical displays, o
 Notice that for ordered analysis only polynomial biplots are suitable.  In particular, for the singly ordered variants only row isometric polynomial biplots make sense,
 as we assume that the ordered variable is the column variable (the column coordinates are standard polynomial coordinates 
 and the row coordinates are principal polynomial coordinates).
-When the input parameter \code{catype}  is equal to \code{catype = "SOCA"}, 
-\code{catype = "DOCA"}, \code{catype = "SONSCA"} or \code{catype = "DONSCA"}, then the input parameter  
-\code{plottype} should be equal to \code{plottype = "biplot"},  if \code{biptype = "row"} , it will give back a row isometric polynomial biplot.
+When the input parameter \code{catype}  concerns an ordered variant of CA, then the input parameter  
+\code{plottype} should be equal to \code{plottype = "biplot"},  if \code{biptype = "row"}, 
+it will give back a row isometric polynomial biplot.
  }
 \usage{
-\S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, cex = 0.8, cex.lab = 0.8, 
-prop = 1,  plottype = "biplot", biptype = "row",  
-scaleplot = 1, posleg = "topleft", pos = 2, ell = FALSE, Mell = x$Mell, alpha = 0.05,\dots)
+\S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, cex = 0.8, 
+cex.lab = 0.8, prop = 1,  plottype = "biplot", biptype = "row",  
+scaleplot = 1, posleg = "topleft", pos = 2, ell = FALSE, Mell = x$Mell, 
+alpha = 0.05, plot3d = TRUE, size=5,adj=c(0,0.5),\dots)
 }
 \arguments{
   \item{x}{
@@ -65,13 +66,13 @@ By default, \code{posleg = "topleft"}. }
  \item{pos}{
 The parameter for specifying the position of  point symbols in the graphical displays.
 By default, \code{pos = 2}.}
-\item{ell}{ The logical parameter, \code{ell} which specifies whether algebraic confidence ellipses are to be included in the plot or not.  
+\item{ell}{The logical parameter, \code{ell} which specifies whether algebraic confidence ellipses are to be included in the plot or not.  
 Setting the input parameter to \code{ell = TRUE} will allow the user to assess the statistical significance of each category to 
 the association between the variables. The ellipses will be included when the plot is constructed using principal coordinates 
 (being either row and column principal coordinates or row and column principal polynomial coordinates). 
 By default, this input parameter is set to \code{ell = FALSE}.  See also the input parameter \code{ellcomp}  
 of the function \code{CAvariants} 
-for a  description of the numeric characteristics of the confidence ellipses  (eccentricity, area, etc.), as well as the
+for a  description of the numeric characteristics of the confidence ellipses (eccentricity, area, etc.), as well as the
 input parameter \code{ellprint} of the function \code{print.CAvariants} for getting a print of these parameters.
 }
 \item{Mell}{
@@ -81,6 +82,13 @@ This parameter is identical to the input parameter \code{Mell} of the function \
 }
  \item{alpha}{
 The confidence level of the elliptical regions. By default, \code{alpha = 0.05}.}
+\item{plot3d}{The logical parameter, \code{plot3d} which specifies whether 3D plot are to be included 
+in the output or not. By default, \code{plot3d = FALSE}.
+}
+\item{size}{
+The size of the plotting area.
+}
+\item{adj}{one or two values in [0, 1] which specify the x (and optionally y) adjustment of the labels.}
 \item{\dots}{Further arguments passed to or from other methods.}
 }
 \details{
@@ -90,9 +98,11 @@ the trend of row and column variables after the reconstruction of column profile
 For classical biplot displays, it superimposes on it algebraic ellipses of confidence. It uses the secondary plot functions \code{caellipse} or
 \code{nscaellipse}, depending on the input parameter \code{catype}. }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
-Gower J, Lubbe S, and le Roux, N 2011 Understanding Biplots. John Wiley & Sons.
-Lombardo R Beh EJ Variants of Simple Correspondence Analysis. The R Journal (accepted).
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
+Gower J, Lubbe S, and le Roux, N 2011 Understanding Biplots. John Wiley & Sons.\cr
+Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.\cr
+Lombardo R Beh EJ and Kroonenberg PM 2016 Modelling Trends in Ordered Correspondence Analysis Using Orthogonal
+Polynomials. Psychometrika, 81(2), 325--349.
 }
 \author{
 Rosaria Lombardo and Eric J Beh
@@ -105,8 +115,8 @@ the other one is of principal polynomial coordinates.
 }
 \examples{
 data(asbestos)
-risasbestos<-CAvariants(asbestos, catype = "DOCA", firstaxis=1, lastaxis=2) 
-plot(risasbestos, plotype = "biplot", biptype = "row")
-plot(risasbestos, plotype = "biplot", biptype = "row", ell = TRUE)
+risasbestos<-CAvariants(asbestos, catype = "CA", firstaxis=1, lastaxis=2) 
+plot(risasbestos, plottype = "classic", plot3d = TRUE)
+plot(risasbestos, plottype = "biplot", biptype = "row", ell = TRUE)
 }
 \keyword{multivariate}% __ONLY ONE__ keyword per line

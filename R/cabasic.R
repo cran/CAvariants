@@ -2,6 +2,8 @@ cabasic <-
 function(Xtable) { 
 n<-sum(Xtable)
 X <- Xtable/n
+I<-nrow(X)
+J<-ncol(X)
 #rmax <- min(dim(X))-1
 rsums <- as.vector(rowSums(X))
 csums <- as.vector(colSums(X))
@@ -14,21 +16,18 @@ dcmh <- sqrt(dcm1)
 #ratio <- (drmh %*% ( X - rsums %*% t(csums) ) %*% dcmh)*n
 ratio <- drmh %*% ( X - rsums %*% t(csums) ) %*% dcmh
 ratio2<-drm1%*%X%*%dcm1
-Y <- svd(ratio)
+Yeigu<-eigen(ratio%*%t(ratio))
+#Caxes<-Yeigu$vectors
+Yeigv<-eigen(t(ratio)%*%ratio)
+#Raxes<-Yeigv$vectors
+Y <- svd(ratio,nu=I,nv=J)
 mu <- Y$d
+Raxes<-Y$v
+Caxes<-Y$u
 #r <- sum(mu>1e-15)
 #r<-rmax
 RX <- drm1 %*% X
 CX <- dcm1 %*% t(X)
-#if (r < rmax) { 
- # mu[ (r+1):rmax ] <- 0
- # Raxes[ , (r+1):rmax ] <- 0
-  #Caxes[ , (r+1):rmax ] <- 0
-#}
-
-#ca<-list(RX=RX,CX=CX,Rweights=dcmh,Cweights=drmh,
-#          Raxes=Y$v,Caxes=Y$u,r=r,mu=mu,mu2=0,catype="CA",tau=0,tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX)
-
 #setClass("cabasicresults",
 #representation(
 #  RX="matrix", CX="matrix", Rweights="matrix", Cweights="matrix",
@@ -38,7 +37,7 @@ CX <- dcm1 %*% t(X)
  #         Raxes=Y$v,Caxes=Y$u,mu=mu,mu2=0,catype="CA",tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX)
 #cabasic
 resca=(list( RX=RX,CX=CX,Rweights=dcmh,Cweights=drmh,
-          Raxes=Y$v,Caxes=Y$u,mu=mu,mu2=0,catype="CA",tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX))
+          Raxes=Raxes,Caxes=Caxes,mu=mu,mu2=0,catype="CA",tauDen=0,Z=ratio2,ZtZ=RX,tZZ=RX))
 return(resca)
 }
 

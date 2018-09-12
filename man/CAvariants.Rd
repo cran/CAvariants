@@ -116,8 +116,10 @@ By default,  \code{Mell = min(nrow(Xtable), ncol(Xtable)) - 1}, i.e. the rank of
 }
 
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.
-Lombardo R Beh EJ Variants of Simple Correspondence Analysis. The R Journal (accepted).
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
+Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.\cr
+Lombardo R Beh EJ and Kroonenberg PM 2016 Modelling Trends in Ordered Correspondence Analysis Using Orthogonal
+Polynomials. Psychometrika, 81(2), 325--349.
 }
 \author{
 Rosaria Lombardo and Eric J Beh
@@ -133,7 +135,7 @@ This function belongs to the class \code{cacorporateplus}.
 data(asbestos)
 CAvariants(asbestos, catype = "CA", firstaxis = 1, lastaxis = 2) 
 CAvariants(asbestos, catype = "DOCA", firstaxis = 1,lastaxis = 2) 
-CAvariants(asbestos, catype = "DONSCA",firstaxis=1, lastaxis = 2, ellcomp = FALSE) 
+CAvariants(asbestos, catype = "DONSCA",firstaxis=1, lastaxis = 2) 
 data(shopdataM)
 CAvariants(shopdataM, catype = "NSCA", firstaxis = 1, lastaxis = 2)
 CAvariants(shopdataM, catype = "SONSCA", firstaxis = 1, lastaxis = 2)

@@ -54,15 +54,18 @@ Z<-S$Z/sqrt(n)
 pcc<-S$RX #centered column profile matrix
 Gbi <- S$Raxes[,1:r]
 Fbi<- S$Caxes[,1:r] 
+Gbi2 <- S$Raxes
+Fbi2<- S$Caxes
+
 Gmat <-  S$CX %*%  S$Caxes[,1:r] #row principal coordinates
 Fmat <- S$RX  %*% S$Raxes[,1:r] #column principal coordinates
 nr<-nrow(Z)
 nc<-ncol(Z)
-if (nr>2){
-if  ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){
-Gmat<-(-1)*Gmat
-Fmat<-(-1)*Fmat
-}}
+#if (nr>2){
+#if  ((Z[2,2]<0) & (Z[1,2]>0)||(Z[2,2]>0) & (Z[1,2]<0)){
+#Gmat<-(-1)*Gmat
+#Fmat<-(-1)*Fmat
+#}}
 reconstruction<-t(Gmat%*%t(S$Cweights%*%Fbi))
 dimnames(reconstruction)<-dimnames(X)
 inertia <- S$mu[1:r]/n #number of inertia of row poly
@@ -103,7 +106,11 @@ nc<-ncol(Z)
 dimnames(pcc)<-dimnames(X)
 Gmat <- S$CX %*%  S$Caxes[,1:r] #row principal coordinates
 Fmat <- S$RX %*% S$Rweights %*% S$Raxes[,1:r] #column principal coordinates
-if ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat}
+#if (nr>2){
+#if  ((Z[2,2]<0) & (Z[1,2]>0)||(Z[2,2]>0) & (Z[1,2]<0)){
+#Gmat<-(-1)*Gmat
+#Fmat<-(-1)*Fmat
+#}}
 Gbi <-S$Raxes[,1:r]
 Fbi <- S$Caxes[,1:r] 
 inertia <- (S$mu[1:r]^2)/n
@@ -158,7 +165,11 @@ nc<-ncol(Z)
 dimnames(pcc)<-dimnames(X)
 Gmat <-  S$CX %*% S$Cweights %*% S$Caxes[,1:r] #row principal coordinates
 Fmat <- S$RX  %*% S$Rweights %*% S$Raxes[,1:r] #column principal coordinates
-if  ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat}
+#if (nr>2){
+#if  ((Z[2,2]<0) & (Z[1,2]>0)||(Z[2,2]>0) & (Z[1,2]<0)){
+#Gmat<-(-1)*Gmat
+#Fmat<-(-1)*Fmat
+#}}
 inertia <- S$mu[1:r]
 inertia2<-S$mu2[1:r] 
 tauden<-S$tauDen
@@ -200,9 +211,11 @@ Fmat <- S$RX %*% (S$Rweights) %*% S$Raxes[,1:r] #row principal coordinates with 
 Gbi <- S$Raxes[,1:r]
 #Gbi<-(sqrt(S$Rweights))%*%S$Raxes
 Fbi <- S$Caxes[,1:r] 
-if ((Z[1,1]<0) & (Z[1,2]>0)||(Z[1,1]>0) & (Z[1,2]<0)){Gmat<-(-1)*Gmat
-#Fbi<-(-1)*Fbi
-}
+#if (nr>2){
+#if  ((Z[2,2]<0) & (Z[1,2]>0)||(Z[2,2]>0) & (Z[1,2]<0)){
+#Gmat<-(-1)*Gmat
+#Fmat<-(-1)*Fmat
+#}}
 inertia <- S$mu[1:r]
 inertia2 <- S$mu2[1:r]
 tauden<-S$tauDen
@@ -274,7 +287,7 @@ cordc<-cord1
 cord1<-cordr
 cord2<-cordc
 }
-
+#browser()
 risell<-switch(catype, "CA"=caellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
 Imass=dr,Jmass=dc,a=Fbi,b=Gbi,g=cord1,fr=cord2,dmu=diag(inertias[,1]),inertiapc=round(inertias[,2],digits=1),
 plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE), 
@@ -303,8 +316,8 @@ plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE),
 Imass=dr,Jmass=dc,a=Fbi,
 b=Gbi,g=cord2,fr=cord1,dmu=diag(inertias2[,1]),tauden=tauden,inertiapc=round(inertias2[,2],digits=1),
 plottype="biplot",biptype="row",pos=1,arrow=F,length=0,graphy=FALSE,ell=FALSE))
-dimnames(risell$row.summ)[[1]]<-dimnames(X)[[1]]
-dimnames(risell$col.summ)[[1]]<-dimnames(X)[[2]]
+#dimnames(risell$row.summ)[[1]]<-dimnames(X)[[1]]
+#dimnames(risell$col.summ)[[1]]<-dimnames(X)[[2]]
 }#end ellcomp
 else{
 risell<-NULL}

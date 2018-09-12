@@ -33,7 +33,7 @@ mu2<-diag(tZZ)
 #browser()
 #doca<- new("cabasicresults",
 #RX=R,CX=C,Cweights=drmh,Rweights=dcmh,Raxes= Bpoly,
-#Caxes=Apoly,mu=mu,mu2=diag(tZZ),catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
+#Caxes=Apoly,mu=mu,mu2=mu2,catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ)
 resdoca<-(list(RX=R,CX=C,Cweights=drmh,Rweights=dcmh,Raxes= Bpoly,
 Caxes=Apoly,mu=mu,mu2=diag(tZZ),catype="DOCA",tauDen=0,Z=Z,ZtZ=ZtZ,tZZ=tZZ))
 return(resdoca)

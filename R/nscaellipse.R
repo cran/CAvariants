@@ -11,10 +11,6 @@ colgroup <- list(1:J,rep(1,J))
 colgrlab <- list(1,"","+","red","T")
     Inames <- dimnames(fr)[1]
     Jnames <- dimnames(g)[1]
-    dIh <- solve(Imass^0.5)
-    dJh <- solve(Jmass^0.5)
-#if ((catype=="SONSCA")|(catype=="DONSCA")){
-#b <- dJh %*% b}
      t.inertia <- (sum(dmu)/tauden)*(n-1)*(I-1)
    #    t.inertia2 <- (sum(dmu^2))
  dmu<-sqrt(dmu)
@@ -128,21 +124,20 @@ for (i in 1:I) {
         if (M > 2) {
             pvalrow[i] <- 1 - pchisq(t.inertia * ((1 - sum(a[i, 
                 3:M]^2))^(-1)) * (fr[i, 1]^2/dmu[1, 1]^2 + fr[i, 
-                2]^2/dmu[2, 2]^2), df = (I - 1) * (J - 1))
+                2]^2/dmu[2, 2]^2), df =  (J - 1))
         }
         else {
             pvalrow[i] <- 1 - pchisq(t.inertia *
                 (fr[i, 1]^2/dmu[1, 1]^2 + fr[i, 2]^2/dmu[2, 2]^2), 
-                df = (I - 1) * (J - 1))
+                df =  (J - 1))
         }
     }
     for (j in 1:J) {
         if (M > 2) {
-       #     pvalcol[j] <- 1 - pchisq(t.inertia*(n - 1) * (I - 1)* ((1/Jmass[j,j] - 
-pvalcol[j] <- 1 - pchisq(t.inertia * (1/Jmass[j,j] - sum(b[j, 3:M]^2))^(-1) * (g[j, 1]^2/dmu[1, 1]^2 +g[j, 2]^2/dmu[2, 2]^2), df = (I - 1) * (J - 1))
+    pvalcol[j] <- 1 - pchisq(t.inertia * (1/Jmass[j,j] - sum(b[j, 3:M]^2))^(-1) * (g[j, 1]^2/dmu[1, 1]^2 +g[j, 2]^2/dmu[2, 2]^2), df = (I - 1) )
         }
         else {
-  pvalcol[j] <- 1 - pchisq(t.inertia* (Jmass[j,j])*(g[j, 1]^2/dmu[1, 1]^2 + g[j, 2]^2/dmu[2, 2]^2), df = (I - 1) * (J - 1))
+  pvalcol[j] <- 1 - pchisq(t.inertia* (Jmass[j,j])*(g[j, 1]^2/dmu[1, 1]^2 + g[j, 2]^2/dmu[2, 2]^2), df = (I - 1) )
 #browser()
         }
     }
