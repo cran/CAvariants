@@ -1,5 +1,5 @@
 print.CAvariants <-
-function(x,printdims=2,ellprint=TRUE,Mell=min(nrow(x$Xtable),ncol(x$Xtable))-1,alpha=0.05,digits=3,...) {
+function(x,printdims=2,ellprint=TRUE, alpha=0.05,digits=3,...) {
 #d <- min(printdims, x$r)
 d<-printdims
 if (d>x$r) { d<-x$r
@@ -141,14 +141,14 @@ cat("\n Inner product of coordinates (first two axes when 'firstaxis=1' and 'las
 print(round(x$Trend,digits=digits))
 #browser()
 if (ellprint==TRUE){
-#dimnames(x$risell$row.summ)[[1]]<-dimnames(x$Xtable)[[1]]
-#dimnames(x$risell$col.summ)[[1]]<-dimnames(x$Xtable)[[2]]
+#dimnames(x$resellprint$row.summ)[[1]]<-dimnames(x$Xtable)[[1]]
+#dimnames(x$resellprint$col.summ)[[1]]<-dimnames(x$Xtable)[[2]]
 cat("\n    Eccentricity of ellipses\n")
-print(round(x$risell$eccentricity,digits=digits))
+print(round(x$resellprint$eccentricity,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of rows\n")
-print(round(x$risell$row.summ,digits=digits))
+print(round(x$resellprint$row.summ,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of columns\n")
-print(round(x$risell$col.summ,digits=digits))
+print(round(x$resellprint$col.summ,digits=digits))
 }#end ell
 
 }

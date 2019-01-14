@@ -3,16 +3,15 @@
 \docType{data}
 \title{
 %%   ~~ data name/kind ... ~~
-Two-way contingency table
+Two-way contingency table of Dutch shoplifting (1977-1978) 
 }
 \description{
 This two-way contingency table summarises, in part, the results of a survey 
-of the Dutch Central Bureau of Statistics (Isra\''{e}ls, 1987). The table considers a 
-sample of 20819 men who were suspected of shoplifting in Dutch stores between 1977 and 1978.}
+of the Dutch Central Bureau of Statistics (Isra\'{e}ls, 1987). The table considers a 
+sample of 20819 men who were suspected of shoplifting in stores of the Netherlands between 1977 and 1978.}
 \usage{data(shopdataM)}
 \format{
-  The format is:
-% num [1:13, 1:9] 81 66 150 667 67 24 47 430 743 132 ...\cr
+The format is:\cr
 row names [1:13] "clothing" "accessories" "tobacco" "stationary" ...\cr
 col names [1:9] "M12<" "M13" "M16" "M19" ...
 }
@@ -23,12 +22,12 @@ col names [1:9] "M12<" "M13" "M16" "M19" ...
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons. \cr
-Isra\''{e}ls A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.\cr
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. Wiley. \cr
+Isra\'{e}ls A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.\cr
 Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.
 }
 \examples{
-shopdataM <-structure(c(81, 66, 150, 667, 67, 24, 47, 430, 743, 132, 32, 
+shopdataM <- structure(c(81, 66, 150, 667, 67, 24, 47, 430, 743, 132, 32, 
 197, 209, 138, 204, 340, 1409, 259, 272, 117, 637, 684, 408, 
 57, 547, 550, 304, 193, 229, 527, 258, 368, 98, 246, 116, 298, 
 61, 402, 454, 384, 149, 151, 84, 146, 141, 61, 40, 13, 71, 52, 

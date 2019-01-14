@@ -1,7 +1,6 @@
-nscaellipse <-
-function(Xtable, a1=1,a2=2,alpha = 0.05, cols = c(2, 4), M = 2, cex = .8, cex.lab = 0.8, mar = c(5, 4, 4, 2) + 0.1,  
-prop=.8,Imass,Jmass,a,b,f,g,dmu,tauden,inertiapc,plottype="biplot",biptype="row",pos=2,arrow=TRUE,length=0,ell=TRUE) 
- {
+nscaellipseprint <-function(Xtable, a1=1,a2=2,alpha = 0.05, M = 2,  
+Imass,Jmass,a,b,f,g,dmu,tauden,inertiapc) 
+{
   I <- nrow(Imass)
     J <- nrow(Jmass)
 n<-sum(Xtable)
@@ -46,65 +45,7 @@ if (M > 2) {
                 1/Jmass[j,j])
         }
     }
-   
-picsize<-c(range(f[,c(a1,a2)], g[,c(a1,a2)])/prop)
-#plot.new()
- par(pty = "s", mar = mar)
-#plot(f[, a1], f[, a2],xlim=picsize, ylim=picsize, 
-  plot(0, 0,pch=" ",xlim=picsize, ylim=picsize, 
-    xlab=paste("Axis ", a1, "    ", inertiapc[a1], "%", sep=""), 
-     ylab=paste("Axis ", a2, "    ", inertiapc[a2], "%", sep=""),  
- asp=0,  col=rowgrlab[[4]][as.integer(rowgroup[[2]])],cex=cex,cex.lab=cex.lab)
-abline(h=0,v=0)
-text(f[, a1], f[, a2], labels = Inames[[1]],pos=pos,col = cols[1], 
-        cex = cex)
-points(f[, a1], f[, a2], pch="*",col=cols[1],cex=cex)
-    text(g[, a1], g[, a2], labels = Jnames[[1]], pos=pos, col = cols[2], 
-        cex = cex)
-points(g[, a1], g[, a2], pch="+",col=cols[2],cex=cex)
-    abline(h = 0, v = 0)
-if (ell){
-    title(main = paste(100 * (1 - alpha), "% Confidence Ellipses"))}
-else {title(main =  "Row Biplot")}
-if(plottype=="biplot"){
-if ((biptype=="column")|(biptype=="col")|(biptype=="c")){
-#----------------------------------------------arrow on column principal coords
-nv <- rep(0, nrow(g))
-#vec <- g[, c(a1, a2)]
-if(arrow) {
-arrows(nv, nv, g[,a1], g[, a2], length = length)
-}
- for (j in 1:J) {
-        ellipse(hlax1.col[j], hlax2.col[j], xc = g[j, a1], yc = g[j, 
-            a2], col = cols[2])
-    }
-}#end biptype
-if ((biptype=="row")|(biptype=="r")|(biptype=="")){
-#----------------------------------------------arrow on row principal coords
-nv <- rep(0, nrow(f))
-#vec <- f[, c(a1, a2)]
-if(arrow) {
-arrows(nv, nv, f[, a1], f[, a2], length = length)
-}
-#-------------------------------------------------------------
-if (ell){
-for (i in 1:I) {
-        ellipse(hlax1.row[i], hlax2.row[i], xc = f[i, a1], yc = f[i, 
-            a2], col = cols[1])
-    }
-}}#end row end ell
-}#end biplot
 
-else {#when classic
- for (j in 1:J) {
-        ellipse(hlax1.col[j], hlax2.col[j], xc = g[j, a1], yc = g[j, 
-            a2], col = cols[2])
-    }
-for (i in 1:I) {
-        ellipse(hlax1.row[i], hlax2.row[i], xc = f[i, a1], yc = f[i, 
-            a2], col = cols[1])
-    }
-}#end else
 #----------------------------------------
    eccentricity <- abs(1 - (dmu[a2, a2]/dmu[a1, a1])^2)^(1/2)
     area.row <- vector(mode = "numeric", length = I)
@@ -143,6 +84,6 @@ for (i in 1:I) {
    dimnames(row.summ) <- list(paste(Inames[[1]]), paste(summ.name))
     col.summ <- cbind(hlax1.col, hlax2.col, area.col, pvalcol)
     dimnames(col.summ) <- list(paste(Jnames[[1]]), paste(summ.name))
-invisible( list(eccentricity = eccentricity, row.summ = row.summ, 
+invisible(  list(eccentricity = eccentricity, row.summ = row.summ, 
         col.summ = col.summ))
  }

@@ -1,6 +1,6 @@
 plot.CAvariants<-function(x,  firstaxis=1, lastaxis=2, cex=0.8,cex.lab=0.8,prop=1,
 plottype="biplot", biptype = "row",scaleplot=1,
-posleg="topleft",pos=2,ell=FALSE,Mell=x$Mell,alpha=0.05,plot3d = TRUE,size=5,adj=c(0,0.5),...) {
+posleg="topleft",pos=2,ell=FALSE,M=x$M,alpha=0.05,plot3d = FALSE,size=5,adj=c(0,0.5),...) {
 
 ## internal function to plot a  single picture
 ##
@@ -22,7 +22,7 @@ colgrlab <- list(1,"","+","blue","T")
 ######################################################
 # Plot row and col coordinates
 #########################################
-if ((plottype=="Classical")|(plottype=="classical")|(plottype=="classic")|(plottype=="c")) {
+if ((plottype=="Classical")|(plottype=="classical")|(plottype=="classic")|(plottype=="Classic")) {
 nthings<-x$cols
 nvars<-x$rows
 cord1<- x$Cprinccoord 
@@ -110,8 +110,6 @@ dimnames(cord2)[1]<-dimnames(x$Xtable)[1]
 }
 if ((x$catype=="DONSCA")|(x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA"))
 {
-#if (ell==TRUE) {
-#scaleplot<-1}
 cord2<- x$Cprinccoord*scaleplot
 cord1<-x$Rstdcoord/scaleplot
 nthings<-x$rows
@@ -140,10 +138,10 @@ if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSC
 #trendplot(x@mi,t(x@pcc), position="topleft",main="Original Trends of Centered #Column Profile",xlab="ordered scores")
 ############################################################## reconstructed TREND
 #windows()
-plot.new()
-trendplot(x$mj,(x$Trend), posleg=posleg,main="Reconstructed rows of the centred column profile",xlab="ordered scores",prop=prop)
-dev.new()
-trendplot(x$mi,t(x$Trend), posleg=posleg,main="Reconstructed columns of the centred column profile",xlab="ordered scores",prop=prop)
+#plot.new()
+trendplot(x$mj,(x$Trend), posleg=posleg, xlab="ordered scores",prop=prop)
+#dev.new()
+trendplot(x$mi,t(x$Trend), posleg=posleg,xlab="ordered scores",prop=prop)
 }
 ##############################################################
 #library(scales)
@@ -158,7 +156,7 @@ frows <- data.frame(coord=cord1, labels=thinglabels, categ=rep("rows", nthings))
    # vec <-cord2[, c(firstaxis, lastaxis)]
  #--------------------------------------------------
 ############################ 
-plot.new()
+#plot.new()
 if ((x$catype=="DONSCA")||(x$catype=="DOCA")||(x$catype=="SOCA")||(x$catype=="SONSCA"))
 {
 xmin <- min(FGcord[,firstaxis],FGcord[,lastaxis])
@@ -241,41 +239,44 @@ caplot3d(f=x$Rstdcoord,g=x$Cprinccoord,percIn=x$inertias[,2],size=size,adj=adj)
 #cat("\nIncluding Beh's Confidence Ellipses\n")
 ################################################################################
 if (ell==TRUE) {
-if (((x$catype=="NSCA")|(x$catype=="CA")|(x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")) & (plottype=="biplot")&(biptype=="row")|(biptype=="r")|(biptype=="rows")){
+cord1<-x$Cprinccoord*scaleplot #check here!!
+cord2<-x$Rprinccoord/scaleplot
+#if (((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")) & (plottype=="biplot")&(biptype=="row")|(biptype=="r")|(biptype=="rows")){
+if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")){
 cordr<-cord2
 cordc<-cord1
 cord1<-cordr
 cord2<-cordc
 }
 dev.new()
-switch(x$catype, "CA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
-Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,b=x$Cstdcoord,g=cord1,fr=cord2,dmu=dmu,inertiapc=round(inertiapc,digits=1),
-plottype=plottype,biptype=biptype,pos=pos,arrow=TRUE,length=0,graphy=TRUE,ell=TRUE), 
+switch(x$catype, "CA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
+Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,b=x$Cstdcoord,g=cord1,f=cord2,dmu=dmu,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=TRUE,length=0,ell=TRUE), 
 
-"SOCA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
-Imass=x$Imass,Jmass=x$Jmass,a=solve(x$Imass^0.5)%*%x$Rstdcoord,b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,inertiapc=round(inertiapc,digits=1),
-plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE),
+"SOCA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
+Imass=x$Imass,Jmass=x$Jmass,a=solve(x$Imass^0.5)%*%x$Rstdcoord,b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,f=cord1,dmu=dmu,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,ell=TRUE),
 
-"DOCA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
+"DOCA"=caellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=solve(x$Imass^0.5)%*%x$Rstdcoord,
-b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,inertiapc=round(inertiapc,digits=1),
-plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE), 
+b=solve(x$Jmass^0.5)%*%x$Cstdcoord,g=cord2,f=cord1,dmu=dmu,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,ell=TRUE), 
 
-"NSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
+"NSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord1,fr=cord2,dmu=dmu, tauden=x$tauden,
+b=x$Cstdcoord,g=cord1,f=cord2,dmu=dmu, tauden=x$tauden,
 inertiapc=round(inertiapc,digits=1),
-plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,graphy=T,ell=TRUE),
+plottype=plottype,biptype=biptype,pos=pos,arrow=T,length=0,ell=TRUE),
 
-"SONSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M= Mell,cex=cex,cex.lab=cex.lab,prop=prop,
+"SONSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M= M,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,tauden=x$tauden,inertiapc=round(inertiapc,digits=1),
-plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE), 
+b=x$Cstdcoord,g=cord2,f=cord1,dmu=dmu,tauden=x$tauden,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,ell=TRUE), 
 
-"DONSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=Mell,cex=cex,cex.lab=cex.lab,prop=prop,
+"DONSCA"=nscaellipse(Xtable=x$Xtable,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,cex=cex,cex.lab=cex.lab,prop=prop,
 Imass=x$Imass,Jmass=x$Jmass,a=x$Rstdcoord,
-b=x$Cstdcoord,g=cord2,fr=cord1,dmu=dmu,tauden=x$tauden,inertiapc=round(inertiapc,digits=1),
-plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,graphy=T,ell=TRUE))
+b=x$Cstdcoord,g=cord2,f=cord1,dmu=dmu,tauden=x$tauden,inertiapc=round(inertiapc,digits=1),
+plottype=plottype,biptype=biptype,pos=pos,arrow=FALSE,length=0,ell=TRUE))
 
 }#end if ellipse
 

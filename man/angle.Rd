@@ -5,7 +5,7 @@
 Angle
 }
 \description{
-The \pkg{R} internal function \code{angle} is used to draw ellipses around points in graphical displays.
+The internal \pkg{R} function \code{angle} is used to draw ellipses around points in a graphical display.
 }
 %\usage{
 %angle(x, y)
@@ -31,8 +31,9 @@ This function is used in two other functions that are \code{caellipse} and \code
 %}
 \references{
 %% ~put references to the literature/web site here ~
-Macdonald PDM 2002 Drawing an ellipse in Splus or R. \cr
-Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed August 18, 2016).
+Macdonald PDM 2002 Drawing an ellipse in Splus or R. Available at \cr
+www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html
+(accessed August 18, 2016).
 }
 %\author{
 %%  ~~who you are~~
