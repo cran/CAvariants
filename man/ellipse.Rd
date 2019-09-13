@@ -4,7 +4,7 @@
 Ellipse}
 \description{
 This function is called internally from the graphical functions \code{caellipse} and \code{nscaellipse}.
-It constructs the algebraic confidence ellipses.
+It constructs the algebraic ellipses of confidence.
 }
 %\usage{
 %ellipse(hlaxa = 1, hlaxb = 1, theta = 0, xc = 0, yc = 0, npoints = 100, col)
@@ -39,16 +39,16 @@ The color of ellipses.
 %% ...
 %}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies.  Wiley. \cr
-Macdonald PDM 2002 Drawing an ellipse in Splus or R. Available at \cr
-www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed August 18, 2016).
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons. \cr
+Macdonald PDM 2002 Drawing an ellipse in Splus or R. \cr
+Available at www.math.mcmaster.ca/peter/s4m03/s4m03_0102/ellipse.html (accessed August 18, 2016).
 }
 \author{
 Rosaria Lombardo and Eric J Beh
 }
 \note{
 This function is called from the secondary graphical function \code{caellipse} or \code{nscaellipse}, which is 
-called from the main plot function \code{plot.CAvariants}. It can be executed 
+called from the main plot function \code{plot.CAvariants} and it can be executed 
 for all variants of correspondence analysis.}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 %\seealso{

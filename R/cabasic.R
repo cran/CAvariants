@@ -13,8 +13,7 @@ drm1 <- diag( 1/( rsums + (rsums==0) ) * (1-(rsums==0)) )
 dcm1 <- diag( 1/( csums + (csums==0) ) * (1-(csums==0)) )
 drmh <- sqrt(drm1)
 dcmh <- sqrt(dcm1)
-#ratio <- (drmh %*% ( X - rsums %*% t(csums) ) %*% dcmh)*n
-ratio <- drmh %*% ( X - rsums %*% t(csums) ) %*% dcmh
+ratio <- (drmh %*% ( X - rsums %*% t(csums) ) %*% dcmh)
 ratio2<-drm1%*%X%*%dcm1
 Yeigu<-eigen(ratio%*%t(ratio))
 #Caxes<-Yeigu$vectors

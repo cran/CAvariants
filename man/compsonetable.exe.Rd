@@ -4,8 +4,7 @@
 Polynomial component of inertia in column space
 }
 \description{
-This function allows the analyst to compute the contribution that the polynomial components make to the inertia 
-(Pearson's chi-squared statistic or the Goodman-Kruskal tau index).
+This function allows the analyst to compute the contribution of the polynomial components to the inertia (chi-squared or tau).
 The ordered variable should be the column variable that is transformed by polynomials.
 The polynomial components are the column polynomial components. 
 The given input matrix is the Z matrix of generalised correlations from the hybrid decomposition.
@@ -24,7 +23,7 @@ The value returned is the matrix
 \item{comps}{The matrix of the column polynomial component of inertia.}
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. Wiley.\cr
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
 Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.\cr
 Lombardo R Beh EJ and Kroonenberg PM 2016 Modelling Trends in Ordered Correspondence Analysis Using Orthogonal
 Polynomials. Psychometrika, 81(2), 325--349.

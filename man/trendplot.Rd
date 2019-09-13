@@ -1,43 +1,46 @@
 \name{trendplot}
 \alias{trendplot}
 \title{
-Plot of reconstructed centred row and column profiles 
+Trends of matrix rows and columns 
 }
 \description{
-This function portrays the trend of the centred row and column of the column profile matrix 
-that are reconstructed using othogonal polynomials and/or principal axes.}
+This function portrays the row and column trends of the centred column profile matrix reconstructed
+by means of othogonal polynomials and/or principal axes.}
 \usage{
-trendplot(mf, mg, cex = 1, cex.lab = 0.8, prop = 0.5, posleg = "topleft", 
-xlab = "First Principal Axis", ylab = "Second Principal Axis")
+trendplot(f, g, cex = 1, cex.lab = 0.8, main = " ", prop = 0.5, 
+posleg = "topleft", xlab = "First Principal Axis", 
+ylab = "Second Principal Axis")
 }
 \arguments{
-  \item{mf}{
-The number of row or column categories. By defaults, natural numbers. 
+  \item{f}{
+The row coordinates.
 }
-  \item{mg}{
-The inner product matrix.
+  \item{g}{
+The column coordinates.
 }
   \item{cex}{
-The parameter for setting the size of the character labels for the points in a graphical display.  By default,  \code{cex = 0.8}.
+The parameter for setting the size of character labels of points in graphical displays. By default, \code{cex = 1}.
 }
   \item{cex.lab}{
 The parameter for setting the size of character labels of axes in graphical displays. By default, \code{cex.lab = 0.8}.
 }
+  \item{main}{
+The title of the graphical display.}
   \item{prop}{
 The scaling parameter for specifying the limits of the plotting area. By default, \code{prop = 0.5}. 
 }
-  \item{posleg}{The position of the legend when portraying trends of the categories 
-for ordered variants of correspondence analysis. 
-By default, \code{posleg = "topleft"}.}
+  \item{posleg}{
+The parameter for specifying the position of the legend in the graphical function \code{trendplot}. 
+By default, \code{pos = "topleft"}.}
   \item{xlab}{
-The parameter for setting the character label along the horizontal axis of the graphical display.
+The parameter for setting the  character label of the horizontal axis in graphical displays.
 }
   \item{ylab}{
-The parameter for setting the  character label along the vertical axis of the graphical display.
+The parameter for setting the  character label of the vertical axis in graphical displays.
 }
 }
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. Wiley.\cr
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
 Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.\cr
 Lombardo R Beh EJ and Kroonenberg PM 2016 Modelling Trends in Ordered Correspondence Analysis Using Orthogonal
 Polynomials. Psychometrika, 81(2), 325--349.

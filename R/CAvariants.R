@@ -1,7 +1,7 @@
 CAvariants <-
 function(
   Xtable, mj=NULL,mi=NULL,firstaxis=1,lastaxis=2,
-  catype = "CA",ellcomp=TRUE,M=min(nrow(Xtable),ncol(Xtable))-1,alpha=0.05) { 
+  catype = "CA",ellcomp=TRUE,Mell=min(nrow(Xtable),ncol(Xtable))-1,alpha=0.05) { 
 #if (printdims<1) stop(paste("Attention: number of dims for output must be at least 1\n\n"))
 if (lastaxis<2) stop(paste("Attention: last axis must be at least 2\n\n"))
 if (!any(catype==c("CA","SOCA","DOCA","NSCA","SONSCA","DONSCA"))) stop(paste("Must be CA, DOCA, SOCA, NSCA, SONSCA or DONSCA"))
@@ -42,7 +42,7 @@ pcc <- t(S$CX)
 #dimnames(pcc)<-dimnames(X)
 tau=NULL
 tauden=NULL
-inertia <- (S$mu[1:r]^2)/n #please check!!
+inertia <- (S$mu[1:r]*S$mu[1:r])
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 Z<-Trend
@@ -146,7 +146,7 @@ dimnames(pcc)<-dimnames(X)
 Gmat <-  S$Raxes[,1:r] %*% dmum1
 Fmat <- S$Caxes[,1:r] %*% dmum1
 tauden<-S$tauDen
-inertia <- S$mu[1:r]^2
+inertia <- S$mu[1:r]*S$mu[1:r]
 tau<-sum(inertia)/tauden
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(S$Rweights%*%Gbi[,firstaxis:lastaxis]))
@@ -278,44 +278,49 @@ dimnames(Gbi)<-list(collabels,paste("axes", 1:r,sep=""))
 names(mi)<-rowlabels
 names(mj)<-collabels
 #---------------------------------------------------
-#if (ellcomp==TRUE){
-cord1<-Gmat #check here
+if (ellcomp==TRUE){
+cord1<-Gmat
 cord2<-Fmat
-if ((catype=="DOCA")|(catype=="SOCA")|(catype=="SONSCA")|(catype=="DONSCA")){
+if ((catype=="DOCA")|(catype=="SOCA")|(catype=="SONSCA")|(catype=="DONSCA") ){
 cordr<-cord2
 cordc<-cord1
 cord1<-cordr
 cord2<-cordc
 }
-#----------------------------------------------------------------------
-#for printing the length of the ellipses axes 
-#--------------------------------------------------
-if (ellcomp==TRUE){
-resellprint<-switch(catype, "CA"=caellipseprint(Xtable=X,a1=firstaxis,a2=lastaxis,alpha=alpha,M=M,
-Imass=dr,Jmass=dc,a=Fbi,b=Gbi,g=cord1,f=cord2,dmu=diag(inertias[,1]),inertiapc=round(inertias[,2],digits=1)),
+#browser()
+risell<-switch(catype, "CA"=caellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
+Imass=dr,Jmass=dc,a=Fbi,b=Gbi,g=cord1,fr=cord2,dmu=diag(inertias[,1]),inertiapc=round(inertias[,2],digits=1),
+plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE), 
 
-"SOCA"=caellipseprint(Xtable=X,a1=1,a2=2,alpha=alpha,M=M,
-Imass=dr,Jmass=dc,a=Fbi,b=Gbi,g=cord2,f=cord1,dmu=diag(inertias2[,1]),inertiapc=round(inertias2[,2],digits=1)),
+"SOCA"=caellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
+Imass=dr,Jmass=dc,a=Fbi,b=Gbi,g=cord2,fr=cord1,dmu=diag(inertias2[,1]),inertiapc=round(inertias2[,2],digits=1),
+plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE), 
 
-"DOCA"=caellipseprint(Xtable=X,a1=1,a2=2,alpha=alpha,M=M,
+"DOCA"=caellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
 Imass=dr,Jmass=dc,a=Fbi,
-b=Gbi,g=cord2,f=cord1,dmu=diag(inertias2[,1]),inertiapc=round(inertias2[,2],digits=1)),
+b=Gbi,g=cord2,fr=cord1,dmu=diag(inertias2[,1]),inertiapc=round(inertias2[,2],digits=1),
+plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE), 
 
-"NSCA"=nscaellipseprint(Xtable=X,a1=1,a2=2,alpha=alpha,M=M,
+"NSCA"=nscaellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
 Imass=dr,Jmass=dc,a=Fbi,
-b=Gbi,g=cord1,f=cord2,dmu=diag(inertias[,1]), tauden=tauden,
-inertiapc=round(inertias[,2],digits=1)),
+b=Gbi,g=cord1,fr=cord2,dmu=diag(inertias[,1]), tauden=tauden,
+inertiapc=round(inertias[,2],digits=1),
+plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE),
 
-"SONSCA"=nscaellipseprint(Xtable=X,a1=1,a2=2,alpha=alpha,M= M,
+"SONSCA"=nscaellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M= Mell,prop=.8,
 Imass=dr,Jmass=dc,a=Fbi,
-b=Gbi,g=cord2,f=cord1,dmu=diag(inertias2[,1]),tauden=tauden,inertiapc=round(inertias2[,2],digits=1)),
+b=Gbi,g=cord2,fr=cord1,dmu=diag(inertias2[,1]),tauden=tauden,inertiapc=round(inertias2[,2],digits=1),
+plottype="biplot",biptype="row",pos=1,arrow=T,length=0,graphy=FALSE,ell=FALSE), 
 
-"DONSCA"=nscaellipseprint(Xtable=X,a1=1,a2=2,alpha=alpha,M=M,
+"DONSCA"=nscaellipse(Xtable=X,a1=1,a2=2,alpha=alpha,M=Mell,prop=1,
 Imass=dr,Jmass=dc,a=Fbi,
-b=Gbi,g=cord2,f=cord1,dmu=diag(inertias2[,1]),tauden=tauden,inertiapc=round(inertias2[,2],digits=1)))
+b=Gbi,g=cord2,fr=cord1,dmu=diag(inertias2[,1]),tauden=tauden,inertiapc=round(inertias2[,2],digits=1),
+plottype="biplot",biptype="row",pos=1,arrow=F,length=0,graphy=FALSE,ell=FALSE))
+#dimnames(risell$row.summ)[[1]]<-dimnames(X)[[1]]
+#dimnames(risell$col.summ)[[1]]<-dimnames(X)[[2]]
 }#end ellcomp
 else{
-resellprint<-NULL}
+risell<-NULL}
 #############################
 #invisible(x<- new("cacorporateplus",S=S,
 #DataMatrix=X, rows=rows, cols=cols, r=r,
@@ -329,7 +334,7 @@ rowlabels=rowlabels, collabels=collabels,
 Rprinccoord=Fmat, Cprinccoord=Gmat, Rstdcoord=Fbi, Cstdcoord=Gbi,tauden=tauden,tau=tau,
  inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,comps=comps,
  catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,
-Trend=Trend,Z=Z,ellcomp=ellcomp,resellprint=resellprint,M=M)
+Trend=Trend,Z=Z,ellcomp=ellcomp,risell=risell,Mell=Mell)
 class(resultCA)<-"CAvariants"
 return(resultCA)
 #-----------------------------------------------
