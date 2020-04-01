@@ -1,5 +1,5 @@
 print.CAvariants <-
-function(x,printdims=2,ellprint=TRUE,Mell=min(nrow(x$Xtable),ncol(x$Xtable))-1,alpha=0.05,digits=3,...) {
+function(x,printdims=2, ellcomp=TRUE,digits=3,...) {
 #d <- min(printdims, x$r)
 d<-printdims
 if (d>x$r) { d<-x$r
@@ -74,17 +74,15 @@ pvalueC<-1 - pchisq(Cstatistic, (nrow(x$Xtable)-1)*(ncol(x$Xtable)-1))
 cat("\n C-statistic", Cstatistic, "and p-value", pvalueC, "\n")
 }
 if ((x$catype=="DOCA")|(x$catype=="DONSCA")){
-cat("\n Polynomial Components of Inertia \n
-** Row Components ** \n")
-print(round(x$comps$compsR,digits=digits))
-cat("\n** Column Components ** \n")
-print(round(x$comps$compsC,digits=digits))
+cat("\n  Inertia by the Bivariate Moment Decomposition \n
+    \n** Row Inertia Values ** \n")
+#print(round(x$comps$compsC,digits=digits))
+  print(round(x$inertias2[,-1],digits=digits))
+  cat("** Column Inertia Values ** \n")
+print(round(x$inertias[,-1],digits=digits))
+
 cat("\n Generalized correlation matrix of Bivariate Moment Decomposition\n")
 print(round(x$Z,digits=digits))
-#cat("\n Column polynomial axes \n")
-#printwithaxes(data.frame(x$Raxes[ ,1:d], row.names=x$collabels), axnames)
-#cat("\n Row polynomial axes \n")
-#printwithaxes(data.frame(x$Caxes[ ,1:d], row.names=x$rowlabels), axnames)
 cat("\n Column standard polynomial coordinates = column polynomial axes \n")
 printwithaxes(data.frame(x$Cstdcoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
 cat("\n Row standard polynomial coordinates = row polynomial axes  \n")
@@ -96,17 +94,13 @@ printwithaxes(data.frame(x$Rprinccoord[, 1:d], row.names=x$rowlabels), axnames,d
 }
 
 if ((x$catype=="SOCA")|(x$catype=="SONSCA")){
-cat("\n Polynomial Components of Inertia \n
-** Column Components ** \n")
+cat(" Inertia by Singly Ordered Analysis
+** Column Inertia Value ** \n")
 print(round(x$comps$comps,digits=digits))
 cat("\n Generalized correlation matrix of Hybrid Decomposition\n")
 print(round(x$Z,digits=digits))
 cat("\n Column standard polynomial coordinates  \n")
 printwithaxes(data.frame(x$Cstdcoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
-#cat("\n Row standard  coordinates  = row principal axes\n")
-#printwithaxes(data.frame(x$Rstdcoord[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
-#cat("\n Column principal  coordinates \n")
-#printwithaxes(data.frame(x$Cprinccoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
 cat("\n Row principal polynomial coordinates \n")
 printwithaxes(data.frame(x$Rprinccoord[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
 }
@@ -138,17 +132,16 @@ printwithaxes(data.frame((x$Cprinccoord^2)[, 1:d], row.names=x$collabels), axnam
 cat("\n Row distances from the origin of the plot \n")
 printwithaxes(data.frame((x$Rprinccoord^2)[, 1:d], row.names=x$rowlabels), axnames,digits=digits)
 cat("\n Inner product of coordinates (first two axes when 'firstaxis=1' and 'lastaxis=2')   \n")
-print(round(x$Trend,digits=digits))
-#browser()
-if (ellprint==TRUE){
-#dimnames(x$risell$row.summ)[[1]]<-dimnames(x$Xtable)[[1]]
-#dimnames(x$risell$col.summ)[[1]]<-dimnames(x$Xtable)[[2]]
+print(round(x$Innprod,digits=digits))
+#-------------------------------------------------------------
+#---------------------------------p-value ellipses
+if (ellcomp==TRUE){
 cat("\n    Eccentricity of ellipses\n")
-print(round(x$risell$eccentricity,digits=digits))
+print(round(x$eccentricity,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of rows\n")
-print(round(x$risell$row.summ,digits=digits))
+print(round(x$row.summ,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of columns\n")
-print(round(x$risell$col.summ,digits=digits))
+print(round(x$col.summ,digits=digits))
 }#end ell
-
+else{ }
 }

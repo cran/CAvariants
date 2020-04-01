@@ -4,102 +4,97 @@
 Main plot function 
 }
 \description{
-This function allows the analyst to produce the suitable graphical displays with respect to the six variants of correspondence analysis. 
-In particular when \code{plottype = "classic"}, it produces classical graphical displays for \code{catype = "CA"} and \code{catype = "NSCA"}, 
-where the row and column variables are graphically depicted in principal coordinates.\cr
-When we set \code{plottype = "biplot"}, it produces biplot graphical displays, or polynomial biplots in case of ordered analysis.
-Notice that for ordered analysis only polynomial biplots are suitable.  In particular, for the singly ordered variants only row isometric polynomial biplots make sense,
-as we assume that the ordered variable is the column variable (the column coordinates are standard polynomial coordinates 
-and the row coordinates are principal polynomial coordinates).
-When the input parameter \code{catype}  concerns an ordered variant of CA, then the input parameter  
-\code{plottype} should be equal to \code{plottype = "biplot"},  if \code{biptype = "row"}, 
-it will give back a row isometric polynomial biplot.
- }
+This function produces the graphical display for the selected variant of correspondence analysis. 
+When \code{catype = "CA"} \code{catype = "NSCA"} and \code{plottype = "classic"}, the function produces a plot 
+of the principal coordinates for the row and column categories.\cr
+When \code{plottype = "biplot"}, it produces a biplot graphical display, or a polynomial biplot
+in case of ordered variables.
+For an ordered analysis only the polynomial biplots are constructed. In particular, 
+for the singly ordered variants only the row isometric polynomial biplot is appropriate.
+When the parameter \code{catype} defines an ordered variant of CA, the input parameter  
+\code{plottype} should be equal to \code{plottype = "biplot"}.  If \code{biptype = "row"}, 
+it will produce a row isometric polynomial biplot.
+}
 \usage{
-\S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, cex = 0.8, 
-cex.lab = 0.8, prop = 1,  plottype = "biplot", biptype = "row",  
-scaleplot = 1, posleg = "topleft", pos = 2, ell = FALSE, Mell = x$Mell, 
-alpha = 0.05,  size=5,adj=c(0,0.5),\dots)
+
+\S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, thirdaxis = 3, cex = 0.8, 
+cex.lab = 0.8, plottype = "biplot", biptype = "row",  
+scaleplot = 1, posleg = "topleft", pos = 2, ell = FALSE,  
+alpha = 0.05, plot3d = FALSE, size1 = 1.5, size2 = 3, invproj = TRUE,\dots)
 }
 \arguments{
   \item{x}{
-The name of the output object, for example say \code{res}, used with the main function \code{CAvariants}.
+The name of the output object used with the main function \code{CAvariants}.
 }
   \item{firstaxis}{
-The horizontal polynomial or principal axis, \code{firstaxis}. By default, \code{firstaxis = 1}.
+The horizontal polynomial, or principal, axis. By default, \code{firstaxis = 1}.
 }
   \item{lastaxis}{
-The vertical polynomial or principal axis, \code{lastaxis}. By default, \code{lastaxis = 2}.
+The vertical polynomial, or principal, axis. By default, \code{lastaxis = 2}.
+}
+ \item{thirdaxis}{
+The third polynomial, or principal, axis in tridimensional plot. By default, \code{thirdaxis = 3}.
 }
   \item{cex}{
-The size of characters, \code{cex}, displayed on the correspondence plot or biplot. By default, \code{cex = 0.8}.}
+The parameter for setting the size of the character labels for the points in a graphical display.  By default,  \code{cex = 0.8}.
+}
  \item{cex.lab}{
-The parameter \code{cex.lab} that specifies the size of character labels of axes in graphical displays. By default, \code{cex.lab = 0.8}.
+The parameter for setting the size of the character labels of axes in graphical displays.  By default,  \code{cex.lab = 0.8}.
 }
-  \item{prop}{
-The scaling parameter for specifying the limits of the plotting area. By default, \code{prop = 1}. 
-}
- \item{plottype}{
-The type of graphical display required (either a classical correspondence plot or a biplot). 
-The user can look at a classical correspondence plot by defining the input
-parameter  \code{plottype = "classic"}.
-When \code{plottype = "biplot"}, it produces biplot graphical displays, or polynomial biplots in case of an ordered analysis.
-
-Note that for ordered analysis only polynomial biplots are suitable.  In particular  for the singly ordered variants, 
-only row isometric polynomial biplots make sense, as we assume that the ordered variable is the column variable 
-(the column coordinates are standard polynomial coordinates and the row coordinates are principal polynomial coordinates). 
- By default, \code{plottype = "biplot"}.
+  \item{plottype}{
+The type of graphical display required (either a correspondence plot or a biplot). 
+The type of graphical display to be constructed. By default, \code{plottype = "biplot"}; 
+the alternative is \code{plottype = "classic"}. 
 }
 \item{biptype}{
-For a biplot, one may specify that it be a row-isometric biplot  (\code{biptype = "row"}) or a column-isometric biplot (\code{biptype = "column"}).  
-This feature is available for the nominal symmetrical and the non symmetrical correspondence analyses. 
+The parameter for specifying the type of biplot. By default, \code{biptype = "row"}. 
+One may specify a row-isometric biplot  (\code{biptype = "row"}) or a column-isometric biplot (\code{biptype = "column"}).  
+This feature is available for the nominal symmetrical and non-symmetrical correspondence analyses. 
 By default, a row-isometric biplot, \code{biptype = "row"}, is produced.
 }
 \item{scaleplot}{
-The parameter for scaling the biplot coordinates, \code{scaleplot}, originally proposed in Section 2.3.1 of Gower et al. (2011) and 
-described on page 135 of  Beh and Lombardo (2014). By default, \code{scaleplot = 1}.
+The parameter for scaling the classic plot and biplot coordinates. See  Gower et al. (2011), section 2.3.1, or 
+page 135 of Beh and Lombardo (2014). By default, \code{scaleplot = 1}.
 }
 \item{posleg}{
-The parameter \code{posleg} for specifying the position of the legend when portraying trends of ordered categories 
-in ordered variants of correspondence analysis. 
-By default, \code{posleg = "topleft"}. }
+The position of the legend when portraying trends of the categories 
+for ordered variants of correspondence analysis. 
+By default, \code{posleg = "topleft"}.}
  \item{pos}{
-The parameter for specifying the position of  point symbols in the graphical displays.
-By default, \code{pos = 2}.}
-\item{ell}{The logical parameter, \code{ell} which specifies whether algebraic confidence ellipses are to be included in the plot or not.  
-Setting the input parameter to \code{ell = TRUE} will allow the user to assess the statistical significance of each category to 
-the association between the variables. The ellipses will be included when the plot is constructed using principal coordinates 
-(being either row and column principal coordinates or row and column principal polynomial coordinates). 
-By default, this input parameter is set to \code{ell = FALSE}.  See also the input parameter \code{ellcomp}  
-of the function \code{CAvariants} 
-for a  description of the numeric characteristics of the confidence ellipses (eccentricity, area, etc.), as well as the
-input parameter \code{ellprint} of the function \code{print.CAvariants} for getting a print of these parameters.
+The parameter that specifies the position of label of each point in the graphical display. By default, \code{pos = 2}.
 }
-\item{Mell}{
-The number of axes \code{Mell} considered when portraying  the elliptical confidence regions.  \cr
-By default, it is equal to \code{Mell = min(nrow(Xtable), ncol(Xtable)) - 1}, i.e. the rank of the data matrix. 
-This parameter is identical to the input parameter \code{Mell} of the function \code{CAvariants}.
-}
- \item{alpha}{
-The confidence level of the elliptical regions. By default, \code{alpha = 0.05}.}
-%\item{plot3d}{The logical parameter, \code{plot3d} which specifies whether 3D plot are to be included 
-%in the output or not. By default, \code{plot3d = FALSE}.
+\item{ell}{The logical parameter which specifies whether algebraic confidence ellipses are to be included in the plot or not.  
+Setting the input parameter to \code{ell = TRUE} will assess the statistical significance of each category to 
+the association between the variables. By default,  \code{ell = FALSE}.}
+%\item{M}{
+%The number of axes  considered in determining the structure of the elliptical confidence regions.  
+%By default,  \code{M = min(nrow(Xtable), ncol(Xtable)) - 1}, i.e. the rank of the data matrix.
 %}
-\item{size}{
-The size of the plotting area.
+ \item{alpha}{
+The confidence level of the elliptical regions. By default, \code{alpha = 0.05}.
 }
-\item{adj}{one or two values in [0, 1] which specify the x (and optionally y) adjustment of the labels.}
-\item{\dots}{Further arguments passed to or from other methods.}
+\item{plot3d}{The logical parameter specifies whether a 3D plot is to be included 
+in the output or not. By default, \code{plot3d = FALSE}.
+}
+\item{size1}{
+The size of the plotted symbol. By default, \code{size = 1.5}.
+}
+\item{size2}{
+The size of the plotted text. By default, \code{size = 3}.
+}
+\item{invproj}{The logical parameter specifies whether to portray standard coordinates as vectors and principal coordinates as points or vice-versa.
+By default, \code{invproj = TRUE}.}
+\item{\dots}{Further arguments passed to, or from, other functions.}
 }
 \details{
-It produces classical and biplot graphical displays. Further when \code{catype} is equal to \cr
-\code{"DOCA", "SOCA", "DONSCA"} or \code{"SONSCA"}, 
-the trend of row and column variables after the reconstruction of column profiles by polynomials is portrayed.\cr
-For classical biplot displays, it superimposes on it algebraic ellipses of confidence. It uses the secondary plot functions \code{caellipse} or
-\code{nscaellipse}, depending on the input parameter \code{catype}. }
+It produces either a classical or biplot graphical display. Further, when \code{catype = "DOCA"},
+\code{catype = "SOCA"}, \code{catype = "DONSCA"} or \code{catype = "SONSCA"}, 
+the trends of the row and column variables (after the reconstruction of column profiles by the polynomials) is portrayed.\cr
+For classical biplot displays, it superimposes the algebraic confidence ellipses. It uses the secondary plot function \code{caellipse} (or
+\code{nscaellipse}) for the symmetrical (or non symmetrical) CA variants.}
 \references{
-Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. John Wiley & Sons.\cr
-Gower J, Lubbe S, and le Roux, N 2011 Understanding Biplots. John Wiley & Sons.\cr
+Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. Wiley.\cr
+Gower J, Lubbe S, and le Roux, N 2011 Understanding Biplots. Wiley.\cr
 Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.\cr
 Lombardo R Beh EJ and Kroonenberg PM 2016 Modelling Trends in Ordered Correspondence Analysis Using Orthogonal
 Polynomials. Psychometrika, 81(2), 325--349.
@@ -108,15 +103,22 @@ Polynomials. Psychometrika, 81(2), 325--349.
 Rosaria Lombardo and Eric J Beh
 }
 \note{
-For classical graphical displays, both sets of coordinates are defined using principal coordinates (see Greenacre's terminology).
-In biplot graphical displays, one set of coordinates is standard and the other is principal. 
-When the analysis is ordered, it makes sense only biplot. One set of coordinates consists of standard polynomial coordinates and 
-the other one is of principal polynomial coordinates.
+For the classical plots, row and column principal coordinates are plotted.
+For biplots, one set of coordinates is the standard coordinates and the other 
+is the principal coordinates. 
+When an ordered variant of correspondence analysis is performed,
+the biplot is constructed where one set of coordinates consists of 
+the standard polynomial coordinates and the other one is the principal polynomial coordinates. 
 }
 \examples{
 data(asbestos)
-risasbestos<-CAvariants(asbestos, catype = "CA") 
-plot(risasbestos, plottype = "classic")
-plot(risasbestos, plottype = "biplot", biptype = "row", ell = TRUE)
+resasbestosCA<-CAvariants(asbestos, catype = "CA", M=2) 
+plot(resasbestosCA, plottype = "classic", plot3d = TRUE)
+plot(resasbestosCA, plottype = "classic",  ell = TRUE)
+plot(resasbestosCA, plottype = "biplot", biptype = "column", scaleplot=1.5, invproj=FALSE)
+resasbestosDOCA<-CAvariants(asbestos, catype = "DOCA") 
+plot(resasbestosDOCA, plottype = "biplot", biptype = "column")
+resasbestosNSCA<-CAvariants(asbestos, catype = "NSCA") 
+plot(resasbestosNSCA, plottype = "biplot", biptype = "column", plot3d = TRUE)
 }
 \keyword{multivariate}% __ONLY ONE__ keyword per line

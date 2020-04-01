@@ -17,12 +17,11 @@ Bpoly <- emerson.poly(mj, csums)$B
 Bpoly2 <- sqrt(dj) %*% Bpoly
 #pcc <- 1/sqrt(tauden)* ( x%*%dcm1 - rsums %*% (uni) ) 
 pcc <- ( x%*%dcm1 - rsums %*% (uni) ) 
-
-u<-svd(pcc%*%sqrt(dj))$u
-
+svdpccw<-svd(pcc%*%sqrt(dj))
+u<-svdpccw$u
+#mu<-svdpccw$d
 #Z <- t(u)  %*%pcc %*% sqrt(dj)%*%Bpoly2
 Z <- t(u)  %*%pcc %*% dj%*%Bpoly
-
 ZtZ<-Z%*%t(Z)
 tZZ<-t(Z)%*%Z
 mu2<- diag(tZZ) #only the sum gives me the total inertia

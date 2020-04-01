@@ -17,8 +17,9 @@ dcm1 <- diag( 1/( csums + (csums==0) ) * (1-(csums==0)) )
 drmh <- sqrt(drm1)
 dcmh <- sqrt(dcm1)
 ratio <- drmh %*% ( x - rsums %*% t(csums) ) %*% dcmh*sqrt(n)
-u<-svd(ratio)$u
-mu <- svd(ratio)$d
+svdratio<-svd(ratio)
+u<-svdratio$u
+mu <- svdratio$d
 R <- drm1 %*% x
 C <- dcm1 %*% t(x)
 Z <- t(u) %*% ratio %*% Bpoly2 #useful to check coordinates
