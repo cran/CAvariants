@@ -7,20 +7,20 @@ Algebraic elliptical confidence regions for symmetrical variants of corresponden
 \description{
 It produces elliptical confidence regions when symmetrical or ordered symmetrical correspondence analysis is performed. 
 This function allows the analyst to superimpose confidence ellipses onto a graphical display when the input parameter \code{catype}
-of the main function \code{CAvariants} is set to \code{"CA", "SOCA"} or \code{"DOCA"}. 
+of the main function \code{CAvariants} is set to \code{"CA"} or \code{"NSCA"}. 
 It is called internally from the main plot function \code{plot.CAvariants}. 
 It uses the function \code{ellipse}.
 }
 \usage{
-vcaellipse(t.inertia, inertias, inertiapc, cord1, cord2, a, b, firstaxis=1,
-lastaxis = 2, n, M = 2, Imass, Jmass)
+vcaellipse(row.summ, col.summ, inertiapc, cord1, cord2, a, b,
+firstaxis, lastaxis, eccentricity)
 }
 \arguments{
-\item{t.inertia}{
-The total inertia of the two-way contingency table (Pearson's chi-squared or Goodman and Kruskal's index depends on the CA variant).
+\item{row.summ}{
+The matrix where the first column represents the  row semi-major axis of ellipses, the second column the row semi-minor axis of  ellipses, the third column contains the  ellipse area and the last column the relative row p.values.
 }
-\item{inertias}{
-The explained inertia of each dimension.
+\item{col.summ}{
+The matrix where the first column represents the column semi-major axis of ellipses, the second column the  column semi-minor axis of  ellipses, the third column contains the  ellipse area and the last column the relative column p.values.
 }
   \item{inertiapc}{
 The percentage of explained inertia for each dimension.
@@ -38,22 +38,13 @@ The row standard coordinates or, in case of the ordered variants of CA, the row 
 The column standard coordinates or, in case of the ordered variants of CA, the column standard polynomial coordinates.
 }
   \item{firstaxis}{
-The horizontal polynomial, or principal, axis. By default, \code{firstaxis = 1}.
+The horizontal polynomial, or principal, axis. By default, \code{firstaxis} is that given in \code{plot.CAvariants}.
 }
   \item{lastaxis}{
-The vertical polynomial, or principal, axis. By default, \code{lastaxis = 2}.
+The vertical polynomial, or principal, axis. By default, \code{lastaxis} is that given in \code{plot.CAvariants}.
 }
-  \item{n}{
-The total number of observations. 
-}
-\item{M}{
-The number of axes  considered in determining the structure of the elliptical confidence regions.  
-}
-   \item{Imass}{
-The weight matrix of the row variable.
-}
-  \item{Jmass}{
-The weight matrix of the column variable.
+  \item{eccentricity}{
+The eccentricity of ellipses.
 }
 }
 \details{

@@ -74,11 +74,11 @@ pvalueC<-1 - pchisq(Cstatistic, (nrow(x$Xtable)-1)*(ncol(x$Xtable)-1))
 cat("\n C-statistic", Cstatistic, "and p-value", pvalueC, "\n")
 }
 if ((x$catype=="DOCA")|(x$catype=="DONSCA")){
-cat("\n  Inertia by the Bivariate Moment Decomposition \n
-    \n** Row Inertia Values ** \n")
+cat("\n  Chi-squared Components by the Bivariate Moment Decomposition \n
+    \n** Row  Values ** \n")
 #print(round(x$comps$compsC,digits=digits))
   print(round(x$inertias2[,-1],digits=digits))
-  cat("** Column Inertia Values ** \n")
+  cat("** Column Values ** \n")
 print(round(x$inertias[,-1],digits=digits))
 
 cat("\n Generalized correlation matrix of Bivariate Moment Decomposition\n")
@@ -94,10 +94,10 @@ printwithaxes(data.frame(x$Rprinccoord[, 1:d], row.names=x$rowlabels), axnames,d
 }
 
 if ((x$catype=="SOCA")|(x$catype=="SONSCA")){
-cat(" Inertia by Singly Ordered Analysis
-** Column Inertia Value ** \n")
+cat(" Chi-squared Components by the Hybrid Decomposition \n
+** Column  Values ** \n")
 print(round(x$comps$comps,digits=digits))
-cat("\n Generalized correlation matrix of Hybrid Decomposition\n")
+cat("\n Generalized correlation matrix of the Hybrid Decomposition\n")
 print(round(x$Z,digits=digits))
 cat("\n Column standard polynomial coordinates  \n")
 printwithaxes(data.frame(x$Cstdcoord[, 1:d], row.names=x$collabels), axnames,digits=digits)
@@ -136,12 +136,20 @@ print(round(x$Innprod,digits=digits))
 #-------------------------------------------------------------
 #---------------------------------p-value ellipses
 if (ellcomp==TRUE){
+ if (x$M > 2) {
+row.summ<-x$row.summM
+col.summ<-x$col.summM
+}
+else{
+row.summ<-x$row.summ
+col.summ<-x$col.summ
+}
 cat("\n    Eccentricity of ellipses\n")
 print(round(x$eccentricity,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of rows\n")
-print(round(x$row.summ,digits=digits))
+print(round(row.summ,digits=digits))
 cat("\n    Ellipse axes, Area, p-values of columns\n")
-print(round(x$col.summ,digits=digits))
+print(round(col.summ,digits=digits))
 }#end ell
 else{ }
 }

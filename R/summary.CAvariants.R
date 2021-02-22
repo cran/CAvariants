@@ -19,7 +19,7 @@ cat("Inertias, percent inertias and cumulative percent inertias of the row space
 print(round(data.frame(object$inertias),digits=digits))
 cat("Inertias, percent inertias and  cumulative percent inertias of the column space \n\n")
 print(round(data.frame(object$inertias2),digits=digits))
-cat("\n Polynomial Components of Inertia \n
+cat("\n Polynomial Components of Chi-squared \n
 ** Row Components ** \n")
 print(round(object$comps$compsR,digits=digits))
 cat("\n** Column Components ** \n")
@@ -32,7 +32,7 @@ cat("Inertias, percent inertias and cumulative percent inertias of the row space
 print(round(data.frame(object$inertias),digits=digits))
 cat("Inertias, percent inertias and  cumulative percent inertias of the column space \n\n")
 print(round(data.frame(object$inertias2),digits=digits))
-cat("\n Polynomial Components of Inertia \n
+cat("\n Polynomial Components of Chi-squared \n
 ** Column Components ** \n")
 print(round(object$comps$comps,digits=digits))
 }

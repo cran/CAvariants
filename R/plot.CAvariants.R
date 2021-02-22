@@ -20,8 +20,6 @@ nthings<-x$cols
 nvars<-x$rows
 cord1<- x$Cprinccoord*scaleplot 
 cord2<-x$Rprinccoord/scaleplot
-#cord1<- x$Cstdcoord 
-#cord2<-x$Rstdcoord
 dmu=diag(x$inertias[,1])
 inertiapc=round(x$inertias[,2],1) #inertia in percentage of row axes 
 dimnames(cord1)[1]<-dimnames(x$Xtable)[2]
@@ -160,10 +158,10 @@ col3="blue",size1=size1,size2=size2)
 if (((x$catype=="NSCA")||(x$catype=="CA"))&&((biptype=="column")&(plottype=="biplot"))) 
 {
 caplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="blue",col2="red",
-col3="blue",size1=size1,size2=size2)
+col3="red",size1=size1,size2=size2)
 if (invproj==FALSE){
 caplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="blue",col2="red",
-col3="red",size1=size1,size2=size2)
+col3="blue",size1=size1,size2=size2)
 }
 }
 ##############################################################
@@ -199,6 +197,12 @@ theme(legend.position="none")+
 if (ell==TRUE) {
 cord1<-x$Cprinccoord*scaleplot #check here!!
 cord2<-x$Rprinccoord/scaleplot
+  #tot.inertia<-x$t.inertia*x$n
+#singvalues<-x$singvalues*sqrt(n)
+#if (x$catype=="NSCA"){
+  #  tot.inertia <- (sum(x$singvalues^2)/x$tauden)*(x$n-1)*(x$rows-1)
+#singvalues<-x$singvalues*sqrt(((x$n-1)*(x$rows-1))/x$tauden)
+#}
 #if (((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")) & (plottype=="biplot")&(biptype=="row")|(biptype=="r")|(biptype=="rows")){
 if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")){
 cordr<-cord2
@@ -207,7 +211,15 @@ cord1<-cordr
 cord2<-cordc
 }
 #dev.new()
-vcaellipse(t.inertia=x$t.inertia,inertias=x$inertias[,1],inertiapc=x$inertias[,2],cord1=x$Rprinccoord,cord2=x$Cprinccoord,a=x$Rstdcoord,b=x$Cstdcoord,firstaxis=firstaxis,lastaxis=lastaxis,n=x$n,M=x$M,Imass=x$Imass,Jmass=x$Jmass) 
+ if (x$M > 2) {
+row.summ<-x$row.summM
+col.summ<-x$col.summM
+}
+else{
+row.summ<-x$row.summ
+col.summ<-x$col.summ
+}
+vcaellipse(row.summ=row.summ,col.summ=col.summ,inertiapc=x$inertias[,2],cord1=x$Rprinccoord,cord2=x$Cprinccoord,a=x$Rstdcoord,b=x$Cstdcoord,firstaxis=firstaxis,lastaxis=lastaxis,eccentricity=x$eccentricity) 
 
 }#end if ellipse
 
