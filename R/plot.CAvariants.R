@@ -1,6 +1,6 @@
 plot.CAvariants<-function(x,  firstaxis=1, lastaxis=2, thirdaxis=3, cex=0.8,cex.lab=0.8,
 plottype="biplot", biptype = "row",scaleplot=1,
-posleg="topleft",pos=2,ell=FALSE,alpha=0.05,plot3d =FALSE,size1=1.5,size2=3,invproj=TRUE,...) {
+posleg="right",pos=2,ell=FALSE,alpha=0.05,plot3d =FALSE,size1=1.5,size2=3,...) {
 ## internal function to plot a  single picture
 ##
 if ((firstaxis<1)|(firstaxis>x$r)) stop(paste("incorrect first axis =", firstaxis, "\n\n")) 
@@ -95,14 +95,19 @@ dimnames(cord2)[1]<-dimnames(x$Xtable)[2]
 }#end bip column
 }
 ###################################################################################ok without choice plottype
-#if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA"))
-#{
-# cat("\n Looking at the Trends of rows and columns\n")
+if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA"))
+{
+ cat("\n Looking at the Trends of rows and columns\n")
 ############################################################## reconstructed TREND
-#trendplot(x$mj,(x$Trend), posleg=posleg, xlab="ordered scores",prop=prop)
+trendplot(x$mj,(x$Innprod), main="Using coordinates",posleg=posleg, xlab="column scores")
+#-----for rows
+trendplot(x$mi,t(x$Innprod), main="Using coordinates", posleg=posleg,xlab="row scores")
+#-----original data
+trendplot(x$mj,(x$Innprod), main="Using original data",posleg=posleg, xlab="column scores")
 #dev.new()
-#trendplot(x$mi,t(x$Trend), posleg=posleg,xlab="ordered scores",prop=prop)
-#}
+trendplot(x$mi,t(x$Innprod), main="Using original data", posleg=posleg,xlab="row scores")
+
+}
 ##############################################################
 ##################
 #library(scales)
@@ -119,50 +124,30 @@ if (((x$catype=="DONSCA")||(x$catype=="DOCA"))&&((biptype=="column")&(plottype==
 {
 caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
 col2="blue",col3="blue",size1=size1,size2=size2)
-if (invproj==TRUE){
-caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",
-col2="blue",col3="red",size1=size1,size2=size2)
-}
+#if (invproj==TRUE){
+#caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",
+#col2="blue",col3="red",size1=size1,size2=size2)
+#}
  }#end catype
 if (((x$catype=="SONSCA")||(x$catype=="SOCA"))&&((biptype=="column")&(plottype=="biplot")))
 {
-caplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",col2="blue",
-col3="blue",size1=size1,size2=size2)
-if (invproj==FALSE){
-caplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",col2="blue",
-col3="red",size1=size1,size2=size2)
-}
+caRbiplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="column",size1=size1,size2=size2)
  }
 ###############################################################
 if (((x$catype=="DONSCA")||(x$catype=="DOCA")||(x$catype=="SOCA")||(x$catype=="SONSCA"))&&((biptype=="row")&(plottype=="biplot")))
 {
-caplotord(frows=gcols,gcols=frows,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
+caplotord(frows=gcols,gcols=frows,firstaxis=firstaxis, lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
 col2="blue",col3="red",size1=size1,size2=size2)
- 
-if (invproj==FALSE){
-caplotord(frows=gcols,gcols=frows,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",
-col2="blue",col3="blue",size1=size1,size2=size2)
-}
-}
+ }
 #-----------------------------------------------------------
 if (((x$catype=="NSCA")||(x$catype=="CA"))&&((biptype=="row")&(plottype=="biplot"))) 
 {
-caplot(frows=gcols,gcols=frows,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="blue",col2="red",
-col3="red",size1=size1,size2=size2)
-if (invproj==FALSE){
-caplot(frows=gcols,gcols=frows,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="blue",col2="red",
-col3="blue",size1=size1,size2=size2)
-}
+caRbiplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="row",size1=size1,size2=size2)
   }
 ###############################
 if (((x$catype=="NSCA")||(x$catype=="CA"))&&((biptype=="column")&(plottype=="biplot"))) 
 {
-caplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="blue",col2="red",
-col3="red",size1=size1,size2=size2)
-if (invproj==FALSE){
-caplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="blue",col2="red",
-col3="blue",size1=size1,size2=size2)
-}
+caRbiplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="column",size1=size1,size2=size2)
 }
 ##############################################################
 if ((plottype=="classic")&&(x$catype=="CA")|(plottype=="classic")&&(x$catype=="NSCA"))
@@ -197,29 +182,13 @@ theme(legend.position="none")+
 if (ell==TRUE) {
 cord1<-x$Cprinccoord*scaleplot #check here!!
 cord2<-x$Rprinccoord/scaleplot
-  #tot.inertia<-x$t.inertia*x$n
-#singvalues<-x$singvalues*sqrt(n)
-#if (x$catype=="NSCA"){
-  #  tot.inertia <- (sum(x$singvalues^2)/x$tauden)*(x$n-1)*(x$rows-1)
-#singvalues<-x$singvalues*sqrt(((x$n-1)*(x$rows-1))/x$tauden)
-#}
-#if (((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")) & (plottype=="biplot")&(biptype=="row")|(biptype=="r")|(biptype=="rows")){
 if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA")){
 cordr<-cord2
 cordc<-cord1
 cord1<-cordr
 cord2<-cordc
 }
-#dev.new()
- if (x$M > 2) {
-row.summ<-x$row.summM
-col.summ<-x$col.summM
-}
-else{
-row.summ<-x$row.summ
-col.summ<-x$col.summ
-}
-vcaellipse(row.summ=row.summ,col.summ=col.summ,inertiapc=x$inertias[,2],cord1=x$Rprinccoord,cord2=x$Cprinccoord,a=x$Rstdcoord,b=x$Cstdcoord,firstaxis=firstaxis,lastaxis=lastaxis,eccentricity=x$eccentricity) 
+vcaellipse(t.inertia=x$t.inertia,inertias=x$inertias[,1],inertiapc=x$inertias[,2],cord1=x$Rprinccoord,cord2=x$Cprinccoord,a=x$Rstdcoord,b=x$Cstdcoord,firstaxis=firstaxis,lastaxis=lastaxis,n=x$n,M=x$M,Imass=x$Imass,Jmass=x$Jmass) 
 
 }#end if ellipse
 

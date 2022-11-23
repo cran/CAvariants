@@ -51,8 +51,7 @@ Other possible values are:  \code{catype = "SOCA"}, \code{catype = "DOCA"}, \cod
 %The area of the ellipse for each row and column category is given by \code{Area} while the p-value of each category  is given by \code{P-value}.}
 \item{M}{
 The number of axes used for determining the structure of the elliptical confidence regions. 
-By default,  \code{M = min(nrow(Xtable), ncol(Xtable)) - 1}, i.e. the rank of the data matrix. 
-Note that the graphical representation of ellipses depend on this parameter.
+By default,  \code{M = min(nrow(Xtable), ncol(Xtable)) - 1}, i.e. the rank of the data matrix.
 }
 \item{alpha}{
 The level of significance for the elliptical regions. By default, \code{alpha = 0.05}.

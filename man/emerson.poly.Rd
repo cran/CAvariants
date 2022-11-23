@@ -36,7 +36,7 @@ Rosaria Lombardo and Eric J Beh
 \note{
 Note that the sum of the marginal relative frequencies of the ordered variables must be one.
 }
-\examples{
-emerson.poly(c(1,2,3,4,5), as.vector(c(.1,.2,.3,.2,.2)))
-}
-\keyword{ nonparametric }% __ONLY ONE__ keyword per line
+%\examples{
+%emerson.poly(c(1,2,3,4,5), as.vector(c(.1,.2,.3,.2,.2)))
+%}
+\keyword{nonparametric }% __ONLY ONE__ keyword per line

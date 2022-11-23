@@ -16,11 +16,10 @@ When the parameter \code{catype} defines an ordered variant of CA, the input par
 it will produce a row isometric polynomial biplot.
 }
 \usage{
-
 \S3method{plot}{CAvariants}(x, firstaxis = 1, lastaxis = 2, thirdaxis = 3, cex = 0.8, 
 cex.lab = 0.8, plottype = "biplot", biptype = "row",  
-scaleplot = 1, posleg = "topleft", pos = 2, ell = FALSE,  
-alpha = 0.05, plot3d = FALSE, size1 = 1.5, size2 = 3, invproj = TRUE,\dots)
+scaleplot = 1, posleg = "right", pos = 2, ell = FALSE,  
+alpha = 0.05, plot3d = FALSE, size1 = 1.5, size2 = 3, \dots)
 }
 \arguments{
   \item{x}{
@@ -47,7 +46,7 @@ The type of graphical display to be constructed. By default, \code{plottype = "b
 the alternative is \code{plottype = "classic"}. 
 }
 \item{biptype}{
-The parameter for specifying the type of biplot. By default, \code{biptype = "row"}. 
+The parameter for specifying the type of biplot.  
 One may specify a row-isometric biplot  (\code{biptype = "row"}) or a column-isometric biplot (\code{biptype = "column"}).  
 This feature is available for the nominal symmetrical and non-symmetrical correspondence analyses. 
 By default, a row-isometric biplot, \code{biptype = "row"}, is produced.
@@ -59,7 +58,7 @@ page 135 of Beh and Lombardo (2014). By default, \code{scaleplot = 1}.
 \item{posleg}{
 The position of the legend when portraying trends of the categories 
 for ordered variants of correspondence analysis. 
-By default, \code{posleg = "topleft"}.}
+By default, \code{posleg = "right"}.}
  \item{pos}{
 The parameter that specifies the position of label of each point in the graphical display. By default, \code{pos = 2}.
 }
@@ -82,8 +81,8 @@ The size of the plotted symbol. By default, \code{size = 1.5}.
 \item{size2}{
 The size of the plotted text. By default, \code{size = 3}.
 }
-\item{invproj}{The logical parameter specifies whether to portray standard coordinates as vectors and principal coordinates as points or vice-versa.
-By default, \code{invproj = TRUE}.}
+%\item{invproj}{The logical parameter specifies whether to portray standard coordinates as vectors and principal coordinates as points or vice-versa.
+%By default, \code{invproj = TRUE}.}
 \item{\dots}{Further arguments passed to, or from, other functions.}
 }
 \details{
@@ -115,7 +114,7 @@ data(asbestos)
 resasbestosCA<-CAvariants(asbestos, catype = "CA", M=2) 
 plot(resasbestosCA, plottype = "classic", plot3d = TRUE)
 plot(resasbestosCA, plottype = "classic",  ell = TRUE)
-plot(resasbestosCA, plottype = "biplot", biptype = "column", scaleplot=1.5, invproj=FALSE)
+plot(resasbestosCA, plottype = "biplot", biptype = "column", scaleplot=1.5)
 resasbestosDOCA<-CAvariants(asbestos, catype = "DOCA") 
 plot(resasbestosDOCA, plottype = "biplot", biptype = "column")
 resasbestosNSCA<-CAvariants(asbestos, catype = "NSCA") 
