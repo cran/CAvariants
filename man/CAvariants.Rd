@@ -31,10 +31,10 @@ The assigned ordered scores for the column categories,  By default, \code{mj = N
 %The parameter for specifying the dimension of the coordinate and distance matrices in print. By default  \code{printdims = 2}.
 %}
 \item{firstaxis}{
-The horizontal polynomial, or principal, axis.  By default \code{firstaxis = 1}.
+The horizontal polynomial, or principal, axis.  It is used for the construction of the Inner product table. By default \code{firstaxis = 1}.
 }
 \item{lastaxis}{
-The vertical polynomial, or principal, axis.  By default \code{lastaxis = 2}.
+The vertical polynomial, or principal, axis. It is used  for the construction of the Inner product table. By default \code{lastaxis = 2}.
 }
 \item{catype}{
 The input parameter for specifying what variant of correspondence analysis is to be performed. By default,  \code{catype = "CA"}. 
@@ -138,14 +138,14 @@ important functions are \code{print.CAvariants} and \code{plot.CAvariants}.
 }
 \examples{
 data(asbestos)
-CAvariants(asbestos, catype = "CA", firstaxis = 1, lastaxis = 2) 
+CAvariants(asbestos, catype = "CA") 
 CAvariants(asbestos, catype = "DOCA", mi = c(1:nrow(asbestos)), mj =c(4.5,14.5,24.5,34.5,44.5),  
 firstaxis = 1, lastaxis = 2, M = min(nrow(asbestos), ncol(asbestos)) - 1) 
-CAvariants(asbestos, catype = "DONSCA", firstaxis = 1, lastaxis = 2) 
+CAvariants(asbestos, catype = "DONSCA") 
 data(shopdataM)
-CAvariants(shopdataM, catype = "NSCA", firstaxis = 1, lastaxis = 3)
-CAvariants(shopdataM, catype = "SONSCA", firstaxis = 1, lastaxis = 2)
-CAvariants(shopdataM, catype = "SOCA", firstaxis = 1, lastaxis = 2)
+CAvariants(shopdataM, catype = "NSCA")
+CAvariants(shopdataM, catype = "SONSCA")
+CAvariants(shopdataM, catype = "SOCA")
 }
 \keyword{correspondence analysis variants}
 \keyword{multivariate}% __ONLY ONE__ keyword per line

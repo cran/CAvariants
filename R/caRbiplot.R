@@ -1,4 +1,4 @@
-caRbiplot <- function(frows, gcols, firstaxis, lastaxis, inertiapc,  bip="row", size1,size2){
+caRbiplot<- function(frows, gcols, firstaxis, lastaxis, inertiapc,  bip="row", size1,size2){
   ##########################################################################
   # #
   # Principal and standard Coordinates # frows and gcols
@@ -47,6 +47,5 @@ geom_abline(data=rglines,aes(intercept=0,slope=slp,colour=attnam),alpha=.5)
 grid.arrange(CAplot, ncol=1)
 #list( frows=frows, gcols = gcols)
 }
-
 
 

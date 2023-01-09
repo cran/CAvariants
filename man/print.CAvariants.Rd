@@ -74,7 +74,7 @@ Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal
 Rosaria Lombardo and Eric J. Beh}
 \examples{
 data(asbestos)
-resasbestos <- CAvariants(asbestos, catype = "DOCA", firstaxis = 1, lastaxis = 2) 
+resasbestos <- CAvariants(asbestos, catype = "DOCA") 
 print(resasbestos)
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -120,13 +120,13 @@ frows <- data.frame(coord=cord1, labels=thinglabels, categ=rep("rows", nthings))
 gcols <- data.frame(coord=cord2, labels=varlabels, categ=rep("cols", nvars)) # build a dataframe to be used as input for plotting via ggplot2
 FGcord <- rbind(frows, gcols)                                       # build a dataframe to be used as input for plotting via   
 ############################################################ 
-if (((x$catype=="DONSCA")||(x$catype=="DOCA"))&&((biptype=="column")&(plottype=="biplot")))
+if (((x$catype=="DONSCA")||(x$catype=="DOCA"))&&((plottype=="biplot")&&(biptype=="column")))
 {
-caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
-col2="blue",col3="blue",size1=size1,size2=size2)
+#caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
+#col2="blue",col3="blue",size1=size1,size2=size2)
 #if (invproj==TRUE){
-#caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",
-#col2="blue",col3="red",size1=size1,size2=size2)
+caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",
+col2="blue",col3="red",size1=size1,size2=size2)
 #}
  }#end catype
 if (((x$catype=="SONSCA")||(x$catype=="SOCA"))&&((biptype=="column")&(plottype=="biplot")))
@@ -134,20 +134,22 @@ if (((x$catype=="SONSCA")||(x$catype=="SOCA"))&&((biptype=="column")&(plottype==
 caRbiplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="column",size1=size1,size2=size2)
  }
 ###############################################################
-if (((x$catype=="DONSCA")||(x$catype=="DOCA")||(x$catype=="SOCA")||(x$catype=="SONSCA"))&&((biptype=="row")&(plottype=="biplot")))
+if (((x$catype=="DONSCA")||(x$catype=="DOCA")||(x$catype=="SOCA")||(x$catype=="SONSCA"))&&((plottype=="biplot")&&(biptype=="row")))
 {
-caplotord(frows=gcols,gcols=frows,firstaxis=firstaxis, lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
+caplotord(frows=gcols,gcols=frows,firstaxis=firstaxis, lastaxis=lastaxis,nseg=nthings,inertiapc=inertiapc,thingseg=frows,col1="red",
 col2="blue",col3="red",size1=size1,size2=size2)
+#caplotord(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis,nseg=nvars,inertiapc=inertiapc,thingseg=gcols,col1="red",
+#col2="blue",col3="blue",size1=size1,size2=size2)
  }
 #-----------------------------------------------------------
-if (((x$catype=="NSCA")||(x$catype=="CA"))&&((biptype=="row")&(plottype=="biplot"))) 
+if (((x$catype=="NSCA")||(x$catype=="CA"))&&((plottype=="biplot")&(biptype=="row"))) 
 {
 caRbiplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="row",size1=size1,size2=size2)
   }
 ###############################
-if (((x$catype=="NSCA")||(x$catype=="CA"))&&((biptype=="column")&(plottype=="biplot"))) 
+if (((x$catype=="NSCA")||(x$catype=="CA"))&&((plottype=="biplot")&(biptype=="column"))) 
 {
-caRbiplot(frows=frows,gcols=gcols,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="column",size1=size1,size2=size2)
+caRbiplot(frows=gcols,gcols=frows,firstaxis=firstaxis,lastaxis=lastaxis, inertiapc=inertiapc, bip="column",size1=size1,size2=size2)
 }
 ##############################################################
 if ((plottype=="classic")&&(x$catype=="CA")|(plottype=="classic")&&(x$catype=="NSCA"))

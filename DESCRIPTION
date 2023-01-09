@@ -1,8 +1,8 @@
 Package: CAvariants
 Type: Package
 Title: Correspondence Analysis Variants
-Version: 5.7
-Date: 2022-11-23
+Version: 5.8
+Date: 2023-01-09
 Author: Rosaria Lombardo and Eric J Beh
 Maintainer: Rosaria Lombardo  <rosaria.lombardo@unicampania.it>
 Description: Provides six variants of two-way correspondence analysis (ca):
@@ -15,6 +15,6 @@ LazyData: true
 License: GPL (> 2)
 URL: https://www.R-project.org
 NeedsCompilation: no
-Packaged: 2022-11-23 15:06:21 UTC; rosar
+Packaged: 2023-01-09 17:24:57 UTC; rosar
 Repository: CRAN
-Date/Publication: 2022-11-23 16:00:08 UTC
+Date/Publication: 2023-01-09 18:13:12 UTC
