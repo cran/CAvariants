@@ -1,6 +1,6 @@
-7c9ff2141dd73accbcc2da2da9f2bbb6 *DESCRIPTION
+dc8fffc21aeb5893d624422902f0b1f2 *DESCRIPTION
 6a9a1637910c8952cac3fc6aab2fff80 *NAMESPACE
-c3d16ea9b5d829cac11aec880e42e643 *R/CAvariants.R
+9498d0173d8e3bae6db4e4104ac41b7a *R/CAvariants.R
 2179a4370367b166aff341f11761b5d4 *R/caRbiplot.R
 4df27f159814a724bebf4cabd79227bb *R/cabasic.R
 058b3e3dcc830982186370a7b2858613 *R/caplot3d.R
@@ -19,8 +19,8 @@ a8e5725103daa5e8e199a612432796c0 *R/socabasic.R
 5d4c60bfc3d40c646e8ac6b5799936f7 *R/summary.CAvariants.R
 9b1f14f9f14bf9b73891060adeaf573f *R/trendplot.R
 1e78bdd7bdf57fe64d9517535826ae32 *R/vcaellipse.R
-8bcd71bf75b92c39d129e001ceeb1039 *data/asbestos.rda
-0ba611b5c3088aee1c8d793c9bcf1fc2 *data/shopdataM.rda
+a05113674106222711deb93cc3b65a94 *data/asbestos.rda
+0f09dcc9756127eee598bed6b4a0266c *data/shopdataM.rda
 53ef60a80d61625b82e1c368aa149931 *man/CAvariants.Rd
 ebdde39093d29a67739e5f350650a3ee *man/asbestos.Rd
 2455a26dde9064aa7b12a1b9e95990a5 *man/caRbiplot.Rd

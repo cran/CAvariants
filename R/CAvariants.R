@@ -41,10 +41,10 @@ pcc <- t(S$CX)
 #dimnames(pcc)<-dimnames(X)
 tau=NULL
 tauden=NULL
-inertia <- (S$mu[1:r]^2)/n #please check!!
-inertiasum <- sum(S$mu^2)/n
-inertiasum2 <- sum(S$mu^2)/n
-t.inertia<-inertiasum*n
+inertia <- (S$mu[1:r]^2) #please check!!
+inertiasum <- sum(S$mu^2)
+inertiasum2 <- sum(S$mu^2)
+t.inertia<-inertiasum
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 Z<-Trend
