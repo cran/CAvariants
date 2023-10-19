@@ -95,19 +95,20 @@ dimnames(cord2)[1]<-dimnames(x$Xtable)[2]
 }#end bip column
 }
 ###################################################################################ok without choice plottype
-if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA"))
-{
- cat("\n Looking at the Trends of rows and columns\n")
+#if ((x$catype=="DOCA")|(x$catype=="SOCA")|(x$catype=="SONSCA")|(x$catype=="DONSCA"))
+#{
+# cat("\n Looking at the Trends of rows and columns\n")
+cat("\n Looking at the Rows and Columns profiles\n")
 ############################################################## reconstructed TREND
-trendplot(x$mj,(x$Innprod), main="Using coordinates",posleg=posleg, xlab="column scores")
+#trendplot(x$mj,(x$Innprod), main="Using coordinates",posleg=posleg, xlab="column scores")
 #-----for rows
-trendplot(x$mi,t(x$Innprod), main="Using coordinates", posleg=posleg,xlab="row scores")
+#trendplot(x$mi,t(x$Innprod), main="Using coordinates", posleg=posleg,xlab="row scores")
 #-----original data
-trendplot(x$mj,(x$Innprod), main="Using original data",posleg=posleg, xlab="column scores")
+trendplot(x$mj,(x$Innprod), main="Column Profiles",posleg=posleg, xlab="column scores")
 #dev.new()
-trendplot(x$mi,t(x$Innprod), main="Using original data", posleg=posleg,xlab="row scores")
+trendplot(x$mi,t(x$Innprod), main="Row Profiles", posleg=posleg,xlab="row scores")
 
-}
+#}
 ##############################################################
 ##################
 #library(scales)

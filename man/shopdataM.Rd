@@ -7,7 +7,7 @@ Two-way contingency table of Dutch shoplifting (1977-1978)
 }
 \description{
 This two-way contingency table summarises, in part, the results of a survey 
-of the Dutch Central Bureau of Statistics (Isra\'{e}ls, 1987). The table considers a 
+of the Dutch Central Bureau of Statistics (Israels, 1987). The table considers a 
 sample of 20819 men who were suspected of shoplifting in stores of the Netherlands between 1977 and 1978.}
 \usage{data(shopdataM)}
 \format{
@@ -23,7 +23,7 @@ col names [1:9] "M12<" "M13" "M16" "M19" ...
 %}
 \references{
 Beh EJ and Lombardo R 2014 Correspondence Analysis: Theory, Practice and New Strategies. Wiley. \cr
-Isra\'{e}ls A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.\cr
+Israels A 1987 Eigenvalue Techniques for Qualitative Data. DSWO Press, Leiden.\cr
 Lombardo R Beh EJ 2016 Variants of Simple Correspondence Analysis. The R Journal, 8 (2), 167--184.
 }
 \examples{

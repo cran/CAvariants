@@ -15,16 +15,22 @@ dimnames=list(x$rowlabels,x$rowlabels)),digits=digits))
 cat("\n    Column Weights: Jmass\n")
 print(round(matrix(x$Jmass,x$cols,x$cols,
 dimnames=list(x$collabels,x$collabels)),digits=digits))
+cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n") #for all 6 variants
+if (x$catype=="CA"){
+chi2<-x$inertiasum*sum(x$Xtable)
+pvalueChi<-1 - pchisq(chi2, (nrow(x$Xtable)-1)*(ncol(x$Xtable)-1))
+cat("\n Chi-squared ", round(chi2,digits=digits),"and p-value", pvalueChi, "\n\n")
+}
 #---------------------------------------------------------------------------
 if ((x$catype=="CA")|(x$catype=="NSCA") ){
-cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
+#cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
 cat("The inertia values, their percentage contribution to the total inertia and   
 the cumulative percent inertias  \n")
 print(round(data.frame(x$inertias),digits=digits))
 }
 #----------------------------------------------------------------------------------------------
 if ((x$catype=="DONSCA")|(x$catype=="SONSCA") ){
-cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
+#cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
 cat("Inertias, percent inertias and cumulative percent inertias of the row  space\n\n")
 print(round(data.frame(x$inertias),digits=digits))
 cat("Inertias, percent inertias and  cumulative percent inertias of the column space \n\n")
@@ -44,7 +50,7 @@ printwithaxes(data.frame((ctrColrel)[, 1:d], row.names=x$collabels), axnames,dig
 }
 #-----------------------------------------------------------------------------------------------
 if ((x$catype=="DOCA")|(x$catype=="SOCA") ){
-cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
+#cat("\n Total inertia ", round(x$inertiasum,digits=digits), "\n\n")
 cat("Inertias, percent inertias and cumulative percent inertias of the row space\n\n")
 print(round(data.frame(x$inertias),digits=digits))
 ctrRow<-x$Imass%*%x$Rprinccoord^2%*%diag(1/x$inertias[,1])*100

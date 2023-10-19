@@ -1,5 +1,7 @@
 \name{CAvariants}
 \alias{CAvariants}
+%\alias{CAvariants-package}
+%\docType{package}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Six variants of correspondence analysis 

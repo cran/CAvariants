@@ -13,7 +13,7 @@ importFrom("plotly", "layout", "config")
 importFrom("grDevices", "dev.new")
 importFrom("utils", "globalVariables")
 importFrom("graphics", "abline", "arrows", "legend", "lines", "par",
-     "plot", "plot.new", "points", "text", "title")
+     "plot", "plot.new", "points", "text", "title", "axis")
 importFrom("stats", "pchisq", "qchisq")
 importFrom("ggforce","geom_ellipse")
 importFrom("plotly","plot_ly", "add_trace")

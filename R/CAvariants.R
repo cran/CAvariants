@@ -44,7 +44,7 @@ tauden=NULL
 inertia <- (S$mu[1:r]^2) #please check!!
 inertiasum <- sum(S$mu^2)
 inertiasum2 <- sum(S$mu^2)
-t.inertia<-inertiasum
+t.inertia<-inertiasum*n
 comps<-diag(inertia)
 Trend<-(Fmat[,firstaxis:lastaxis]%*%t(Gbi[,firstaxis:lastaxis]))
 Z<-Trend
@@ -399,7 +399,7 @@ dimnames(col.summ) <- list(paste(Jnames), paste(summ.name))
 resultCA<-list(Xtable=X, rows=rows, cols=cols, r=r,n=n,
 rowlabels=rowlabels, collabels=collabels,
 Rprinccoord=Fmat, Cprinccoord=Gmat, Rstdcoord=Fbi, Cstdcoord=Gbi,tauden=tauden,tau=tau,
-inertiasum2=inertiasum2, inertiasum=inertiasum, singvalue=S$mu/n,inertias=inertias, inertias2=inertias2,t.inertia=t.inertia,comps=comps,
+inertiasum2=inertiasum2, inertiasum=inertiasum, inertias=inertias, inertias2=inertias2,t.inertia=t.inertia,comps=comps,
  catype=catype,mj=mj,mi=mi,pcc=pcc,Jmass=dc,Imass=dr,
 Innprod=Trend,Z=Z,M=M,eccentricity=eccentricity,row.summ=row.summ,col.summ=col.summ)
 class(resultCA)<-"CAvariants"
